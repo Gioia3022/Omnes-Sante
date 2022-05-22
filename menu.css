@@ -1,20 +1,24 @@
 #wrapper{
+    background-color: white;
+    color: black;
+    width: 680px;
+    min-width: 680px;
+    height:100%;
+    margin: 0;
+    position: absolute;
+    left: 30%;
+}
+#header
+{
+    padding: 5px;
     text-align: center;
-    font-size: 25px;
-    background-color: antiquewhite;
+    background-color: white;
 }
 #titre
 {
     text-align: center;
+    background-color: white;
 }
-table,th,td 
-{
-    border: 1px solid #cccccc;
-    background-color: cornflowerblue; 
-    outline: auto; 
-    font-size: 20px;
-}
-
 button{
     border: 1px solid #cccccc;
     background-color: cornflowerblue; 
@@ -23,8 +27,8 @@ button{
 }
 
 body {
-    background-color: #7f7f2f;
-    color: #003300;
+    background-color: grey;
+    color: cornflowerblue;
     font-family: Arial, Helvetica, sans-serif;
 }
 .center {
