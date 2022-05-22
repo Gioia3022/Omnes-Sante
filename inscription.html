@@ -6,23 +6,43 @@
         <title> 
             Omnes Santé inscription
         </title>
-        <meta charset="utf-8"> <!--</meta> Autre methode de fin-->
+        <meta charset="utf-8">
+        <link href="connexion.css" rel="stylesheet" type="text/css" />
 
     </head>
     <!--Affichage-->
     <body>
-        <!--Anchor et referance hypertext-->
-        
-        <h1>inscription</h1>
-        <table>
-            <tr>
-                <a href="connexion.html">Connexion<br/></a>
-            </tr>
-            <tr>
-                <a href="menu.html">Acceuil<br/></a>
-            </tr>
-        </table>
-
-
+        <div id="wrapper">
+            <h1 id="titre">Inscription</h1>
+                <table class="center">
+                    <tr>
+                        <td><label>Identifiant</label></td>
+                        <td><input type="email" id="identifiant" name="identifiant"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Nom</label></td>
+                        <td><input type="text" id="nom" name="nom"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Prenom</label></td>
+                        <td><input type="text" id="prenom" name="prenom"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Age</label></td>
+                        <td><input type="text" id="age" name="age"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Mot de passe</label></td>
+                        <td><input type="password" id="mdp" name="mdp"></td>
+                    </tr>
+                    
+                    <tr>
+                        <th colspan="2"><input type="submit" value="connexion" name="connexion"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><a href="menu.html"><input type="submit" value="menu" name="menu"><br /></a></th>
+                    </tr>
+                </table>
+        </div>
     </body>
 </html>
