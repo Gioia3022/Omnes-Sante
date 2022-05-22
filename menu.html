@@ -5,30 +5,39 @@
         <!-- Titre de la page-->
         <title> 
             Omnes Santé
+            <link href="menu.css" rel="stylesheet" type="text/css" />
         </title>
         <meta charset="utf-8"> <!--</meta> Autre methode de fin-->
 
     </head>
     <!--Affichage-->
     <body>
-            <h1>Omnes Santé</h1>
-            <table>
+        <div id="wrapper">
+            <h1 id="titre" style="margin-left: 850px; margin-top: 100px;">Omnes Santé</h1>
+            <table class="center">
                 <tr>
-                    <a href="accueil.html">Accueil<br/></a>
-                </tr>
-                <tr>
-                    <a href="parcourir.html">Parcourir<br/></a>
-                </tr>
-                <tr>
-                    <a href="recherche.html">Recherche<br/></a>
-                </tr>
-                <tr>
-                    <a href="RDV.html">Rendez-vous<br/></a>
-                </tr>
-                <tr>
-                    <a href="VotreCompte.html">Votre Compte<br/></a>
+                    <td><form action="accueil.html">
+                        <button style="background-color: cornflowerblue; outline: auto; font-size: 20px; margin-left: 600px; margin-right: 30px;" 
+                        type="submit">Accueil</button>
+                      </form></td>
+                    <td><form action="parcourir.html">
+                        <button style="background-color: cornflowerblue; outline: auto; font-size: 20px;margin-right: 30px;" 
+                        type="submit">Parcourir</button>
+                      </form></td>
+                  <td><form action="recherche.html">
+                        <button style="background-color: cornflowerblue; outline: auto; font-size: 20px;margin-right: 30px;" 
+                        type="submit">Recherche</button>
+                      </form></td>
+                  <td><form action="RDV.html">
+                        <button style="background-color: cornflowerblue; outline: auto; font-size: 20px;margin-right: 30px;" 
+                         type="submit">Rendez-vous</button>
+                      </form></td>
+                    <td><form action="inscription.html">
+                        <button  style="background-color: cornflowerblue; outline: auto; font-size: 20px;" 
+                        type="submit">Votre Compte</button>
+                      </form></td>
                 </tr>
             </table>
-
+        </div>
     </body>
 </html>
