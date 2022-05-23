@@ -7,14 +7,19 @@
     <title>
         Omnes Santé
     </title>
-    <link href="menu.css" rel="stylesheet" type="text/css" />
+
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootsrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="menu.css" rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
     <div id="wrapper">
-        <h1 id="titre">Omnes Santé</h1>
+        <h1 id="titre"><img src="../Omnes-Sante/images/logo.png" />Omnes Santé </h1>
         <table class="center">
             <tr>
                 <td>
@@ -44,25 +49,62 @@
                 </td>
             </tr>
         </table>
-        <h2>Introduction: </h2>
-        <p>
-            This paragraph
-            contains a lot of lines
-            in the source code,
-            but the browser
-            ignores it.
-            </p>
-        <h2> Bulletin santé de la semaine</h2>
-        <p>
-            This paragraph
-            contains a lot of lines
-            in the source code,
-            but the browser
-            ignores it.
-            </p>
-        <h2>Nos spécialistes</h2>
+        <div class=row>
+            <h2 id="titre">Introduction: </h2>
+            <article class="col-md-12">
+                <p>
+                    Parce que votre santé c'est notre PROJET.
+                    Omnes Santé,première plateforme de reservation de consultation en ligne d'après le choix des
+                    médecins,
+                    permet d'établir un lien patient médecin avant chaque consulation grâce à son système de
+                    messagerie
+                    électronique ultra performant .
+
+                </p>
+            </article>
+            <article class="col-md-12">
+                <h2 id="titre"> Bulletin santé de la semaine</h2>
+                <p>
+                    Cette semaine on observe une forte hausse des gastros!!
+                    Alors arretez de manger de la merde bande de shlags.
+                    A demain pour un autre bulletin météo de guli.
+                </p>
+            </article>
+
+            <h2 id="titre">Nos spécialistes</h2>
+            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../Omnes-Sante/images/photo_medecin1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../Omnes-Sante/images/photo_medecin2.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../Omnes-Sante/images/photo_medecin3.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../Omnes-Sante/images/photo_medecin4.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../Omnes-Sante/images/photo_medecin5.png" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </div>
 
     </div>
+    <script src="js/bootstrap.js"></script>
+
 </body>
 
 </html>
