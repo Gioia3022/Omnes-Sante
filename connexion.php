@@ -9,59 +9,52 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 //declaration des variables
 
-$identifiant = isset($_POST["email"])? $_POST["email"] : "";
-$mdp = isset($_POST["password"])? $_POST["password"] : "";
+$username = isset($_POST["username"])? $_POST["username"] : "";
+$password = isset($_POST["password"])? $_POST["password"] : "";
 
 //detection des erreurs
-
 $erreur = "";
+echo "0";
 
-if ($identifiant == "") {
-$erreur .= "Le champ Identifiant est vide. <br>";
-}
-
-if ($mdp == "") {
-$erreur .= "Le champ Mot de passe est vide. <br>";
-}
-
-if ($db_found) {
-    // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-    if ($stmt = $db_handle->prepare("select * from admin where email=? and password=?;")) {
-        
-        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-        $stmt->bind_param('s', $_POST['email']);
-        $stmt->execute();
-
-        // Store the result so we can check if the account exists in the database.
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($identifiant, $mdp);
-            $stmt->fetch();
-            
-            // Account exists, now we verify the mdp.
-            if ($_POST['mdp'] === $mdp) {
-                // Verification success! User has logged-in!
-                // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
-                session_regenerate_id();
-                //$_SESSION['loggedin'] = TRUE;
-                //$_SESSION['identifiant'] = $identifiant;
-                echo 'Bienvenue ' . $_SESSION['identifiant'] . '!';
-            } else {
-                // Incorrect mdp
-                echo 'Identifiant et/ou mot de passe incorrect !';
+if (isset($_POST["access"])) {
+    echo "1";
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Client";
+        if ($username != "") {
+            //on recherche le medecin par son nom
+            $sql .= " WHERE username LIKE '%$username%'";
+            //on recherche le medecin par son prenom
+            if ($password != "") {
+                $sql .= " AND password LIKE '%$password%'";
             }
-        } else {
-            // Incorrect username
-            echo 'Identifiant et/ou mot de passe incorrect !';
         }
-        $stmt->close();
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultats
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p>Ce Compte n'existe pas</p>";
+        } else {
+            //afficher le resultat
+            while ($data = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $data['id_client'] . "</td>"."<br>";
+                echo "<td>" . $data['nom'] . "</td>"."<br>";
+                echo "<td>" . $data['prenom'] . "</td>"."<br>";
+                echo "<td>" . $data['username'] . "</td>"."<br>";
+                echo "<td>" . $data['date_naissance'] . "</td>"."<br>";
+                echo "<td>" . $data['email'] . "</td>"."<br>";
+                echo "<td>" . $data['genre'] . "</td>"."<br>";
+                echo "<td>" . $data['telephone'] . "</td>"."<br>";
+                $image = $data['photo'];
+                echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>"."<br>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        }
+    } else {
+        echo "<p>Database not found.</p>";
     }
 }
 
-//fermer la connection
-mysqli_close($db_handle);
 
 ?>
-
-

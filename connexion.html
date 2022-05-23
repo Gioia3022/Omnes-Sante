@@ -15,29 +15,22 @@
 <body>
     <div id="wrapper">
         <h1 id="titre">Connexion</h1>
+        <form action="connexion.php" method="post">
         <table class="center">
             <tr>
-                <th colspan="2">
-                    <select class="combo">
-                    <option value="Select">Select....</option>
-                    <option value="client">Client</option>
-                    <option value="medcin">Medecin ou personnel de santé</option>
-                    <option value="admin">Administrateur</option></select>
-                </th>
+                <td><label>Username : </label></td>
+                <td><input type="text" id="username" name="username"></td>
             </tr>
             <tr>
-                <td><label>Identifiant</label></td>
-                <td><input type="email" id="identifiant" name="identifiant"></td>
-            </tr>
-            <tr>
-                <td><label>Mot de passe</label></td>
-                <td><input type="password" id="mdp" name="mdp"></td>
+                <td><label>Mot de passe : </label></td>
+                <td><input type="password" id="password" name="password"></td>
             </tr>
             <tr>
                 <!--On doit remplacer ça avec la suite-->
-                <th colspan="2"><a href="menu.html"><input type="submit" value="Connexion" name="Connexion" formaction="connexion.php"><br /></a></th>
+                <th colspan="2"><button type="submit" name="access">Valider</button><br /></th>
                 <!---->
             </tr>
+            </form>
             <tr>
                 <th colspan="2"><a href="inscription.html"><input type="submit" value="inscription" name="inscription"><br /></a></th>
             </tr>
@@ -46,7 +39,6 @@
             </tr>
         </table>
     </div>
-    </form>
 </body>
 
 </html>
