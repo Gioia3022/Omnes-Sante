@@ -12,24 +12,12 @@
     </head>
     <!--Affichage-->
     <body>
+        <form action="inscription.php" method="post">
         <div id="wrapper">
             <h1 id="titre">Inscription</h1>
                 <table class="center">
                     <tr>
-                        <th colspan="2">
-                            <select class="combo">
-                            <option value="Select">Select....</option>
-                            <option value="client">Client</option>
-                            <option value="medcin">Medecin ou personnel de santé</option>
-                            <option value="admin">Administrateur</option></select>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td><label>Identifiant</label></td>
-                        <td><input type="email" id="identifiant" name="identifiant"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Nom</label></td>
+                        <td><label>Nom :</label></td>
                         <td><input type="text" id="nom" name="nom"></td>
                     </tr>
                     <tr>
@@ -37,25 +25,64 @@
                         <td><input type="text" id="prenom" name="prenom"></td>
                     </tr>
                     <tr>
+                        <td>Username :</td>
+                        <td><input type="text" id="username" name="username" required></td>
+                    </tr>
+                    <tr>
                         <td><label>Date de naissance</label></td>
-                        <td><input type="date" id="dateDeNaissance" name="dateDeNaissance"></td>
+                        <td><input type="date" id="date_naissance" name="date_naissance"></td>
+                    </tr>
+                    <tr>
+                    
+                        <td>Genre :</td>
+                        <td><select class="combo" id="genre" name="genre" >
+                            <option value="homme" name="homme">Homme</option>
+                            <option value="femme" name="femme">Femme</option></select>
+                            
+                    </tr>
+                    <tr>
+                        <td>Telephone :</td>
+                        <td><input type="tel" id="telephone" name="telephone" required></td>
+                    </tr>
+    
+                    <tr>
+                        <td>Photo :</td>
+                        <td><input type="text" id="photo" name="photo"></td>
                     </tr>
                     <tr>
                         <td><label>Mot de passe</label></td>
-                        <td><input type="password" id="mdp" name="mdp"></td>
+                        <td><input type="password" id="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Adresse :</td>
+                        <td><input type="text" id="adresse" name="adresse" required></td>
+                    </tr>
+    
+                    <tr>
+                        <td>Ville :</td>
+                        <td><input type="text" id="ville" name="ville"></td>
+                    </tr>
+                    <tr>
+                        <td>Code postal :</td>
+                        <td><input type="tel" id="code_postal" name="code_postal" required></td>
+                    </tr>
+    
+                    <tr>
+                        <td>Pays :</td>
+                        <td><input type="text" id="pays" name="pays"></td>
+                    </tr>
+                    <tr>
+                        <td>Numero de carte vital: :</td>
+                        <td><input type="tel" id="carte_vitale" name="carte_vitale" required></td>
                     </tr>
                     <tr>
                         <!--On doit remplacer ça avec la suite-->
-                        <th colspan="2"><a href="menu.html"><input type="submit" value="acces" name="acces"><br /></a></th>
+                        <th colspan="2"><input type="submit" value="Valider" name="access" ><br /></th>
                         <!---->
                     </tr>
-                    <tr>
-                        <th colspan="2"><a href="connexion.html"><input type="submit" value="connexion" name="connexion"><br /></a></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2"><a href="menu.html"><input type="submit" value="menu" name="menu"><br /></a></th>
-                    </tr>
+                    
                 </table>
         </div>
+    </form>
     </body>
 </html>

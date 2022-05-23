@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page_ajout_medecin</title>
+    <meta charset="UTF-8" />
+
+</head>
+
+<body>
+    <form action="ajout_medecin.php" method="post">
+
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" id="nom" name="nom" required></td>
+                </tr>
+
+                <tr>
+                    <td>Prenom:</td>
+                    <td><input type="text" id="prenom" name="prenom" required></td>
+                </tr>
+                
+                <tr>
+                    <td>Username :</td>
+                    <td><input type="text" id="username" name="username" required></td>
+                </tr>
+
+                <tr>
+                    <td>Password :</td>
+                    <td><input type="password" id="password" name="password" required></td>
+                </tr>
+
+                <tr>
+                    <td>type medecin :</td>
+                    <td><select class="combo" name="type_medecin">
+                        <option value="generaliste" name="generaliste">Generaliste</option>
+                        <option value="addictologie" name="addictologie">Addictologue</option>
+                        <option value="andrologie" name="andrologie">Andrologue</option>
+                        <option value="cardiologie" name="cardiologie">Cardiologue</option>
+                        <option value="dermatologie" name="dermatologie">Dermatologue</option>
+                        <option value="gastro-hepato-enterologie" name="gastro-hepato-enterologie">Gastro-Hépato-Entérologue</option>
+                        <option value="i.s.t" name="i.s.t">I.S.T</option>
+                        <option value="osteopathie" name="osteopathie">Osthéopathe</option></select>
+                        
+                </tr>
+
+                <tr>
+                    <td>email :</td>
+                    <td><input type="email" id="email" name="email" required></td>
+                </tr>
+
+                <tr>
+                    <td>date de naissance :</td>
+                    <td><input type="date" id="date_naissance" name="date_naissance" required></td>
+                </tr>
+
+                <tr>
+                    
+                    <td>genre :</td>
+                    <td><select class="combo" id="genre" name="genre" >
+                        <option value="homme" name="homme">Homme</option>
+                        <option value="femme" name="femme">Femme</option></select>
+                        
+                </tr>
+
+                <tr>
+                    <td>telephone :</td>
+                    <td><input type="tel" id="telephone" name="telephone" required></td>
+                </tr>
+
+                <tr>
+                    <td>photo :</td>
+                    <td><input type="text" id="photo" name="photo"></td>
+                </tr>
+
+                <tr>
+                    <td>cv :</td>
+                    <td><input type="text" id="cv" name="cv"></td>
+                </tr>
+
+                <tr>
+                    <td>salle de cabinet :</td>
+                    <td><input type="text" id="cabinet" name="cabinet" required></td>
+                </tr>
+
+            </table>
+
+
+            <div>
+                <input type="submit" value="Valider" name="button_ajout_medecin">
+            </div>
+
+    </form>
+</body>
+
+</html>
