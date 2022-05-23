@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<!--Dependency et Proprietés-->
+
+<head>
+    <!-- Titre de la page-->
+    <title>
+        Omnes Santé recherche
+    </title>
+    <meta charset="utf-8">
+
+</head>
+<!--Affichage-->
+
+<body>
+    <form action="recherche_examen.php" method="post">
+        <table>
+
+            <tr>
+                <td>Laboratoire:</td>
+                <td><select name="id_lab">
+                        <option></option>
+                        <option value="1" name="1">Gueri</option>
+                        <option value="2" name="2">Necker</option>
+                    </select>
+
+            </tr>
+
+            <tr>
+                <td>type examen :</td>
+                <td><select name="type_examen">
+                        <option></option>
+                        <option value="depistage covid-19" name="depistage covid-19">Dépistage covid-19</option>
+                        <option value="biologie preventive" name="biologie preventive">Biologie préventive</option>
+                        <option value="biologie de la femme enceinte" name="biologie de la femme enceinte">Biologie de la femme enceinte</option>
+                        <option value="biologie de routine" name="biologie de routine">Biologie de routine</option>
+                        <option value="cancerologie" name="cancerologie">Cancérologie</option>
+                        <option value="gynecologie" name="gynecologie">Gynécologie</option>
+                    </select>
+
+            </tr>
+        </table>
+
+        <div>
+            <input type="submit" value="Valider" name="button_recherche_examen">
+        </div>
+    </form>
+</body>
+
+</html>
+
+Dépistage covid-19, Biologie préventive, Biologie de la femme enceinte, Biologie de routine, Cancérologie, Gynécologie

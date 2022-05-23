@@ -17,7 +17,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 
-if (isset($_POST["button_recherche"])) {
+if (isset($_POST["button_recherche_medecin"])) {
     if ($db_found) {
         //commencer le query
         $sql = "SELECT * FROM Medecin";
