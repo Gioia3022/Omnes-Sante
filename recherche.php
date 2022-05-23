@@ -3,6 +3,11 @@
 //saisir les données du  formulaires
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
+$type_medecin = isset($_POST["type_medecin"])? $_POST["type_medecin"] : "";
+
+$err=$nom. $prenom. $type_medecin;
+$char="";
+
 
 //identifier le nom de base de données
 $database = "omnes_sante";
@@ -16,12 +21,22 @@ if (isset($_POST["button_recherche"])) {
     if ($db_found) {
         //commencer le query
         $sql = "SELECT * FROM Medecin";
-        if ($nom != "") {
+        if ($err != "") {
+            $sql .= " WHERE ";
+
             //on recherche le medecin par son nom
-            $sql .= " WHERE nom LIKE '%$nom%'";
+            if ($nom!=""){
+            $sql .= " nom LIKE '%$nom%'";
+            $char= " AND ";
+            }
             //on recherche le medecin par son prenom
             if ($prenom != "") {
-                $sql .= " AND prenom LIKE '%$prenom%'";
+                $sql .= $char." prenom LIKE '%$prenom%'";
+                $char=" AND ";
+            }
+            //on recherche le medecin par son type
+            if ($type_medecin != "") {
+                $sql .= $char. "type_medecin LIKE '%$type_medecin%'";
             }
         }
         $result = mysqli_query($db_handle, $sql);
