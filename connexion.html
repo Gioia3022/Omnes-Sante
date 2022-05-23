@@ -17,6 +17,15 @@
         <h1 id="titre">Connexion</h1>
         <table class="center">
             <tr>
+                <th colspan="2">
+                    <select class="combo">
+                    <option value="Select">Select....</option>
+                    <option value="client">Client</option>
+                    <option value="medcin">Medecin ou personnel de santé</option>
+                    <option value="admin">Administrateur</option></select>
+                </th>
+            </tr>
+            <tr>
                 <td><label>Identifiant</label></td>
                 <td><input type="email" id="identifiant" name="identifiant"></td>
             </tr>
@@ -25,7 +34,12 @@
                 <td><input type="password" id="mdp" name="mdp"></td>
             </tr>
             <tr>
-                <th colspan="2"><input type="submit" value="connexion" name="connexion"></th>
+                <!--On doit remplacer ça avec la suite-->
+                <th colspan="2"><a href="menu.html"><input type="submit" value="acces" name="acces"><br /></a></th>
+                <!---->
+            </tr>
+            <tr>
+                <th colspan="2"><a href="inscription.html"><input type="submit" value="inscription" name="inscription"><br /></a></th>
             </tr>
             <tr>
                 <th colspan="2"><a href="menu.html"><input type="submit" value="menu" name="menu"><br /></a></th>
