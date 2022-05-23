@@ -12,13 +12,21 @@
     <!--Affichage-->
     <body>
         <form action="recherche.php" method="post">
-        <tr>
-            <td><label> Nom ou Spécialité ou Etablisement</label></td><br><br>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="NOM"  name="nom" id="nom" required></td>
-            <td><input type="submit" value="Recherche"></td><br><br>
-        </tr>
+            <table>
+                <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" id="nom" name="nom" required></td>
+                </tr>
+
+                <tr>
+                    <td>Prenom:</td>
+                    <td><input type="text" id="prenom" name="prenom" required></td>
+                </tr>
+            </table>
+
+            <div>
+                <input type="submit" value="Valider" name="button_recherche">
+            </div>
     </form>
     </body>
 </html>

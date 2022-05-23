@@ -1,52 +1,69 @@
 <?php
-session_start();
-//Ordre Décroissant
-echo "<meta charset=\"utf-8\">";
-//identifier votre BDD
+
+//saisir les données du  formulaires
+$nom = isset($_POST["nom"])? $_POST["nom"] : "";
+$prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
+
+//identifier le nom de base de données
 $database = "omnes_sante";
-//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+//connectez-vous dans votre BDD
+//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
 $db_handle = mysqli_connect('localhost', 'root', '');
-if ( mysqli_connect_errno() ) {
-	// If there is an error with the connection, stop the script and display the error.
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
 $db_found = mysqli_select_db($db_handle, $database);
+//si le BDD existe, faire le traitement
 
-// Now we check if the data from the login form was submitted, isset() will check if the data exists.
-if ( !isset($_POST['nom']) ) {
-	// Could not get the data that should have been sent.
-	exit('Please fill both the fields!');
-}
-// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-$sql="SELECT nom, id_medecin,type_medecin,email, prenom FROM medecins WHERE nom = ?";
-echo '1';
-if ($stmt = $db_handle->prepare($sql)) {
-    
-	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-	$stmt->bind_param('s', $_POST['nom']);
-	$stmt->execute();
-	// Store the result so we can check if the account exists in the database.
-	$stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($nom);
-        $stmt->fetch();
-            // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
-            session_regenerate_id();
-            $_SESSION['loggedin'] = TRUE;
-            $_SESSION['name'] = $_POST['nom'];
-            $_SESSION['id'] = $id_medecin;
-            $_SESSION['t_m'] = $type_medecin;
-            $_SESSION['pre'] = $prenom;
-            $_SESSION['mail'] = $email;
-            echo 'Welcome ' . $_SESSION['name'] . '!';
-            echo $_SESSION['id'] . $_SESSION['t_m'] . $_SESSION['pre'] . $_SESSION['mail'];
-        } 
-     else {
-        // Incorrect username
-        echo 'Incorrect username and/or password!';
+if (isset($_POST["button_recherche"])) {
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Medecin";
+        if ($nom != "") {
+            //on recherche le medecin par son nom
+            $sql .= " WHERE nom LIKE '%$nom%'";
+            //on recherche le medecin par son prenom
+            if ($prenom != "") {
+                $sql .= " AND prenom LIKE '%$prenom%'";
+            }
+        }
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultats
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p>Ce medecin n'existe pas</p>";
+        } else {
+            //on trouve le livre
+            echo "<table border='1'>";
+            echo "<tr>";
+            echo "<th>" . "ID" . "</th>";
+            echo "<th>" . "Nom" . "</th>";
+            echo "<th>" . "Prenom" . "</th>";
+            echo "<th>" . "Genre" . "</th>";
+            echo "<th>" . "Date de naissance" . "</th>";
+            echo "<th>" . "type medecin" . "</th>";
+            echo "<th>" . "email" . "</th>";
+            echo "<th>" . "telephone" . "</th>";
+            echo "<th>" . "cabinet" . "</th>";
+            echo "<th>" . "photo" . "</th>";
+            //afficher le resultat
+            while ($data = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $data['id_medecin'] . "</td>";
+                echo "<td>" . $data['nom'] . "</td>";
+                echo "<td>" . $data['prenom'] . "</td>";
+                echo "<td>" . $data['genre'] . "</td>";
+                echo "<td>" . $data['date_naissance'] . "</td>";
+                echo "<td>" . $data['type_medecin'] . "</td>";
+                echo "<td>" . $data['email'] . "</td>";
+                echo "<td>" . $data['telephone'] . "</td>";
+                echo "<td>" . $data['cabinet'] . "</td>";
+                $image = $data['photo'];
+                echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        }
+    } else {
+        echo "<p>Database not found.</p>";
     }
-
-	$stmt->close();
 }
+
+
 ?>
