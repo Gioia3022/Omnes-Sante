@@ -8,9 +8,9 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 //declaration des variables
-$Id_exam = isset($_POST["id_examen"]) ? $_POST["id_examen"] : "";
-$Type_exam = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
-$Id_labo = isset($_POST["fk_laboratoir"]) ? $_POST["fk_laboratoir"] : "";
+$id_exam = isset($_POST["id_examen"]) ? $_POST["id_examen"] : "";
+$type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
+$fk_laboratoir = isset($_POST["fk_laboratoir"]) ? $_POST["fk_laboratoir"] : "";
 $ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
@@ -102,9 +102,16 @@ $erreur = "";
             <?php
             if ($db_found) {
                 $sql1 = "SELECT * FROM medecin";
-                echo "Liste de médecins: ";
-                echo "<br> <br> <br>";
+                
+                $sql3 = "SELECT * FROM examen";
                 $result1 = mysqli_query($db_handle, $sql1);
+               
+                $result3 = mysqli_query($db_handle, $sql3);
+
+                echo "<br> <br>";
+                echo "Liste de médecins: ";
+                echo " <br>";
+
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
@@ -115,10 +122,6 @@ $erreur = "";
                     echo  "<td>" . $data1['cabinet'] . "</td>";
                     echo "</tr>";
                 } //end while
-                $sql2 = "SELECT * FROM laboratoire";
-                $result2 = mysqli_query($db_handle, $sql2);
-                $r1 = mysqli_query($db_handle, $sql1);
-                $r2 = mysqli_query($db_handle, $sql2);
             }
             //si le BDD n'existe pas
             else {
@@ -127,50 +130,32 @@ $erreur = "";
 
             ?>
         </table>
+       
         <table class="table table-strip">
             <tr>
-                <th>Nom</th>
+                <th></th>
+                <th>Type examen</th>
+                <th>Laboratoire</th>
                 <th>Adresse</th>
                 <th>Email</th>
                 <th>Telephone</th>
             </tr>
             <?php
             if ($db_found) {
-                echo "Liste de laboratoirs: ";
-                echo "<br> <br> <br>";
-                while ($data2 = mysqli_fetch_assoc($result2)) {
-                    echo "<tr>";
-                    echo "<td>" . $data2['nom'] . "</td>";
-                    echo "<td>" . $data2['adresse'] . ", " . $data2['ville'] . "</td>";
-                    echo "<td>" . $data2['email'] . "</td>";
-                    echo "<td>" . $data2['telephone'] . "</td>";
-                    echo "</tr>";
-                } //end while
-            }
-            //si le BDD n'existe pas
-            else {
-                echo "Database not found";
-            }
-            ?>
-        </table>
-        <table class="table table-strip">
-            <tr>
-                <th></th>
-                <th>ID Labo</th>
-                <th>Type examen</th>
-            </tr>
-            <?php
-            if ($db_found) {
-                $sql1 = "SELECT * FROM examen";
-                $result1 = mysqli_query($db_handle, $sql1);
                 echo "<br> <br> ";
                 echo "Liste des examens: ";
                 echo "<br> ";
-                while ($data2 = mysqli_fetch_assoc($result2)) {
+                while ($data3 = mysqli_fetch_assoc($result3)) {
+                    $sql4 = "SELECT * FROM laboratoire WHERE id_laboratoire =" . $data3['fk_laboratoire'];
+                    $result4 = mysqli_query($db_handle, $sql4);
+                    $data4 = mysqli_fetch_assoc($result4);
                     echo "<tr>";
-                    echo "<td>" . $data2['id_examen'] . "</td>";
-                    echo "<td>" . $data2['email'] . "</td>";
-                    echo "<td>" . $data2['telephone'] . "</td>";
+                    echo "<td>" . $data3['id_examen'] . "</td>";
+                    echo "<td>" . $data3['type_examen'] . "</td>";
+                    echo "<td>" . $data4['nom'] . "</td>";
+                    echo "<td>" . $data4['adresse'] . " " . $data4['ville'] . "</td>";
+                    echo "<td>" . $data4['email'] . "</td>";
+                    echo "<td>" . $data4['telephone'] . "</td>";
                     echo "</tr>";
                 }
             } else {
