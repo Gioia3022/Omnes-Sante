@@ -3,7 +3,6 @@
 //saisir les données du  formulaires
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
-$username= isset($_POST["username"])? $_POST["username"] : "";
 $password = isset($_POST["password"])? $_POST["password"] : "";
 $email = isset($_POST["email"])? $_POST["email"] : "";
 $date_naissance = isset($_POST["date_naissance"])? $_POST["date_naissance"] : "";
@@ -19,7 +18,6 @@ $carte_vitale = isset($_POST["carte_vitale"])? $_POST["carte_vitale"] : "";
 
 echo "nom :".$nom."<br>";
 echo "prenom :".$prenom."<br>";
-echo "username :".$username."<br>";
 echo "password :".$password."<br>";
 echo "email :".$email."<br>";
 echo "date de naissance :".$date_naissance."<br>";
@@ -49,8 +47,8 @@ if (isset($_POST["access"])) {
 
 if ($db_found) {
     
-    $sql = "INSERT INTO Client(nom, prenom, username, password,  email, date_naissance, genre, telephone, photo, adresse, ville, code_postal, pays, carte_vitale)";
-    $sql=$sql ." VALUES ( '$nom', '$prenom', '$username', '$password', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$adresse', '$ville', '$code_postal','$pays','$carte_vitale')";
+    $sql = "INSERT INTO Client(nom, prenom, password,  email, date_naissance, genre, telephone, photo, adresse, ville, code_postal, pays, carte_vitale)";
+    $sql=$sql ." VALUES ( '$nom', '$prenom', '$password', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$adresse', '$ville', '$code_postal','$pays','$carte_vitale')";
     $result =mysqli_query($db_handle, $sql);
     echo "<p>Add successful.</p>";
     echo "DONE!!!";
