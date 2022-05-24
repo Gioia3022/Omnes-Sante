@@ -14,9 +14,9 @@ $password = isset($_POST["password"])? $_POST["password"] : "";
 
 //detection des erreurs
 $erreur = "";
-
+echo "1";
 if (isset($_POST["button_connexion"])) {
-    
+    echo "2";
     if ($db_found) {
         //commencer le query
         $sql = "SELECT * FROM Client";
