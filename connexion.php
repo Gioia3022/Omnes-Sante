@@ -59,7 +59,7 @@ if (isset($_POST["button_connexion"])) {
                 else {
                     //afficher le resultat
                     while ($data = mysqli_fetch_assoc($result2)) {
-                        echo "Vous etes un médecin: ". "<br>"
+                        echo "Vous etes un médecin: ". "<br>";
                         echo "<tr>";
                         echo "<td>" . $data['id_medecin'] . "</td>"."<br>";
                         echo "<td>" . $data['nom'] . "</td>"."<br>";
@@ -81,7 +81,7 @@ if (isset($_POST["button_connexion"])) {
             else {
                 //afficher le resultat
                 while ($data = mysqli_fetch_assoc($result1)) {
-                    echo "Vous etes un admin: ". "<br>"
+                    echo "Vous etes un admin: ". "<br>";
                     echo "<tr>";
                     echo "<td>" . $data['id_admin'] . "</td>"."<br>";
                     echo "<td>" . $data['nom'] . "</td>"."<br>";
@@ -98,7 +98,7 @@ if (isset($_POST["button_connexion"])) {
         else {
             //afficher le resultat
             while ($data = mysqli_fetch_assoc($result)) {
-                echo "Vous etes un client: ". "<br>"
+                echo "Vous etes un client: ". "<br>";
                 echo "<tr>";
                 echo "<td>" . $data['id_client'] . "</td>"."<br>";
                 echo "<td>" . $data['nom'] . "</td>"."<br>";
