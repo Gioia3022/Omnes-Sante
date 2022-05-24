@@ -12,6 +12,7 @@
         header("Location: chat.php"); //Rediriger l'utilisateur
     }
 
+    //etape 3
     if (isset($_POST['enter'])){
         if($_POST['name'] != ""){
             $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
@@ -21,6 +22,7 @@
         }
     }
     function loginForm() {
+        // etape 2
         echo
         '<div id="loginform">
         <p>Veuillez saisir votre nom pour continuer!</p>
@@ -42,9 +44,11 @@
     <body>
     <?php
         if (!isset($_SESSION['name'])){
+            //etape 1
             loginForm();
         }
         else {
+            //etape 4
         ?>
         <div id="wrapper">
             <div id="menu">
