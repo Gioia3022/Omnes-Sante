@@ -13,11 +13,11 @@
 <!--Affichage-->
 
 <body>
-    <form action="connexion.php" method="post">
+    
     <div id="wrapper">
         <h1 id="titre">Connexion</h1>
         <table class="center">
-            
+            <form action="connexion.php" method="post">
             <tr>
                 <td><label>Email : </label></td>
                 <td><input type="email" id="email" name="email" required></td>
@@ -28,13 +28,19 @@
             </tr>
             <tr>
                 <!--On doit remplacer ça avec la suite-->
-                <th colspan="2"><input type="submit" value="Valider" name="button_connexion"><br /></th>
+                <th colspan="2"><button type="submit" name="access">Valider</button><br /></th>
                 <!---->
             </tr>
-
+            </form>
+            <tr>
+                <th colspan="2"><a href="inscription.html"><input type="submit" value="inscription" name="inscription"><br /></a></th>
+            </tr>
+            <tr>
+                <th colspan="2"><a href="menu.html"><input type="submit" value="menu" name="menu"><br /></a></th>
+            </tr>
         </table>
     </div>
-    </form>
+
 </body>
 
 </html>
