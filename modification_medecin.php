@@ -8,7 +8,7 @@ session_start();
 echo $_SESSION['id'];
 echo $_SESSION['type'];
 
-$id_medecin = 1;
+$id_medecin = $_SESSION['id'];
 //identifier le nom de base de données
 $database = "omnes_sante";
 //connectez-vous dans votre BDD

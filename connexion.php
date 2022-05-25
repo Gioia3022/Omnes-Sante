@@ -120,7 +120,7 @@ if (isset($_POST["button_connexion"])) {
                 echo "</tr>";
 
                 $_SESSION['id']=$data['id_client'];
-                $_SESSION['type']="admin";
+                $_SESSION['type']="client";
             }
             echo "</table>";
         }
