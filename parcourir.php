@@ -46,9 +46,9 @@ $erreur = "";
 
 
 <body>
-<div id="marginLeft" style="background-color: rgb(250, 250, 250); width: 25%; height: 80px ; position: absolute; top: 0px ;"> <br> </div>
-        <div id="marginRight" style="background-color: rgb(250, 250, 250); width: 35%; height: 80px; position: absolute; top: 0px ; right: 0px;"> <br> </div>
-        
+    <div id="marginLeft" style="background-color: rgb(250, 250, 250); width: 25%; height: 80px ; position: absolute; top: 0px ;"> <br> </div>
+    <div id="marginRight" style="background-color: rgb(250, 250, 250); width: 35%; height: 80px; position: absolute; top: 0px ; right: 0px;"> <br> </div>
+
     <div id="wrapper">
         <div id="header">
             <nav class="navbar navbar-expand-lg bg-light">
@@ -93,7 +93,7 @@ $erreur = "";
                 </div>
             </nav>
         </div>
-        <table class="table table-strip">
+        <table class="table table-hover">
             <tr>
                 <th></th>
                 <th>Nom</th>
@@ -105,10 +105,10 @@ $erreur = "";
             <?php
             if ($db_found) {
                 $sql1 = "SELECT * FROM medecin";
-                
+
                 $sql3 = "SELECT * FROM examen";
                 $result1 = mysqli_query($db_handle, $sql1);
-               
+
                 $result3 = mysqli_query($db_handle, $sql3);
 
                 echo "<br> <br>";
@@ -118,7 +118,7 @@ $erreur = "";
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo  "<td>" . $data1['nom'] .  "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=ajout_medecin.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
                     echo  "<td>" . $data1['email'] .  "</td>";
@@ -133,8 +133,8 @@ $erreur = "";
 
             ?>
         </table>
-       
-        <table class="table table-strip">
+
+        <table class="table table-hover">
             <tr>
                 <th></th>
                 <th>Type examen</th>
@@ -154,7 +154,7 @@ $erreur = "";
                     $data4 = mysqli_fetch_assoc($result4);
                     echo "<tr>";
                     echo "<td>" . $data3['id_examen'] . "</td>";
-                    echo "<td>" . $data3['type_examen'] . "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=ajout_medecin.php?id_reservation=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
                     echo "<td>" . $data4['nom'] . "</td>";
                     echo "<td>" . $data4['adresse'] . " " . $data4['ville'] . "</td>";
                     echo "<td>" . $data4['email'] . "</td>";
