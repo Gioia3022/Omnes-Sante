@@ -34,53 +34,51 @@ $db_found = mysqli_select_db($db_handle, $database);
     <link href="css/menu.css " rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
-    <div id="wrapper">
-        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="parcourir.php">Parcourir</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Recherche
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="connexion.html">Connexion</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+    <div id="header" style="height: 70px; font-size: 20px; width: 100%;">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
+                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                </button>
+                <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="parcourir.php">Parcourir</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Recherche
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
+                                </li>
+                                <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Compte 
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="connexion.html">Connexion</a>
+                                </li>
+                                <li><a class="dropdown-item" href="inscription.html">Inscription</a>
+                                </li>
+                            </ul>
+                        </li>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
+    </div>
         <table class="table table-strip">
             <tr>
                 <th></th>
