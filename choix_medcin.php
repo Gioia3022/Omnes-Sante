@@ -3,7 +3,7 @@
 echo "<meta charset=\"utf-8\">";
 //identifier votre BDD
 $database = "omnes_sante";
-
+session_start();
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
@@ -21,7 +21,6 @@ $erreur = "";
 ?>
 
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -109,6 +108,7 @@ $erreur = "";
                 echo " <br>";
 
                 while ($data1 = mysqli_fetch_assoc($result1)) {
+                    
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
                     echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
@@ -118,6 +118,7 @@ $erreur = "";
                     echo  "<td>" . $data1['cabinet'] . "</td>";
                     echo "</tr>";
                 } //end while
+
             }
             //si le BDD n'existe pas
             else {

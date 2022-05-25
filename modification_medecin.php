@@ -1,3 +1,4 @@
+
 <html>
 
 <head>
@@ -64,11 +65,11 @@
                 </div>
             </nav>
         </div>
-        <?php
-
+<?php
 session_start();
+echo $_GET['id_modif_medecin'];
+$id_medecin = $_GET['id_modif_medecin'];
 
-$id_medecin = 1;
 //identifier le nom de base de données
 $database = "omnes_sante";
 //connectez-vous dans votre BDD
@@ -100,12 +101,13 @@ if ($db_found) {
             $cabinet = $data['cabinet'];
 
 
-            echo '<form action="modification_medecin.php" method="post">
+            echo '<form action="modification_med_alt.php" method="post">
 
 <table class="table table-hover">
     <tr> 
         <h2>Nouvelles informations:</h2>
     </tr>  
+    <input type="text" id="id_medecin" name="id_medecin" value=' . $id_medecin . ' hidden>
     <tr>
         <td>Nom:</td>
         <td><input type="text" id="nom" name="nom" value=' . $nom . ' required></td>
@@ -167,27 +169,8 @@ if ($db_found) {
 </div>
 
 </form>';
-
-            if (isset($_POST["button_modification_medecin"])) {
-                //saisir les données du  formulaires
-                $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-                $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-                $username = isset($_POST["username"]) ? $_POST["username"] : "";
-                $password = isset($_POST["password"]) ? $_POST["password"] : "";
-                $email = isset($_POST["email"]) ? $_POST["email"] : "";
-                $date_naissance = isset($_POST["date_naissance"]) ? $_POST["date_naissance"] : "";
-                $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
-                $photo = isset($_POST["photo"]) ? $_POST["photo"] : "";
-                $cv = isset($_POST["cv"]) ? $_POST["cv"] : "";
-                $cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
-
-
-
-                $sql1 = "UPDATE Medecin SET nom='$nom', username='$username', password='$password', email='$email', date_naissance='$date_naissance', telephone='$telephone', ";
-                $sql1 = $sql1 . " photo='$photo', cv='$cv', cabinet='$cabinet' WHERE id_medecin='$id_medecin'";
-
-                $resultat = mysqli_query($db_handle, $sql1);
-            }
+echo "1";
+            
         }
     }
 } else {
@@ -195,6 +178,7 @@ if ($db_found) {
 }
 
 //header("Refresh:0");
+
 
 
 ?>
