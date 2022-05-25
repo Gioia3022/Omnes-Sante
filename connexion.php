@@ -97,8 +97,8 @@ if (isset($_POST["button_connexion"])) {
                     <link href="css/menuAdmin.css " rel="stylesheet" type="text/css" />
                     <form action="ajout_medecin.html" method="post">
                     <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
-    <div id="wrapper">
-        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
+                    <div id="wrapper">
+                     <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
                     <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
@@ -144,20 +144,20 @@ if (isset($_POST["button_connexion"])) {
             </nav>
         </div>
                         <div class=row>
-                        <h2 id="titre">Gestions du personel médical: </h2>
+                            <h2 id="titre">Gestions du personel médical: </h2>
                         </div>
                         <div>
                             <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin">
                         </div>
                         </form>'; 
                     echo "<br><br>";
-                    echo '<form action="parcourir.php" method="post">
+                    echo '<form action="choix_medcin.php" method="post">
                         <div>
                             <input type="submit" value="Modifier un médecin" name="button_modification_medecin">
                         </div>
                         </div>
-                        <script src="js/bootstrap.js"></script>
-                        <script src="js/bootstrap.bundle.min.js"></script>
+                            <script src="js/bootstrap.js"></script>
+                            <script src="js/bootstrap.bundle.min.js"></script>
                         </form>';                  
                 }
             }
