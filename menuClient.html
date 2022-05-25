@@ -10,25 +10,17 @@
         Omnes Santé
     </title>
 
-
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/menuClient.css " rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> 
-        <a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 0px 0px;"/></a>
-        <button type="submit" name="button_connexion" style="font-size: 25px; margin-left: 33%; border-radius: 5px;"> Profil </button></th>
-        <a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/unknown.png" width="45" height="45" style="object-position: 10px 0px;"/></a> 
-        <p style="font-size: 10px; line-height: 10px; ">de La Villardiere</p><br\>
-        <p style="font-size: 10px;">Diego</p><br\>
-        <p style="font-size: 10px; color: blue;">Connecté</p>
-    </div>
     <div id="wrapper">
-        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
+        <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
+                    <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
                     <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -57,14 +49,21 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte
+                                    Compte 
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="connexion.html">Connexion</a>
+                                    <li><a class="dropdown-item" href="CompteClient.html">Mon Compte</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
+                                    <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                     </li>
                                 </ul>
+                            </li>
+                            &emsp;
+                            <li class="navbar-expand-lg" style="line-height: 0px;">
+                                <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;"/>
+                                <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
+                                <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                                <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Connecté</p>
                             </li>
                         </ul>
                     </div>
@@ -72,7 +71,7 @@
             </nav>
         </div>
         <div class=row>
-            <h2 id="titre">Introduction: </h2>
+            <h2 id="titre">Introduction </h2>
             <article class="col-md-12">
                 <p>
                     Parce que votre santé c'est notre PROJET.
@@ -128,11 +127,7 @@
                     </button>
                 </div>
             </article>
-
-            
-
         </div>
-
     </div>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
