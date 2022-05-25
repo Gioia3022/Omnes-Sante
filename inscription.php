@@ -3,6 +3,7 @@
 //saisir les données du  formulaires
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
+$username = isset($_POST["username"])? $_POST["username"] : "";
 $password = isset($_POST["password"])? $_POST["password"] : "";
 $email = isset($_POST["email"])? $_POST["email"] : "";
 $date_naissance = isset($_POST["date_naissance"])? $_POST["date_naissance"] : "";
@@ -43,12 +44,12 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 
-if (isset($_POST["access"])) {
+if (isset($_POST["button_inscription"])) {
 
 if ($db_found) {
     
-    $sql = "INSERT INTO Client(nom, prenom, password,  email, date_naissance, genre, telephone, photo, adresse, ville, code_postal, pays, carte_vitale)";
-    $sql=$sql ." VALUES ( '$nom', '$prenom', '$password', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$adresse', '$ville', '$code_postal','$pays','$carte_vitale')";
+    $sql = "INSERT INTO Client(nom, prenom, username, password,  email, date_naissance, genre, telephone, photo, adresse, ville, code_postal, pays, carte_vitale)";
+    $sql=$sql ." VALUES ( '$nom', '$prenom', '$username', '$password', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$adresse', '$ville', '$code_postal','$pays','$carte_vitale')";
     $result =mysqli_query($db_handle, $sql);
     echo "<p>Add successful.</p>";
     echo "DONE!!!";
