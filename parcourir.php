@@ -10,7 +10,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 //declaration des variables
 $id_exam = isset($_POST["id_examen"]) ? $_POST["id_examen"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
-$fk_laboratoir = isset($_POST["fk_laboratoir"]) ? $_POST["fk_laboratoir"] : "";
+$fk_laboratoir = isset($_POST["fk_laboratoire"]) ? $_POST["fk_laboratoire"] : "";
 $ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
 $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";

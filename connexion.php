@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //identification de la BDD
 $database = "omnes_sante";
 
@@ -74,6 +75,8 @@ if (isset($_POST["button_connexion"])) {
                         echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>"."<br>";
                         echo "<td>" . $data['cabinet'] . "</td>"."<br>";
                         echo "</tr>";
+
+                        $_SESSION['id']=$data['id_medecin'];
                     }
                     echo "</table>";
                 }
@@ -90,6 +93,8 @@ if (isset($_POST["button_connexion"])) {
                     echo "<td>" . $data['email'] . "</td>"."<br>";
                     echo "<td>" . $data['telephone'] . "</td>"."<br>";
                     echo "</tr>";
+
+                    $_SESSION['id']=$data['id_admin'];
                 }
                 echo "</table>";
             }
@@ -111,13 +116,18 @@ if (isset($_POST["button_connexion"])) {
                 $image = $data['photo'];
                 echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>"."<br>";
                 echo "</tr>";
+
+                $_SESSION['id']=$data['id_client'];
             }
             echo "</table>";
         }
     } else {
         echo "<p>Database not found.</p>";
     }
+
+
 }
+
 
 
 ?>
