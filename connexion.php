@@ -15,9 +15,7 @@ $password = isset($_POST["password"])? $_POST["password"] : "";
 
 //detection des erreurs
 $erreur = "";
-echo "1";
 if (isset($_POST["button_connexion"])) {
-    echo "2";
     if ($db_found) {
         //commencer le query
         $sql = "SELECT * FROM Client";
@@ -77,28 +75,30 @@ if (isset($_POST["button_connexion"])) {
                         echo "</tr>";
 
                         $_SESSION['id']=$data['id_medecin'];
-                        $_SESSION['type']="medecin";
                     }
-                    echo "</table>";
                 }
             }
             else {
                 //afficher le resultat
                 while ($data = mysqli_fetch_assoc($result1)) {
-                    echo "Vous etes un admin: ". "<br>";
-                    echo "<tr>";
-                    echo "<td>" . $data['id_admin'] . "</td>"."<br>";
-                    echo "<td>" . $data['nom'] . "</td>"."<br>";
-                    echo "<td>" . $data['prenom'] . "</td>"."<br>";
-                    echo "<td>" . $data['username'] . "</td>"."<br>";
-                    echo "<td>" . $data['email'] . "</td>"."<br>";
-                    echo "<td>" . $data['telephone'] . "</td>"."<br>";
-                    echo "</tr>";
-
+                    $id= $data['id_admin'];
+                    $nom= $data['nom'];
+                    $prenom = $data['prenom'];
+                    $username = $data['username'];
+                    $email = $data['email'];
+                    $telephone = $data['telephone'];
                     $_SESSION['id']=$data['id_admin'];
-                    $_SESSION['type']="admin";
+                    echo '<form action="ajout_medecin.html" method="post">
+                        <div>
+                            <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin">
+                        </div>
+                        </form>'; 
+                    echo '<form action="modification_medecin.php" method="post">
+                        <div>
+                            <input type="submit" value="Modifier un médecin" name="button_modification_medecin">
+                        </div>
+                        </form>';                  
                 }
-                echo "</table>";
             }
         
         }
@@ -120,16 +120,11 @@ if (isset($_POST["button_connexion"])) {
                 echo "</tr>";
 
                 $_SESSION['id']=$data['id_client'];
-                $_SESSION['type']="client";
             }
-            echo "</table>";
         }
     } else {
         echo "<p>Database not found.</p>";
     }
-
-
-    echo '<a class="dropdown-item" href="modification_medecin.php">Connexion</a>';
 
 
 }
