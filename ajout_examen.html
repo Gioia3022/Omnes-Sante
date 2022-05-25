@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Omnès santé ajout médecin
+        Omnès santé ajout examen
     </title>
 
 
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form action="ajout_medecin.php" method="post">
+    <form action="ajout_examen.php" method="post">
         <div id="marginLeft"
             style="background-color: rgb(250, 250, 250); width: 25%; height: 80px ; position: absolute; top: 0px ;">
             <br>
@@ -80,86 +80,33 @@
             
             <table class = "center">
                 <tr>
-                    <td>Nom:</td>
-                    <td><input type="text" id="nom" name="nom" required></td>
-                </tr>
-
-                <tr>
-                    <td>Prenom:</td>
-                    <td><input type="text" id="prenom" name="prenom" required></td>
-                </tr>
-
-                <tr>
-                    <td>Username :</td>
-                    <td><input type="text" id="username" name="username" required></td>
-                </tr>
-
-                <tr>
-                    <td>Password :</td>
-                    <td><input type="password" id="password" name="password" required></td>
-                </tr>
-
-                <tr>
-                    <td>type medecin :</td>
-                    <td><select class="combo" name="type_medecin">
-                            <option value="generaliste" name="generaliste">Generaliste</option>
-                            <option value="addictologie" name="addictologie">Addictologue</option>
-                            <option value="andrologie" name="andrologie">Andrologue</option>
-                            <option value="cardiologie" name="cardiologie">Cardiologue</option>
-                            <option value="dermatologie" name="dermatologie">Dermatologue</option>
-                            <option value="gastro-hepato-enterologie" name="gastro-hepato-enterologie">
-                                Gastro-Hépato-Entérologue</option>
-                            <option value="i.s.t" name="i.s.t">I.S.T</option>
-                            <option value="osteopathie" name="osteopathie">Osthéopathe</option>
+                    <td>Laboratoire:</td>
+                    <td><select name="id_lab" required>
+                            <option></option>
+                            <option value="1" name="1">Gueri</option>
+                            <option value="2" name="2">Necker</option>
                         </select>
-
+    
                 </tr>
-
+    
                 <tr>
-                    <td>email :</td>
-                    <td><input type="email" id="email" name="email" required></td>
-                </tr>
-
-                <tr>
-                    <td>date de naissance :</td>
-                    <td><input type="date" id="date_naissance" name="date_naissance" required></td>
-                </tr>
-
-                <tr>
-
-                    <td>genre :</td>
-                    <td><select class="combo" id="genre" name="genre">
-                            <option value="homme" name="homme">Homme</option>
-                            <option value="femme" name="femme">Femme</option>
+                    <td>type examen :</td>
+                    <td><select name="type_examen" required>
+                            <option></option>
+                            <option value="depistage covid-19" name="depistage covid-19">Dépistage covid-19</option>
+                            <option value="biologie preventive" name="biologie preventive">Biologie préventive</option>
+                            <option value="biologie de la femme enceinte" name="biologie de la femme enceinte">Biologie de la femme enceinte</option>
+                            <option value="biologie de routine" name="biologie de routine">Biologie de routine</option>
+                            <option value="cancerologie" name="cancerologie">Cancérologie</option>
+                            <option value="gynecologie" name="gynecologie">Gynécologie</option>
                         </select>
-
-                </tr>
-
-                <tr>
-                    <td>telephone :</td>
-                    <td><input type="tel" id="telephone" name="telephone" required></td>
-                </tr>
-
-                <tr>
-                    <td>photo :</td>
-                    <td><input type="text" id="photo" name="photo"></td>
-                </tr>
-
-                <tr>
-                    <td>cv :</td>
-                    <td><input type="text" id="cv" name="cv"></td>
-                </tr>
-
-                <tr>
-                    <td>salle de cabinet :</td>
-                    <td><input type="text" id="cabinet" name="cabinet" required></td>
                 </tr>
 
             </table>
 
 
             <div>
-                <input type="submit" value="Valider" name="button_ajout_medecin">
+                <input type="submit" value="Valider" name="button_ajout_examen">
             </div>
             <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
