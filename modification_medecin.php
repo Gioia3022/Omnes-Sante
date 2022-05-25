@@ -6,7 +6,6 @@
 session_start();
 
 echo $_SESSION['id'];
-echo $_SESSION['type'];
 
 $id_medecin = $_SESSION['id'];
 //identifier le nom de base de données
