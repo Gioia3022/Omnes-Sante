@@ -9,7 +9,6 @@ $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 if ($db_found) {
     if (isset($_POST["button_modification_medecin"])) {
-        echo "2";
         //saisir les données du  formulaires
         $id_medecin=isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
         $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";

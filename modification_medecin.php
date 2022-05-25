@@ -66,7 +66,7 @@
             </nav>
         </div>
 <?php
-session_start();
+
 echo $_GET['id_modif_medecin'];
 $id_medecin = $_GET['id_modif_medecin'];
 

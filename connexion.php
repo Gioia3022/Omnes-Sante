@@ -75,6 +75,7 @@ if (isset($_POST["button_connexion"])) {
                         echo "</tr>";
 
                         $_SESSION['id']=$data['id_medecin'];
+                        $_SESSION['type']="Medecin";
                     }
                 }
             }
@@ -88,6 +89,8 @@ if (isset($_POST["button_connexion"])) {
                     $email = $data['email'];
                     $telephone = $data['telephone'];
                     $_SESSION['id']=$data['id_admin'];
+                    $_SESSION['type']="Admin";
+
                     echo '
                     <meta charset="utf-8">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -181,6 +184,7 @@ if (isset($_POST["button_connexion"])) {
                 echo "</tr>";
 
                 $_SESSION['id']=$data['id_client'];
+                $_SESSION['type']="Client";
             }
         }
     } else {
