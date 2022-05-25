@@ -88,15 +88,76 @@ if (isset($_POST["button_connexion"])) {
                     $email = $data['email'];
                     $telephone = $data['telephone'];
                     $_SESSION['id']=$data['id_admin'];
-                    echo '<form action="ajout_medecin.html" method="post">
+                    echo '
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+                    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+                    <link href="css/menuAdmin.css " rel="stylesheet" type="text/css" />
+                    <form action="ajout_medecin.html" method="post">
+                    <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
+    <div id="wrapper">
+        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    </button>
+                    <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="parcourir.php">Parcourir</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Recherche
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Compte
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="connexion.html">Connexion</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+                        <div class=row>
+                        <h2 id="titre">Gestions du personel médical: </h2>
+                        </div>
                         <div>
                             <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin">
                         </div>
                         </form>'; 
-                    echo '<form action="modification_medecin.php" method="post">
+                    echo "<br><br>";
+                    echo '<form action="parcourir.php" method="post">
                         <div>
                             <input type="submit" value="Modifier un médecin" name="button_modification_medecin">
                         </div>
+                        </div>
+                        <script src="js/bootstrap.js"></script>
+                        <script src="js/bootstrap.bundle.min.js"></script>
                         </form>';                  
                 }
             }
