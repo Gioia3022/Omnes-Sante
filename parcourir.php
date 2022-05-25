@@ -46,6 +46,9 @@ $erreur = "";
 
 
 <body>
+<div id="marginLeft" style="background-color: rgb(250, 250, 250); width: 25%; height: 80px ; position: absolute; top: 0px ;"> <br> </div>
+        <div id="marginRight" style="background-color: rgb(250, 250, 250); width: 35%; height: 80px; position: absolute; top: 0px ; right: 0px;"> <br> </div>
+        
     <div id="wrapper">
         <div id="header">
             <nav class="navbar navbar-expand-lg bg-light">
