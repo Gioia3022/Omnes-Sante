@@ -77,6 +77,7 @@ if (isset($_POST["button_connexion"])) {
                         echo "</tr>";
 
                         $_SESSION['id']=$data['id_medecin'];
+                        $_SESSION['type']="medecin";
                     }
                     echo "</table>";
                 }
@@ -95,6 +96,7 @@ if (isset($_POST["button_connexion"])) {
                     echo "</tr>";
 
                     $_SESSION['id']=$data['id_admin'];
+                    $_SESSION['type']="admin";
                 }
                 echo "</table>";
             }
@@ -118,12 +120,16 @@ if (isset($_POST["button_connexion"])) {
                 echo "</tr>";
 
                 $_SESSION['id']=$data['id_client'];
+                $_SESSION['type']="admin";
             }
             echo "</table>";
         }
     } else {
         echo "<p>Database not found.</p>";
     }
+
+
+    echo '<a class="dropdown-item" href="modification_medecin.php">Connexion</a>';
 
 
 }

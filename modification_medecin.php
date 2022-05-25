@@ -2,9 +2,12 @@
 
 <?php
 
+
 session_start();
 
 echo $_SESSION['id'];
+echo $_SESSION['type'];
+
 $id_medecin = 1;
 //identifier le nom de base de données
 $database = "omnes_sante";
@@ -30,11 +33,14 @@ if ($db_found) {
             $username = $data['username'];
             $password = $data['password'];
             $email = $data['email'];
+            $type_medecin=$data['type_medecin'];
             $date_naissance = $data['date_naissance'];
             $telephone = $data['telephone'];
+            $genre=$data['genre'];
             $photo = $data['photo'];
             $cv = $data['cv'];
             $cabinet = $data['cabinet'];
+
 
 
             echo '<form action="modification_medecin.php" method="post">
@@ -60,6 +66,21 @@ if ($db_found) {
         <td><input type="password" id="password" name="password" value='.$password.' required></td>
     </tr>
 
+
+    <tr>
+                    <td>type medecin (ancien '.$type_medecin.' ):</td>
+                    <td><select class="combo" name="type_medecin">
+                        <option value="generaliste" name="generaliste">Generaliste</option>
+                        <option value="addictologie" name="addictologie">Addictologue</option>
+                        <option value="andrologie" name="andrologie">Andrologue</option>
+                        <option value="cardiologie" name="cardiologie">Cardiologue</option>
+                        <option value="dermatologie" name="dermatologie">Dermatologue</option>
+                        <option value="gastro-hepato-enterologie" name="gastro-hepato-enterologie">Gastro-Hépato-Entérologue</option>
+                        <option value="i.s.t" name="i.s.t">I.S.T</option>
+                        <option value="osteopathie" name="osteopathie">Osthéopathe</option></select>
+                        
+                </tr>
+
    
 
     <tr>
@@ -70,6 +91,15 @@ if ($db_found) {
     <tr>
         <td>date de naissance :</td>
         <td><input type="date" id="date_naissance" name="date_naissance" value='.$date_naissance.'  required></td>
+    </tr>
+
+    <tr>
+                    
+                    <td>genre ('.$genre.' ):</td>
+                    <td><select class="combo" id="genre" name="genre" >
+                        <option value="homme" name="homme">Homme</option>
+                        <option value="femme" name="femme">Femme</option></select>
+                        
     </tr>
 
 
@@ -110,17 +140,20 @@ $username= isset($_POST["username"])? $_POST["username"] : "";
 $password = isset($_POST["password"])? $_POST["password"] : "";
 $email = isset($_POST["email"])? $_POST["email"] : "";
 $date_naissance = isset($_POST["date_naissance"])? $_POST["date_naissance"] : "";
+$type_medecin = isset($_POST["type_medecin"])? $_POST["type_medecin"] : "";
 $telephone = isset($_POST["telephone"])? $_POST["telephone"] : "";
 $photo = isset($_POST["photo"])? $_POST["photo"] : "";
 $cv = isset($_POST["cv"])? $_POST["cv"] : "";
 $cabinet = isset($_POST["cabinet"])? $_POST["cabinet"] : "";
+$genre = isset($_POST["genre"])? $_POST["genre"] : "";
 
 
 
-$sql1 = "UPDATE Medecin SET nom='$nom', username='$username', password='$password', email='$email', date_naissance='$date_naissance', telephone='$telephone', ";
+$sql1 = "UPDATE Medecin SET nom='$nom', username='$username', password='$password',  type_medecin='$type_medecin', genre='$genre', email='$email', date_naissance='$date_naissance', telephone='$telephone', ";
     $sql1=$sql1 ." photo='$photo', cv='$cv', cabinet='$cabinet' WHERE id_medecin='$id_medecin'";
 
     $resultat =mysqli_query($db_handle, $sql1);
+
 
             }
         }
