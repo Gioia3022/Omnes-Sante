@@ -60,89 +60,62 @@ else {
 </head>
 
 <body>
-    <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
-    <div id="wrapper">
-        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="parcourir.php">Parcourir</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Recherche
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="connexion.html">Connexion</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+<div id="wrapper">
+    <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
+                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                </button>
+                <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menuMedcin.php">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menuMedcin.php">Consultations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menuMedcin.php">Chatroom</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Compte 
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="adminCompte.html">Mon Compte</a>
+                                </li>
+                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
+                                </li>
+                            </ul>
+                        </li>
+                        &emsp;
+                        <li class="navbar-expand-lg" style="line-height: 0px;">
+                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;"/>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                            <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Médecin connecté</p>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
+    </div>
         
-        <br><br>  
-        <br><br>  
-        <h2 id="titre">Gestions des RDV médicaux: </h2>
-
-        <form method="post">
-        
-        <div>
-            <input type="submit" value="Ajouter un RDV" name="button_ajout_RDV" formaction="ajout_RDV.html">
-            <br><br>       
-            <input type="submit" value="Modifier un RDV" name="button_modification_RDV" formaction="choix_RDV.php">
-            <br><br>
-            <input type="submit" value="Suprimer un RDV" name="button_modification_RDV" formaction="suppression_RDV.php">
-            <br><br>
-        </div>
-        <h2 id="titre">Emplois du temps: </h2>
-        
-        <div>
-            
-        </div>
-        <h2 id="titre">Chat: </h2>
-        
-        <div>
-            
-        </div> 
-        
-            <script src="js/bootstrap.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-        </form>
+    <br><br>  
+    <br><br>  
     
+
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
+</div>
 </body>
 
 </html>                    
