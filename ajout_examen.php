@@ -26,12 +26,6 @@ if ($db_found) {
     } else {
         echo "Ce type d'examen dans ce laboratoire existe déja.";
     }
-    
-    
-    
-
-    
-    
 
 } //end if
 //si le BDD n'existe pas

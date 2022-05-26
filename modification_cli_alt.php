@@ -33,5 +33,5 @@ if ($db_found) {
 } else {
     echo "<p>Database not found.</p>";
 }
-header('Location: choix_client.php');
+header('Location: menuAdmin.php');
 die;

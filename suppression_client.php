@@ -1,28 +1,41 @@
-<!DOCTYPE html>
-<html>
-<!--Dependency et Proprietés-->
+<?php
+//Ordre Décroissant
+echo "<meta charset=\"utf-8\">";
+//identifier votre BDD
+$database = "omnes_sante";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
+//declaration des variables
+
+$erreur = "";
+$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
+
+?>
+
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/connexion.css" rel="stylesheet" type="text/css" />
-    <!-- Titre de la page-->
+
     <title>
-        Omnes Santé connexion
+        Omnès santé sup client
     </title>
+
+
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="" rel="stylesheet" type="text/css" />
     <link href="css/menu.css " rel="stylesheet" type="text/css" />
 </head>
 
-<!--Affichage-->
 <body>
-    <form action="connexion.php" method="post">
-        <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
+    <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
+    <div id="wrapper">
+        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
-                    <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
                     <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -51,54 +64,76 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte 
+                                    Compte
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="connexion.html">Connexion</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="inscription.html">Inscription</a>
+                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
                                     </li>
                                 </ul>
                             </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
         </div>
-        <div id="input">
-            <table class="center">
-                <h1 id="titre"><b>Connexion</b> </h1>
-                <tr>
-                    <td>
-                        <label><br></label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Email : </label></td>
-                    <td><input type="email" id="email" name="email" required></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label><br></label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Mot de passe : </label></td>
-                    <td><input type="password" id="password" name="password" required></td>
-                </tr>
-                <th colspan="2"><a href="inscription.html"><label name="inscription" style="font-size: 12px ;color: black;"> <u>Vous n'avez pas de compte ? Créer un compte</u> </label></a></th>
-                <tr>
-                    <td>
-                        <label><br></label>
-                    </td>
-                </tr>
-                
-                <th colspan="2"><button type="submit" name="button_connexion" style="font-size: 25px; margin-left: 33%; border-radius: 5px;"> Se connecter </button></th>
-            </table>
-        </div>
+        <table class="table table-hover">
+            <tr>
+                <br><br><br>
+                <th></th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+            </tr>
+            <?php
+            if ($db_found) {
+                $sql1 = "SELECT * FROM client";
+                $result1 = mysqli_query($db_handle, $sql1);
+
+                echo "<br> <br>";
+
+                echo "Liste des clients: ";
+                echo " <br>";
+
+                while ($data1 = mysqli_fetch_assoc($result1)) {
+                    
+                    echo "<tr>";
+                    echo  "<td>" . $data1['id_client'] .  "</td>";
+                    echo " <td >" . $data1['nom'] . "</td>";
+                    echo  "<td>" . $data1['prenom'] .  "</td>";
+                    echo " <td>" . $data1['username'] .  "</td>";
+                    echo  "<td>" . $data1['email'] .  "</td>";
+                    echo  "<td>" . $data1['telephone'] . "</td>";
+                    
+                    echo '<form action="suppression_client_alt.php" method="post">
+                        <input type="text" id="id_client" name="id_client" value=' . $data1['id_client'] . ' hidden>
+                    <div>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_client">Valider</button> </td>
+                    </div>
+                    
+                    </form>';
+                    echo "</tr>";
+                } //end while
+
+            }
+            //si le BDD n'existe pas
+            else {
+                echo "Database not found";
+            } //end else
+
+            ?>
+        </table>
+
     </div>
-    </form>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+
 </body>
 
 </html>
