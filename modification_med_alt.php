@@ -30,6 +30,6 @@ if ($db_found) {
 } else {
     echo "<p>Database not found.</p>";
 }
-header('Location: choix_medcin.php');
+header('Location: menuAdmin.php');
 die;
 ?>

@@ -7,18 +7,29 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 //declaration des variables
-$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
-$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
-$email = isset($_POST["email"]) ? $_POST["email"] : "";
-$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
-$ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
-$adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
-$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
+$ID = isset($_POST["id_admin"]) ? $_POST["id_admin"] : "";
+$nom = isset($_POST["nom_admin"]) ? $_POST["nom_admin"] : "";
+$prenom = isset($_POST["prenom_admin"]) ? $_POST["prenom_admin"] : "";
+$email = isset($_POST["email_admin"]) ? $_POST["email_admin"] : "";
+$username = isset($_POST["username_admin"]) ? $_POST["username_admin"] : "";
+$telephone = isset($_POST["telephone_admin"]) ? $_POST["telephone_admin"] : "";
 $erreur = "";
-$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
 
+if ($db_found) {
+if (isset($_POST["button_menuAdmin"])) {
+echo "<tr>";
+echo  "<td>" . $ID .  "</td>";
+echo " <td>". $nom  . "</td>";
+echo  "<td>" . $prenom .  "</td>";
+echo " <td>" . $email .  "</td>";
+echo  "<td>" . $username .  "</td>";
+echo  "<td>" . $telephone . "</td>";
+echo "</tr>";
+}
+}
+else {
+    echo "<p>Database not found.</p>";
+}
 ?>
 
 <html>
@@ -28,7 +39,7 @@ $id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Omnès santé modif médecin
+        Omnès santé Menu Admin
     </title>
 
 
@@ -86,46 +97,39 @@ $id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
                 </div>
             </nav>
         </div>
-        <table class="table table-hover">
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Spécialité</th>
-                <th>Email</th>
-                <th>Cabinet</th>
-            </tr>
-            <?php
-            if ($db_found) {
-                $sql1 = "SELECT * FROM medecin";
-                $result1 = mysqli_query($db_handle, $sql1);
-
-                echo "<br> <br>";
-
-                echo "Liste de médecins: ";
-                echo " <br>";
-
-                while ($data1 = mysqli_fetch_assoc($result1)) {
-                    
-                    echo "<tr>";
-                    echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
-                    echo  "<td>" . $data1['prenom'] .  "</td>";
-                    echo " <td>" . $data1['type_medecin'] .  "</td>";
-                    echo  "<td>" . $data1['email'] .  "</td>";
-                    echo  "<td>" . $data1['cabinet'] . "</td>";
-                    echo "</tr>";
-                } //end while
-
-            }
-            //si le BDD n'existe pas
-            else {
-                echo "Database not found";
-            } //end else
-
-            ?>
-        </table>
-
+        <div class=row>
+        <h2 id="titre">Gestions du personel médical: </h2>
+        <form method="post">
+        <div>
+            <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin" formaction="ajout_medecin.html">
+            <br><br>       
+            <input type="submit" value="Modifier un médecin" name="button_modification_medecin" formaction="choix_medcin.php">
+            <br><br>
+            <input type="submit" value="Suprimer un medecin" name="button_modification_client" formaction="choix_client.php">
+            <br><br>
+        </div>
+        <h2 id="titre">Gestions des clients: </h2>
+        <form method="post">
+        <div>
+            <input type="submit" value="Modifier un client" name="button_modification_client" formaction="choix_client.php">
+            <br><br>
+            
+            <input type="submit" value="Suprimer un client" name="button_modification_client" formaction="choix_client.php">
+            <br><br>
+        </div>
+        <h2 id="titre">Gestions des examens: </h2>
+        <form method="post">
+        <div>
+            <input type="submit" value="Ajouter un examen" name="ajout_examen.html" formaction="choix_client.php">
+            <br><br>
+            <input type="submit" value="Modifier un examen" name="button_modification_client" formaction="choix_client.php">
+            <br><br>
+            <input type="submit" value="Suprimer un examen" name="button_modification_client" formaction="choix_client.php">
+        </div> 
+        
+            <script src="js/bootstrap.js"></script>
+            <script src="js/bootstrap.bundle.min.js"></script>
+        </form>
     </div>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -135,4 +139,4 @@ $id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
 
 </body>
 
-</html>
+</html>                    

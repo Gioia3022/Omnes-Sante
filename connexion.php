@@ -12,7 +12,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 $email = isset($_POST["email"])? $_POST["email"] : "";
 $password = isset($_POST["password"])? $_POST["password"] : "";
-
+$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
 //detection des erreurs
 $erreur = "";
 if (isset($_POST["button_connexion"])) {
@@ -53,10 +53,13 @@ if (isset($_POST["button_connexion"])) {
                 }
                 $result2 = mysqli_query($db_handle, $sql2);
                 if (mysqli_num_rows($result2) == 0) {
-                    echo "<p>email et/ou mot de passe incorrect</p>";
+                    echo ' 
+                    <label>email et/ou mot de passe incorrect</label>
+                   ';
                 }
                 else {
                     //afficher le resultat
+
                     while ($data = mysqli_fetch_assoc($result2)) {
                         echo "Vous etes un médecin: ". "<br>";
                         echo "<tr>";
@@ -76,6 +79,7 @@ if (isset($_POST["button_connexion"])) {
 
                         $_SESSION['id']=$data['id_medecin'];
                         $_SESSION['type']="Medecin";
+                         
                     }
                 }
             }
@@ -88,86 +92,19 @@ if (isset($_POST["button_connexion"])) {
                     $username = $data['username'];
                     $email = $data['email'];
                     $telephone = $data['telephone'];
-                    $_SESSION['id']=$data['id_admin'];
+                    $_SESSION['id']=$id;
                     $_SESSION['type']="Admin";
 
-                    echo '
-                    <meta charset="utf-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-                    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-                    <link href="css/menuAdmin.css " rel="stylesheet" type="text/css" />
-                    <form action="ajout_medecin.html" method="post">
-                    <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
-                    <div id="wrapper">
-                     <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="parcourir.php">Parcourir</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Recherche
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="connexion.html">Connexion</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="inscription.html">Créer un compte</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-                        <div class=row>
-                            <h2 id="titre">Gestions du personel médical: </h2>
-                        </div>
-                        <div>
-                            <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin">
-                        </div>
-                        </form>'; 
-                    echo "<br><br>";
-                    echo '<form method="post">
-                        <div>
-
-                            <input type="submit" value="Modifier un médecin" name="button_modification_medecin" formaction="choix_medcin.php">
-
-                            <br><br>
-
-                            <input type="submit" value="Modifier un client" name="button_modification_client" formaction="choix_client.php">
-                        </div>
-                        </div>
-                            <script src="js/bootstrap.js"></script>
-                            <script src="js/bootstrap.bundle.min.js"></script>
-                        </form>';
-
+                    echo '<form action="menuAdmin.php" method="post">
+                    <input type="text" id="id_admin" name="id_admin" value=' . $id . ' hidden>
+                    <input type="text" id="nom_admin" name="nom_admin" value=' . $nom . ' hidden>
+                    <input type="text" id="prenom_admin" name="prenom_admin" value=' . $prenom . ' hidden>
+                    <input type="text" id="username_admin" name="username_admin" value=' . $username . ' hidden>
+                    <input type="text" id="email_admin" name="email_admin" value=' . $email . ' hidden>
+                    <input type="text" id="telephone_admin" name="telephone_admin" value=' . $telephone . ' hidden>
+                    <label>Vous etes un admin</label>
+                    <input type="submit" value="Valider" name="button_menuAdmin">
+                    </form>';
                         
                 }
             }
