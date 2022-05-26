@@ -143,7 +143,7 @@ if (isset($_POST["button_recherche_medecin"])) {
                 echo  "<td>" . $data['email'] .  "</td>";
                 echo  "<td>" . $data['cabinet'] . "</td>";
                 $image = $data['photo'];
-                echo '"<td>" . "<img src=../Omnes-Sante/images/'.$image.' height="120" width="100">" . "</td>"';
+                echo '<td>  <img src=../Omnes-Sante/images/'.$image.' height="120" width="100">  </td>';
                 echo "</tr>";
             }
             echo "</table>";
