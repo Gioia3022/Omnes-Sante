@@ -21,10 +21,10 @@ if (isset($_POST["button_connexion"])) {
         $sql = "SELECT * FROM Client";
         if ($email != "") {
             //on recherche l'utilisateur par son email
-            $sql .= " WHERE email LIKE '%$email%'";
+            $sql .= " WHERE email = '$email'";
             //on vérifie que le mdp est correct
             if ($password != "") {
-                $sql .= " AND password LIKE '%$password%'";
+                $sql .= " AND password = '$password'";
             }
         }
         $result = mysqli_query($db_handle, $sql);
@@ -34,10 +34,10 @@ if (isset($_POST["button_connexion"])) {
             $sql1 = "SELECT * FROM Admin";
             if ($email != "") {
                 //on recherche l'utilisateur par son email
-                $sql1 .= " WHERE email LIKE '%$email%'";
+                $sql1 .= " WHERE email = '$email'";
                 //on vérifie que le mdp est correct
                 if ($password != "") {
-                    $sql1 .= " AND password LIKE '%$password%'";
+                    $sql1 .= " AND password = '$password'";
                 }
             }
             $result1 = mysqli_query($db_handle, $sql1);
@@ -45,10 +45,10 @@ if (isset($_POST["button_connexion"])) {
                 $sql2 = "SELECT * FROM Medecin";
                 if ($email != "") {
                     //on recherche l'utilisateur par son email
-                    $sql2 .= " WHERE email LIKE '%$email%'";
+                    $sql2 .= " WHERE email = '$email'";
                     //on vérifie que le mdp est correct
                     if ($password != "") {
-                        $sql2 .= " AND password LIKE '%$password%'";
+                        $sql2 .= " AND password = '$password'";
                     }
                 }
                 $result2 = mysqli_query($db_handle, $sql2);
