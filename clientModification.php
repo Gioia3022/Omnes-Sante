@@ -109,8 +109,9 @@ $id_client = $_SESSION['id_client'];
 
 
                     echo '<form action="modification_cli_alt.php" method="post">
-
+                    
 <table class="table table-hover">
+    <h1 id="titre"><b>Mon Compte</b></h1>
     <tr> 
         <h2>Nouvelles informations:</h2>
     </tr>  
@@ -182,15 +183,14 @@ $id_client = $_SESSION['id_client'];
     <tr>
         <td>carte vitale :</td>
         <td><input type="text" id="carte_vitale" name="carte_vitale" value=' . $carte_vitale . ' ></td>
+
     </tr>
 
-
+    <tr>
+    <th colspan="2"><button type="submit" class="modif" name="button_modification" style="font-size: 25px; color:white;background-color:blue;margin-left: auto; border-radius: 5px;"> Modifer</button></th>
+    </tr>
 </table>
 
-
-<div>
-    <button type="submit" class="btn btn-primary" name="button_modification_client">Valider</button>
-</div>
 
 </form>';
                     echo "1";
