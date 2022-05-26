@@ -88,10 +88,11 @@ if (isset($_POST["button_connexion"])) {
                         <input type="text" id="image" name="image" value=' . $image . ' hidden>
                         <input type="text" id="cabinet" name="cabinet" value=' . $cabinet . ' hidden>
                         </form>';
-                        header('Location: menuMedecin.php');
+                        header('Location: menuMedcin.php');
                         die;
 
                         $_SESSION['id']=$data['id_medecin'];
+                        $_SESSION['id_medecin']=$data['id_medecin'];
                         $_SESSION['type']="Medecin";
                          
                     }
@@ -107,6 +108,7 @@ if (isset($_POST["button_connexion"])) {
                     $email = $data['email'];
                     $telephone = $data['telephone'];
                     $_SESSION['id']=$id;
+                    $_SESSION['id_admin']=$id;
                     $_SESSION['type']="Admin";
 
                     echo '<form action="menuAdmin.php" method="post">
@@ -141,6 +143,7 @@ if (isset($_POST["button_connexion"])) {
                 echo "</tr>";
 
                 $_SESSION['id']=$data['id_client'];
+                $_SESSION['id_client']=$data['id_client'];
                 $_SESSION['type']="Client";
                 header("Location: clientMenu.php");
             }
