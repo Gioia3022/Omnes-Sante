@@ -1,21 +1,42 @@
+<?php
+//Ordre Décroissant
+echo "<meta charset=\"utf-8\">";
+//identifier votre BDD
+$database = "omnes_sante";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+//declaration des variables
+$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
+$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
+$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
+$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
+$email = isset($_POST["email"]) ? $_POST["email"] : "";
+$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
+$ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
+$adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
+$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
+$erreur = "";
+$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
+
+?>
 
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Omnes Santé
+        Omnès santé modif médecin
     </title>
 
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/modification_medecin.css " rel="stylesheet" type="text/css" />
+    <link href="" rel="stylesheet" type="text/css" />
+    <link href="css/menu.css " rel="stylesheet" type="text/css" />
 </head>
-
 
 <body>
     <div id="margin" style="background-color: rgb(250, 250, 250); width: 100%; height: 80px ; position: absolute; top: 0px ;"> <br><a class="navbar-brand" href="#"><img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="object-position: 10px -25px ;"/></a></div>
@@ -65,124 +86,53 @@
                 </div>
             </nav>
         </div>
-<?php
+        <table class="table table-hover">
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Spécialité</th>
+                <th>Email</th>
+                <th>Cabinet</th>
+            </tr>
+            <?php
+            if ($db_found) {
+                $sql1 = "SELECT * FROM medecin";
+                $result1 = mysqli_query($db_handle, $sql1);
 
-echo $_GET['id_modif_medecin'];
-$id_medecin = $_GET['id_modif_medecin'];
+                echo "<br> <br>";
 
-//identifier le nom de base de données
-$database = "omnes_sante";
-//connectez-vous dans votre BDD
-//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
-//si le BDD existe, faire le traitement
+                echo "Liste de médecins: ";
+                echo " <br>";
 
-if ($db_found) {
-    //commencer le query
-    $sql = "SELECT * FROM Medecin WHERE id_medecin= '$id_medecin' ";
+                while ($data1 = mysqli_fetch_assoc($result1)) {
+                    
+                    echo "<tr>";
+                    echo  "<td>" . $data1['id_medecin'] .  "</td>";
+                    echo " <td >" . $data1['nom'] . "</td>";
+                    echo  "<td>" . $data1['prenom'] .  "</td>";
+                    echo " <td>" . $data1['type_medecin'] .  "</td>";
+                    echo  "<td>" . $data1['email'] .  "</td>";
+                    echo  "<td>" . $data1['cabinet'] . "</td>";
+                    
+                    echo '<form action="suppression_medecin_alt.php" method="post">
+                        <input type="text" id="id_medecin" name="id_medecin" value=' . $data1['id_medecin'] . ' hidden>
+                    <div>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_medecin">Valider</button> </td>
+                    </div>
+                    
+                    </form>';
+                    echo "</tr>";
+                } //end while
 
-    $result = mysqli_query($db_handle, $sql);
-    //regarder s'il y a des resultats
-    if (mysqli_num_rows($result) == 0) {
-        echo "<p>Ce medecin n'existe pas</p>";
-    } else {
-        while ($data = mysqli_fetch_assoc($result)) {
-            //saisir les données du  formulaires
-            $nom = $data['nom'];
-            $prenom = $data['prenom'];
-            $username = $data['username'];
-            $password = $data['password'];
-            $email = $data['email'];
-            $date_naissance = $data['date_naissance'];
-            $telephone = $data['telephone'];
-            $photo = $data['photo'];
-            $cv = $data['cv'];
-            $cabinet = $data['cabinet'];
+            }
+            //si le BDD n'existe pas
+            else {
+                echo "Database not found";
+            } //end else
 
-
-            echo '<form action="modification_med_alt.php" method="post">
-
-<table class="table table-hover">
-    <tr> 
-        <h2>Nouvelles informations:</h2>
-    </tr>  
-    <input type="text" id="id_medecin" name="id_medecin" value=' . $id_medecin . ' hidden>
-    <tr>
-        <td>Nom:</td>
-        <td><input type="text" id="nom" name="nom" value=' . $nom . ' required></td>
-    </tr>
-
-    <tr>
-        <td>Prenom:</td>
-        <td><input type="text" id="prenom" name="prenom" value=' . $prenom . ' required></td>
-    </tr>
-    
-    <tr>
-        <td>Username :</td>
-        <td><input type="text" id="username" name="username" value=' . $username . ' required></td>
-    </tr>
-
-    <tr>
-        <td>Password :</td>
-        <td><input type="password" id="password" name="password" value=' . $password . ' required></td>
-    </tr>
-
-   
-
-    <tr>
-        <td>email :</td>
-        <td><input type="email" id="email" name="email" value=' . $email . '  required></td>
-    </tr>
-
-    <tr>
-        <td>date de naissance :</td>
-        <td><input type="date" id="date_naissance" name="date_naissance" value=' . $date_naissance . '  required></td>
-    </tr>
-
-
-    <tr>
-        <td>telephone :</td>
-        <td><input type="tel" id="telephone" name="telephone" value=' . $telephone . ' required></td>
-    </tr>
-
-    <tr>
-        <td>photo :</td>
-        <td><input type="text" id="photo" name="photo" value=' . $photo . ' ></td>
-    </tr>
-
-    <tr>
-        <td>cv :</td>
-        <td><input type="text" id="cv" name="cv" value=' . $cv . ' ></td>
-    </tr>
-
-    <tr>
-        <td>salle de cabinet :</td>
-        <td><input type="text" id="cabinet" name="cabinet" value=' . $cabinet . ' required></td>
-    </tr>
-
-</table>
-
-
-<div>
-    <button type="submit" class="btn btn-primary" name="button_modification_medecin">Valider</button>
-</div>
-
-</form>';
-
-            
-        }
-    }
-} else {
-    echo "<p>Database not found.</p>";
-}
-
-//header("Refresh:0");
-
-
-
-?>
-        
+            ?>
+        </table>
 
     </div>
     <script src="js/bootstrap.js"></script>
@@ -192,9 +142,5 @@ if ($db_found) {
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
-
-
-
-
 
 </html>
