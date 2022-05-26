@@ -46,7 +46,7 @@ $erreur = "";
 
 
 <body>
-<div id="header" style="height: 70px; font-size: 20px; width: 100%;">
+<div id="header" style="height: 30px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
@@ -91,6 +91,7 @@ $erreur = "";
             </div>
         </nav>
     </div>
+    <h1 id="titre"><b>Liste des médecins :</b></h1>
         <table class="table table-hover">
             <tr>
                 <th></th>
@@ -108,10 +109,6 @@ $erreur = "";
                 $result1 = mysqli_query($db_handle, $sql1);
 
                 $result3 = mysqli_query($db_handle, $sql3);
-
-                echo "<br> <br>";
-                echo "Liste de médecins: ";
-                echo " <br>";
 
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
@@ -131,7 +128,7 @@ $erreur = "";
 
             ?>
         </table>
-
+        <h1 id="titre"><b>Liste des examens :</b></h1>
         <table class="table table-hover">
             <tr>
                 <th></th>
@@ -143,9 +140,6 @@ $erreur = "";
             </tr>
             <?php
             if ($db_found) {
-                echo "<br> <br> ";
-                echo "Liste des examens: ";
-                echo "<br> ";
                 while ($data3 = mysqli_fetch_assoc($result3)) {
                     $sql4 = "SELECT * FROM laboratoire WHERE id_laboratoire =" . $data3['fk_laboratoire'];
                     $result4 = mysqli_query($db_handle, $sql4);
