@@ -105,7 +105,7 @@ else {
             <br><br>       
             <input type="submit" value="Modifier un médecin" name="button_modification_medecin" formaction="choix_medcin.php">
             <br><br>
-            <input type="submit" value="Suprimer un medecin" name="button_modification_client" formaction="choix_client.php">
+            <input type="submit" value="Suprimer un medecin" name="button_modification_client" formaction="suppression_medecin.php">
             <br><br>
         </div>
         <h2 id="titre">Gestions des clients: </h2>
