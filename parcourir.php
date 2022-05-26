@@ -46,14 +46,12 @@ $erreur = "";
 
 
 <body>
-<div id="header">
+    <div id="header">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -64,8 +62,7 @@ $erreur = "";
                             <a class="nav-link" href="parcourir.php">Parcourir</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -76,9 +73,8 @@ $erreur = "";
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Compte 
+                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="connexion.html">Connexion</a>
@@ -91,9 +87,9 @@ $erreur = "";
             </div>
         </nav>
     </div>
-    
+    <div>
         <table class="table table-hover">
-        <h1 id="titre"><b>Liste des médecins :</b></h1>
+            <h1 id="titre"><b>Liste des médecins :</b></h1>
             <tr>
                 <th></th>
                 <th>Nom</th>

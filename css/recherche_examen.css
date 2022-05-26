@@ -1,0 +1,38 @@
+html,
+body {
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+}
+
+#header
+{
+    font-size: 20px; 
+    width: 100%;
+}
+
+#titre {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: blue;
+    margin-top: 5%;
+}
+
+
+#footer
+{
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white;
+    background-color: grey;
+    width: 100%;
+}
+
+
