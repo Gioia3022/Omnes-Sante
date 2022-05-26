@@ -41,12 +41,12 @@ $erreur = "";
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/menu.css " rel="stylesheet" type="text/css" />
+    <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
-<div id="header" style="height: 30px; font-size: 20px; width: 100%;">
+<div id="header">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
