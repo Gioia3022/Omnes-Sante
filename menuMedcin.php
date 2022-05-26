@@ -7,12 +7,17 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 //declaration des variables
-$ID = isset($_POST["id_admin"]) ? $_POST["id_admin"] : "";
-$nom = isset($_POST["nom_admin"]) ? $_POST["nom_admin"] : "";
-$prenom = isset($_POST["prenom_admin"]) ? $_POST["prenom_admin"] : "";
-$email = isset($_POST["email_admin"]) ? $_POST["email_admin"] : "";
-$username = isset($_POST["username_admin"]) ? $_POST["username_admin"] : "";
-$telephone = isset($_POST["telephone_admin"]) ? $_POST["telephone_admin"] : "";
+$ID= isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : ""; 
+$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
+$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
+$email = isset($_POST["email"]) ? $_POST["email"] : "";
+$username = isset($_POST["username"]) ? $_POST["username"] : "";
+$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
+$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
+$genre = isset($_POST["genre"]) ? $_POST["genre"] : "";
+$date_naissance = isset($_POST["date_naissance"]) ? $_POST["date_naissance"] : "";
+$image = isset($_POST["photo"]) ? $_POST["photo"] : "";
+$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
 $erreur = "";
 
 if ($db_found) {
@@ -24,6 +29,11 @@ echo  "<td>" . $prenom .  "</td>";
 echo " <td>" . $email .  "</td>";
 echo  "<td>" . $username .  "</td>";
 echo  "<td>" . $telephone . "</td>";
+echo " <td>". $type_medecin  . "</td>";
+echo  "<td>" . $genre .  "</td>";
+echo " <td>" . $date_naissance .  "</td>";
+echo  "<td>" . $image .  "</td>";
+echo  "<td>" . $cabinet . "</td>";
 echo "</tr>";
 }
 }
@@ -100,33 +110,27 @@ else {
         
         <br><br>  
         <br><br>  
-        <h2 id="titre">Gestions du personel médical: </h2>
+        <h2 id="titre">Gestions des RDV médicaux: </h2>
 
         <form method="post">
         
         <div>
-            <input type="submit" value="Ajouter un médecin" name="button_ajout_medecin" formaction="ajout_medecin.html">
+            <input type="submit" value="Ajouter un RDV" name="button_ajout_RDV" formaction="ajout_RDV.html">
             <br><br>       
-            <input type="submit" value="Modifier un médecin" name="button_modification_medecin" formaction="choix_medcin.php">
+            <input type="submit" value="Modifier un RDV" name="button_modification_RDV" formaction="choix_RDV.php">
             <br><br>
-            <input type="submit" value="Suprimer un medecin" name="button_modification_client" formaction="suppression_medecin.php">
+            <input type="submit" value="Suprimer un RDV" name="button_modification_RDV" formaction="suppression_RDV.php">
             <br><br>
         </div>
-        <h2 id="titre">Gestions des clients: </h2>
-        <form method="post">
+        <h2 id="titre">Emplois du temps: </h2>
+        
         <div>
-            <input type="submit" value="Modifier un client" name="button_modification_client" formaction="choix_client.php">
-            <br><br>
             
-            <input type="submit" value="Suprimer un client" name="button_modification_client" formaction="suppression_client.php">
-            <br><br>
         </div>
-        <h2 id="titre">Gestions des examens: </h2>
-        <form method="post">
+        <h2 id="titre">Chat: </h2>
+        
         <div>
-            <input type="submit" value="Ajouter un examen" name="button_ajout_examen" formaction="ajout_examen.html">
-            <br><br>
-            <input type="submit" value="Suprimer un examen" name="button_suppression_examen" formaction="suppression_examen.php">
+            
         </div> 
         
             <script src="js/bootstrap.js"></script>

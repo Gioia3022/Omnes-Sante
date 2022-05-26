@@ -91,8 +91,9 @@ $erreur = "";
             </div>
         </nav>
     </div>
-    <h1 id="titre"><b>Liste des médecins :</b></h1>
+    
         <table class="table table-hover">
+        <h1 id="titre"><b>Liste des médecins :</b></h1>
             <tr>
                 <th></th>
                 <th>Nom</th>

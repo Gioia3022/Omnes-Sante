@@ -53,29 +53,43 @@ if (isset($_POST["button_connexion"])) {
                 }
                 $result2 = mysqli_query($db_handle, $sql2);
                 if (mysqli_num_rows($result2) == 0) {
-                    echo ' 
-                    <label>email et/ou mot de passe incorrect</label>
-                   ';
+                    /*
+                    echo ' <script> alert("After this goes away, I will be redirected via JavaScript");
+                    window.location = "http://localhost/PJ_WEB_2022-Abdelkefi_Carissan_Galiazzo_deLaVillardiere/omnes-sante/connexion.html" </script>';
+                   */ header('Location: connexion.html');
+                    die;
                 }
                 else {
                     //afficher le resultat
 
                     while ($data = mysqli_fetch_assoc($result2)) {
-                        echo "Vous etes un médecin: ". "<br>";
-                        echo "<tr>";
-                        echo "<td>" . $data['id_medecin'] . "</td>"."<br>";
-                        echo "<td>" . $data['nom'] . "</td>"."<br>";
-                        echo "<td>" . $data['prenom'] . "</td>"."<br>";
-                        echo "<td>" . $data['username'] . "</td>"."<br>";
-                        echo "<td>" . $data['type_medecin'] . "</td>"."<br>";
-                        echo "<td>" . $data['date_naissance'] . "</td>"."<br>";
-                        echo "<td>" . $data['email'] . "</td>"."<br>";
-                        echo "<td>" . $data['genre'] . "</td>"."<br>";
-                        echo "<td>" . $data['telephone'] . "</td>"."<br>";
+                        $id= $data['id_medecin'];
+                        $nom= $data['nom'];
+                        $prenom = $data['prenom'];
+                        $username = $data['username'];
+                        $email = $data['email'];
+                        $telephone = $data['telephone'];
+                        $type_medecin = $data['type_medecin'];
+                        $genre = $data['genre'];
+                        $date_naissance = $data['date_naissance'];
                         $image = $data['photo'];
-                        echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>"."<br>";
-                        echo "<td>" . $data['cabinet'] . "</td>"."<br>";
-                        echo "</tr>";
+                        $cabinet = $data['cabinet'];
+    
+                        echo '<form action="menuMedecin.php" method="post">
+                        <input type="text" id="id_medecin" name="id_medecin" value=' . $id . ' hidden>
+                        <input type="text" id="nom" name="nom" value=' . $nom . ' hidden>
+                        <input type="text" id="prenom" name="prenom" value=' . $prenom . ' hidden>
+                        <input type="text" id="username" name="username" value=' . $username . ' hidden>
+                        <input type="text" id="email" name="email" value=' . $email . ' hidden>
+                        <input type="text" id="telephone" name="telephone" value=' . $telephone . ' hidden>
+                        <input type="text" id="type_medecin" name="type_medecin" value=' . $type_medecin . ' hidden>
+                        <input type="text" id="genre" name="genre" value=' . $genre . ' hidden>
+                        <input type="text" id="date_naissance" name="date_naissance" value=' . $date_naissance . ' hidden>
+                        <input type="text" id="image" name="image" value=' . $image . ' hidden>
+                        <input type="text" id="cabinet" name="cabinet" value=' . $cabinet . ' hidden>
+                        </form>';
+                        header('Location: menuMedecin.php');
+                        die;
 
                         $_SESSION['id']=$data['id_medecin'];
                         $_SESSION['type']="Medecin";
@@ -102,10 +116,9 @@ if (isset($_POST["button_connexion"])) {
                     <input type="text" id="username_admin" name="username_admin" value=' . $username . ' hidden>
                     <input type="text" id="email_admin" name="email_admin" value=' . $email . ' hidden>
                     <input type="text" id="telephone_admin" name="telephone_admin" value=' . $telephone . ' hidden>
-                    <label>Vous etes un admin</label>
-                    <input type="submit" value="Valider" name="button_menuAdmin">
                     </form>';
-                        
+                    header('Location: menuAdmin.php');
+                    die;
                 }
             }
         
