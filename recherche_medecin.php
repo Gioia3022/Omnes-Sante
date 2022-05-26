@@ -9,8 +9,6 @@ $char="";
 
 session_start();
 
-echo $_SESSION['id'];
-
 $id_medecin = $_SESSION['id'];
 //identifier le nom de base de données
 $database = "omnes_sante";
@@ -40,7 +38,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     <link href="css/menu.css " rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="header" style="height: 70px; font-size: 20px; width: 100%;">
+    <div id="header" style="height: 30px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
@@ -85,6 +83,7 @@ $db_found = mysqli_select_db($db_handle, $database);
             </div>
         </nav>
     </div>
+    <h1 id="titre"><b>Recherche des médecins</b> </h1> <br><br>
         <table class="table table-strip">
             <tr>
                 <th></th>
@@ -135,19 +134,15 @@ if (isset($_POST["button_recherche_medecin"])) {
                 echo "<td>" . "-" . "</td>";
                 echo "</tr>";
         } else {
-            echo "<br> <br> ";
-                echo "Liste des medecins: ";
-                echo "<br> ";
             while ($data = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                    echo  "<td>" . $data['id_medecin'] .  "</td>";
-                    echo  "<td>" . $data['nom'] .  "</td>";
-                    echo  "<td>" . $data['prenom'] .  "</td>";
-                    echo " <td>" . $data['type_medecin'] .  "</td>";
-                    echo  "<td>" . $data['email'] .  "</td>";
-                    echo  "<td>" . $data['cabinet'] . "</td>";
+                echo  "<td>" . $data['id_medecin'] .  "</td>";
+                echo  "<td>" . $data['nom'] .  "</td>";
+                echo  "<td>" . $data['prenom'] .  "</td>";
+                echo " <td>" . $data['type_medecin'] .  "</td>";
+                echo  "<td>" . $data['email'] .  "</td>";
+                echo  "<td>" . $data['cabinet'] . "</td>";
                 $image = $data['photo'];
-
                 echo '"<td>" . "<img src=../Omnes-Sante/images/'.$image.' height="120" width="100">" . "</td>"';
                 echo "</tr>";
             }

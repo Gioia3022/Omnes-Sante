@@ -34,7 +34,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     <link href="css/menu.css " rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="header" style="height: 70px; font-size: 20px; width: 100%;">
+    <div id="header" style="height: 30px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
@@ -79,6 +79,7 @@ $db_found = mysqli_select_db($db_handle, $database);
             </div>
         </nav>
     </div>
+    <h1 id="titre"><b>Liste des examens</b> </h1> <br><br>
         <table class="table table-strip">
             <tr>
                 <th></th>
@@ -125,9 +126,6 @@ if (isset($_POST["button_recherche_examen"])) {
                 echo "<td>" . "-" . "</td>";
                 echo "</tr>";
         } else {
-            echo "<br> <br> ";
-                echo "Liste des examens: ";
-                echo "<br> ";
             while ($data = mysqli_fetch_assoc($result)) {
                 $sql4 = "SELECT * FROM laboratoire WHERE id_laboratoire =" . $data['fk_laboratoire'];
                     $result4 = mysqli_query($db_handle, $sql4);
