@@ -176,7 +176,7 @@
                             <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
                             <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
-                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Client connecté</p>
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
                         </li>
                     </ul>
                 </div>
