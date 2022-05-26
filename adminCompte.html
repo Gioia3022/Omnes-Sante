@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Omnès santé ajout examen
-    </title>
-
-
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/menu.css " rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <form action="ajout_examen.php" method="post">
-        <div id="wrapper">
+    <!--Dependency et Proprietés-->
+    <head> 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/inscription.css" rel="stylesheet" type="text/css" />
+        <!-- Titre de la page-->
+        <title>
+            Omnes Santé inscription client
+        </title>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/menu.css " rel="stylesheet" type="text/css" />
+    </head>
+    <!--Affichage-->
+    <body>
+        <form action="inscription.php" method="post">
             <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
                 <nav class="navbar navbar-expand-lg bg-light">
                     <div class="container-fluid">
@@ -96,45 +93,16 @@
                     </div>
                 </nav>
             </div>
-            
-            <br><br>  
-            <br><br>
-            <br><br>
-            <h1 id="titre"><b>Ajouter un examen</b></h1>
-            <br><br>
-            
-            <table class = "center">
-                <tr>
-                    <td>Laboratoire :</td>
-                    <td><select name="id_lab" required>
-                            <option></option>
-                            <option value="1" name="1">Gueri</option>
-                            <option value="2" name="2">Necker</option>
-                        </select>
-    
-                </tr>
-    
-                <tr>
-                    <td>Type d'examen :</td>
-                    <td><select name="type_examen" required>
-                            <option></option>
-                            <option value="depistage covid-19" name="depistage covid-19">Dépistage covid-19</option>
-                            <option value="biologie preventive" name="biologie preventive">Biologie préventive</option>
-                            <option value="biologie de la femme enceinte" name="biologie de la femme enceinte">Biologie de la femme enceinte</option>
-                            <option value="biologie de routine" name="biologie de routine">Biologie de routine</option>
-                            <option value="cancerologie" name="cancerologie">Cancérologie</option>
-                            <option value="gynecologie" name="gynecologie">Gynécologie</option>
-                        </select>
-                </tr>
-                <tr>
-                    <td> <br><br></td>
-                </tr>
-                <th colspan="2"><input type="submit" value="Valider" name="button_ajout_examen" style="font-size: 25px; margin-left: 33%; border-radius: 5px; background-color: blue; color: white; border-color: transparent; "></th>
-            </table>
+            <div id="input">
+                <table class="center">
+                <h1 id="titre"><b>Mon Compte</b></h1>
+                <table class="center">
+                    <th colspan="2"><button type="submit" name="button_modification" style="font-size: 25px; margin-left: auto; border-radius: 5px;"> Modifer</button></th>
+                </table>
+            </div>
         </div>
     </form>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-</body>
-
+    </body>
 </html>
