@@ -47,7 +47,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="menuClient.html">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="clientParcourir.php">Parcourir</a>

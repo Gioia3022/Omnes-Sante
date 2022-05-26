@@ -142,6 +142,7 @@ if (isset($_POST["button_connexion"])) {
 
                 $_SESSION['id']=$data['id_client'];
                 $_SESSION['type']="Client";
+                header("Location: clientMenu.php");
             }
         }
     } else {

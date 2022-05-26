@@ -1,3 +1,42 @@
+<?php
+    session_start();
+    $id_client=$_SESSION['id_client'];
+    $database = "omnes_sante";
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
+
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Client WHERE id_client= '$id_client' ";
+
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultats
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p>Ce client n'existe pas</p>";
+        } else {
+            while ($data = mysqli_fetch_assoc($result)) {
+                //saisir les données du  formulaires
+                $nom = $data['nom'];
+                $prenom = $data['prenom'];
+                $username = $data['username'];
+                $password = $data['password'];
+                $email = $data['email'];
+                $date_naissance = $data['date_naissance'];
+                $telephone = $data['telephone'];
+                $photo = $data['photo'];
+                $adresse = $data['adresse'];
+                $ville = $data['ville'];
+                $code_postal = $data['code_postal'];
+                $pays = $data['pays'];
+                $carte_vitale = $data['carte_vitale'];
+            }
+        }
+    } else {
+        echo "<p>Database not found.</p>";
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -101,7 +140,7 @@
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="menuClient.html">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="clientParcourir.php">Parcourir</a>
@@ -134,8 +173,8 @@
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60"
                                 style="position: absolute; top: 18px;" />
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Client connecté</p>
                         </li>
