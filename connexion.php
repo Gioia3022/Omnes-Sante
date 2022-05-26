@@ -154,14 +154,21 @@ if (isset($_POST["button_connexion"])) {
                         </div>
                         </form>'; 
                     echo "<br><br>";
-                    echo '<form action="choix_medcin.php" method="post">
+                    echo '<form method="post">
                         <div>
-                            <input type="submit" value="Modifier un médecin" name="button_modification_medecin">
+
+                            <input type="submit" value="Modifier un médecin" name="button_modification_medecin" formaction="choix_medcin.php">
+
+                            <br><br>
+
+                            <input type="submit" value="Modifier un client" name="button_modification_client" formaction="choix_client.php">
                         </div>
                         </div>
                             <script src="js/bootstrap.js"></script>
                             <script src="js/bootstrap.bundle.min.js"></script>
-                        </form>';                  
+                        </form>';
+
+                        
                 }
             }
         

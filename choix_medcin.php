@@ -3,7 +3,6 @@
 echo "<meta charset=\"utf-8\">";
 //identifier votre BDD
 $database = "omnes_sante";
-session_start();
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
@@ -97,11 +96,7 @@ $erreur = "";
             <?php
             if ($db_found) {
                 $sql1 = "SELECT * FROM medecin";
-
-                $sql3 = "SELECT * FROM examen";
                 $result1 = mysqli_query($db_handle, $sql1);
-
-                $result3 = mysqli_query($db_handle, $sql3);
 
                 echo "<br> <br>";
                 echo "Liste de médecins: ";
