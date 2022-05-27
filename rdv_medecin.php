@@ -10,9 +10,6 @@ $db_found = mysqli_select_db($db_handle, $database);
 //Cette id devra etre passé en paramètre ici (et il devra aussi etre envoyé dans le fichier rdv_medecin_alt.php)
 $id_medecin = $_GET['id_medecin'];
 
-
-echo "L'id dans rdv_medecin: ".$id_medecin;
-
 ?>
 
 <html>
@@ -75,60 +72,72 @@ echo "L'id dans rdv_medecin: ".$id_medecin;
             </nav>
         </div>
 
-
-
-
-
         <br><br>
         <br><br>
         <br><br>
-        <h1 id="titre"><b>Calendrier du médecin choisi</b></h1>
+        <h1 id="titre"><b>Calendrier du médecin </b></h1>
         <br><br>
-        <table class="table table-hover">
-            <tr>
-                <th></th>
-                <th>Date</th>
-                <th>Heure</th>
-            </tr>
-            <?php
-            if ($db_found) {
-                $sql1 = "SELECT * FROM reservation_client_medecin WHERE fk_medecin='$id_medecin'";
-                $result1 = mysqli_query($db_handle, $sql1);
-                while ($data1 = mysqli_fetch_assoc($result1)) {
-
-                    echo "<tr>";
-                    echo  "<td>" . $data1['id_client_medecin'] .  "</td>";
-                    echo " <td >" . $data1['date'] . "</td>";
-                    echo  "<td>" . $data1['heure'] .  "</td>";
-                } //end while
-
-            }
-            //si le BDD n'existe pas
-            else {
-                echo "Database not found";
-            } //end else
-
-            ?>
-        </table>
+        
         <form action="rdv_medecin_alt.php" method="post">
+        <input type="text" id="id_medecin" name="id_medecin" value= <?php echo $id_medecin?> hidden>
             <table>
-                </tr>
-                <input type="text" id="id_medecin" name="id_medecin" value= <?php echo $id_medecin?> hidden>
-                <tr>
-                <tr>
-                    <td>Date: </td>
-                    <td> <input type="date" id="date" name="date" required></td>
-                </tr>
-                <tr>
-                    <td>Heure: </td>
-                    <td> <input type="time" id="heure" name="heure" step="1800" min="08:00" max="17:00" value="08:00" required></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th> Horraie </th>
+                        <th> Lundi </th>
+                        <th> Mardi </th>
+                        <th> Mercredi </th>
+                        <th> Jeudi </th>
+                        <th> Vendredi </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    for($j=8; $j <= 17; $j++){
+                        $cpt=-1;
+                        ?>
+                        <tr>
+                            <td> <?php echo $j; echo "-"; echo $j+1; echo "h"; ?> </td>
+                            <?php
+                            for ($h = 1 ; $h <= 5 ; $h++){
+                                $cpt=-1;
+                                if($h==1){
+                                    $valeur = "2022-05-30";
+                                }
+                                if($h==2){
+                                    $valeur = "2022-05-31";
+                                }
+                                if($h==3){
+                                    $valeur = "2022-06-01";
+                                }
+                                if($h==4){
+                                    $valeur = "2022-06-02";
+                                }
+                                if($h==5){
+                                    $valeur = "2022-06-03";
+                                }
+                                $query="Select * from reservation_client_medecin where fk_medecin='$id_medecin'"; 
+                                $result=mysqli_query($db_handle,$query);
+                                while ($data = mysqli_fetch_assoc($result)) {
+                                    if($data["date"]==$valeur AND $data["heure"]==$j){
+                                        $cpt =1;
+                                        ?>
+                                        <td> <button class="button2" type="button" id="button"  disabled style="width:100%;height:100%;background-color: gray;"> Réserver  </button></td>
+                                        <?php
+                                    }
+                                }
+                                if($cpt!=1){
+                                    ?>
+                                    <td> <button class="button2" type="submit" name="submit" value="<?php echo $valeur ?> <?php echo $j.":00:00" ?> "  style="width:100%;height:100%"> Réserver </button> </td>
+                                    <?php
 
+                                }
+                            }
+                            echo "</tr>";
+                            }
+                            ?>
+                </tbody>
             </table>
-            <div>
-                <input type="submit" name="button_rdv_medecin" value="Valider">
-            </div>
-
         </form>
     </div>
     <script src="js/bootstrap.js"></script>

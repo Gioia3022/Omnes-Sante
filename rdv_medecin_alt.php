@@ -1,27 +1,32 @@
 
 
 <?php
+//identifier le nom de base de données
+$database = "omnes_sante";
+//connectez-vous dans votre BDD
+//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+//si le BDD existe, faire le traitement
 
 session_start();
+/*
 $heure_debut_matin = "08:00:00";
 $heure_fin_matin = "12:00:00";
 $heure_debut_aprem = "13:00:00";
 $heure_fin_aprem = "17:00:00";
 $valid_date = true;
 $valid_hour = false;
-$disponible=true;
+$disponible=true;*/
+$type=$_POST["submit"];
 
 //Il faut attribuer les bonnes valeurs à ces id
 $id_client = $_SESSION['id_client'];
 
 $id_medecin = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
-$date = isset($_POST["date"]) ? $_POST["date"] : "";
-$heure = isset($_POST["heure"]) ? $_POST["heure"] : "";
-
-echo "L(id du médecin dns alt".$id_medecin;
 
 
-
+/*
 $day = date("D", strtotime($date));
 
 if ($day == 'Sat' || $day == 'Sun') {
@@ -57,13 +62,7 @@ if (((strtotime($heure) >= strtotime($heure_debut_matin)) && ((strtotime($heure)
 
 if (($valid_hour == true) && ($valid_date == true)) {
 
-    //identifier le nom de base de données
-    $database = "omnes_sante";
-    //connectez-vous dans votre BDD
-    //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-    $db_handle = mysqli_connect('localhost', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
-    //si le BDD existe, faire le traitement
+    
 
     if ($db_found) {
 
@@ -88,7 +87,7 @@ if (($valid_hour == true) && ($valid_date == true)) {
             $_SESSION['date_rdv_medecin']=$date;
             $_SESSION['heure_rdv_medecin']=$heure;
             $_SESSION['id_rdv_medecin']=$id_medecin;
-
+            $_SESSION['type']=$type;
             header('Location: payement.php');
             die;
 
@@ -102,8 +101,17 @@ if (($valid_hour == true) && ($valid_date == true)) {
     mysqli_close($db_handle);
 } else {
     echo "Date ou heure non valide";
-}
-header('Location: clientMenu.php');
-die;
+}*/
+if ($db_found) {
+$_SESSION['id_rdv_medecin']=$id_medecin;
+$_SESSION['type']=$type;
+ header('Location: payement.php');
+die;} //end if
+//si le BDD n'existe pas
+else {
+    echo "Database not found";
+} //end else
+//fermer la connection
+mysqli_close($db_handle);
 
 ?>

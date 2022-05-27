@@ -2,7 +2,7 @@
 
 session_start();
 $id_client=$_SESSION['id_client'];
-$type = isset($_POST["type_carte"])? $_POST["type_carte"] : "";
+$type_carte = isset($_POST["type_carte"])? $_POST["type_carte"] : "";
 $numero = isset($_POST["numero"])? $_POST["numero"] : "";
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $code = isset($_POST["code"])? $_POST["code"] : "";
@@ -11,7 +11,8 @@ $date = isset($_POST["date"])? $_POST["date"] : "";
 $date_rdv=$_SESSION['date_rdv_medecin'];
 $heure=$_SESSION['heure_rdv_medecin'];
 $id_medecin=$_SESSION['id_rdv_medecin'];
-
+$type=$_SESSION['type'];
+$separate=explode(' ', $type);
 
 $database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
@@ -21,9 +22,9 @@ if (isset($_POST["button_payement"])) {
     if ($db_found) {
         //commencer le query{
         $sql = "SELECT * FROM carte_banquaire";
-        if ($type != "") {
+        if ($type_carte != "") {
             //on recherche l'utilisateur par son email
-            $sql .= " WHERE type = '$type'";
+            $sql .= " WHERE type = '$type_carte'";
             //on vérifie que le mdp est correct
             if ($numero != "") {
                 $sql .= " AND numero = '$numero'";
@@ -47,21 +48,20 @@ if (isset($_POST["button_payement"])) {
             die;
         } 
         else {
-                while ($data = mysqli_fetch_assoc($result)) {
-                    $ID_carte=$data['id_carte'];
-                    $solde=$data['solde'];
-                    $nouveau_solde=$solde-30;
-                    $sql1 = "UPDATE carte_banquaire SET solde='$nouveau_solde' WHERE id_carte='$ID_carte'";
-                    $resultat = mysqli_query($db_handle, $sql1);
+            while ($data = mysqli_fetch_assoc($result)) {
+                $ID_carte=$data['id_carte'];
+                $solde=$data['solde'];
+                $nouveau_solde=$solde-30;
+                $sql1 = "UPDATE carte_banquaire SET solde='$nouveau_solde' WHERE id_carte='$ID_carte'";
+                $resultat = mysqli_query($db_handle, $sql1);
 
-                    $sql2 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$date_rdv','$heure' )";
-                    $resultat2 = mysqli_query($db_handle, $sql2);
-                    
-                    echo ' <script> alert("Payment éffectué");
-                    window.location = "http://localhost/PJ_WEB_2022-Abdelkefi_Carissan_Galiazzo_deLaVillardiere/omnes-sante/clientMenu.php" </script>';
-                   
-                }
-           // }
+                $sql2 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$separate[0]','$separate[1]' )";
+                $resultat2 = mysqli_query($db_handle, $sql2);
+                
+                echo ' <script> alert("Payment éffectué");
+                window.location = "http://localhost/PJ_WEB_2022-Abdelkefi_Carissan_Galiazzo_deLaVillardiere/omnes-sante/clientMenu.php" </script>';
+                
+            }
         }
         
     } else {
