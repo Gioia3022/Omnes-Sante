@@ -16,7 +16,7 @@
     </head>
     <!--Affichage-->
     <body>
-        <form action="inscription.php" method="post">
+        <form action="inscription.php" method="post" enctype="multipart/form-data">
             <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
                 <nav class="navbar navbar-expand-lg bg-light">
                     <div class="container-fluid">
@@ -101,7 +101,7 @@
                     </tr>
                     <tr>
                         <td>Photo :</td>
-                        <td><input type="text" id="photo" name="photo"></td>
+                        <td><input type="file" id="photo" name="photo"></td>
                     </tr>
 
                     <tr>

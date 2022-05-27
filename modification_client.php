@@ -104,7 +104,7 @@ if ($db_found) {
             $carte_vitale = $data['carte_vitale'];
 
 
-            echo '<form action="modification_cli_alt.php" method="post">
+            echo '<form action="modification_cli_alt.php" method="post" enctype="multipart/form-data">
 
 <table class="table table-hover">
     <tr> 
@@ -151,7 +151,7 @@ if ($db_found) {
 
     <tr>
         <td>photo :</td>
-        <td><input type="text" id="photo" name="photo" value=' . $photo . ' ></td>
+        <td><input type="file" id="photo" name="photo" value=' . $photo . ' ></td>
     </tr>
 
     <tr>
