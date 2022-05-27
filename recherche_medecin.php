@@ -122,7 +122,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                     //regarder s'il y a des resultats
                     if (mysqli_num_rows($result) == 0) {
                         echo "<br> <br> ";
-                        echo "<p>Ce type d'examen n'existe pas</p>";
+                        echo "<p>Ce  medecin n'existe pas</p>";
                         echo "<br> <br> ";
                         echo "<tr>";
                         echo "<td>" . " " . "</td>";
@@ -136,12 +136,12 @@ $db_found = mysqli_select_db($db_handle, $database);
                         while ($data = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo  "<td>" . $data['id_medecin'] .  "</td>";
-                            echo  "<td>" . $data['nom'] .  "</td>";
-                            echo  "<td>" . $data['prenom'] .  "</td>";
-                            echo " <td>" . $data['type_medecin'] .  "</td>";
-                            echo  "<td>" . $data['email'] .  "</td>";
-                            echo  "<td>" . $data['cabinet'] . "</td>";
-                            $image = $data['photo'];
+                            echo " <td class=nav-item><a class=nav-link href=type_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['nom'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=type_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['prenom'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=type_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['type_medecin'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=type_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['email'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=type_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['cabinet'] . "</a></td>";
+                             $image = $data['photo'];
                             echo '<td>  <img src=../Omnes-Sante/images/' . $image . ' height="120" width="100">  </td>';
                             echo "</tr>";
                         }

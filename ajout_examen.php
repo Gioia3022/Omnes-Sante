@@ -23,6 +23,8 @@ if ($db_found) {
     if (mysqli_num_rows($resultat) == 0) {
         $sql = "INSERT INTO Examen(type_examen, fk_laboratoire) VALUES ('$type_examen', '$fk_laboratoire')";
     $result =mysqli_query($db_handle, $sql);
+    header('Location: menuAdmin.php');
+    die;
     } else {
         echo "Ce type d'examen dans ce laboratoire existe déja.";
     }

@@ -20,4 +20,6 @@ if ($db_found) {
     echo "<p>Database not found.</p>";
 }
 
+header('Location: menuAdmin.php');
+die;
 ?>

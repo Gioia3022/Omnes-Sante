@@ -139,10 +139,10 @@ $id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
                     echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
-                    echo  "<td>" . $data1['prenom'] .  "</td>";
-                    echo " <td>" . $data1['type_medecin'] .  "</td>";
-                    echo  "<td>" . $data1['email'] .  "</td>";
-                    echo  "<td>" . $data1['cabinet'] . "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_medecin.php?id_modif_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
                     echo "</tr>";
                 } //end while
 

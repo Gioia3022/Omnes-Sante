@@ -16,26 +16,6 @@ $code_postal = isset($_POST["code_postal"])? $_POST["code_postal"] : "";
 $pays = isset($_POST["pays"])? $_POST["pays"] : "";
 $carte_vitale = isset($_POST["carte_vitale"])? $_POST["carte_vitale"] : "";
 
-
-echo "nom :".$nom."<br>";
-echo "prenom :".$prenom."<br>";
-echo "password :".$password."<br>";
-echo "email :".$email."<br>";
-echo "date de naissance :".$date_naissance."<br>";
-echo "genre :".$genre."<br>";
-echo "telephone :".$telephone."<br>";
-echo "photo :".$photo."<br>";
-echo "Adresse :".$adresse."<br>";
-echo "Ville :".$ville."<br>";
-echo "Code Postal :".$code_postal."<br>";
-echo "Pays :".$pays."<br>";
-echo "Numero de Carte Vitale :".$carte_vitale."<br>";
-
-
-
-
-
-
 //identifier le nom de base de données
 $database = "omnes_sante";
 //connectez-vous dans votre BDD
@@ -51,10 +31,6 @@ if ($db_found) {
     $sql = "INSERT INTO Client(nom, prenom, username, password,  email, date_naissance, genre, telephone, photo, adresse, ville, code_postal, pays, carte_vitale)";
     $sql=$sql ." VALUES ( '$nom', '$prenom', '$username', '$password', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$adresse', '$ville', '$code_postal','$pays','$carte_vitale')";
     $result =mysqli_query($db_handle, $sql);
-    echo "<p>Add successful.</p>";
-    echo "DONE!!!";
-    
-
 } //end if
 //si le BDD n'existe pas
 else {
@@ -63,5 +39,6 @@ else {
 //fermer la connection
 mysqli_close($db_handle);
 }
-
+header('Location: connexion.html');
+die;
 ?>

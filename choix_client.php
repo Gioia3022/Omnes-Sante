@@ -127,10 +127,10 @@ $db_found = mysqli_select_db($db_handle, $database);
                     echo "<tr>";
                     echo  "<td>" . $data1['id_client'] .  "</td>";
                     echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['nom'] . "</a></td>";
-                    echo  "<td>" . $data1['prenom'] .  "</td>";
-                    echo " <td>" . $data1['telephone'] .  "</td>";
-                    echo  "<td>" . $data1['email'] .  "</td>";
-                    echo  "<td>" . $data1['adresse'] . "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['telephone'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['adresse'] . "</a></td>";
                     echo "</tr>";
                 } //end while
 
