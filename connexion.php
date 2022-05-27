@@ -121,7 +121,7 @@ if (isset($_POST["button_connexion"])) {
                     <input type="text" id="email_admin" name="email_admin" value=' . $email . ' hidden>
                     <input type="text" id="telephone_admin" name="telephone_admin" value=' . $telephone . ' hidden>
                     </form>';
-                    header('Location: menuAdmin.php');
+                    header('Location: adminMenu.php');
                     die;
                 }
             }
