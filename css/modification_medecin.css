@@ -28,7 +28,12 @@ html,body
     text-align: center;
     color: blue;
     background-color: white;
-    padding-top: 10%;
+}
+
+#header
+{
+    font-size: 20px; 
+    width: 100%;
 }
 
 .center

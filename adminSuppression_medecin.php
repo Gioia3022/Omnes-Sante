@@ -5,6 +5,43 @@ echo "<meta charset=\"utf-8\">";
 $database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+session_start();
+$id_administrateur = $_SESSION['id_admin'];
+if ($db_found) {
+    //commencer le query
+    $sql = "SELECT * FROM admin WHERE id_admin= '$id_administrateur' ";
+
+    $result = mysqli_query($db_handle, $sql);
+    //regarder s'il y a des resultats
+    if (mysqli_num_rows($result) == 0) {
+        echo "<p>Ce client n'existe pas</p>";
+    } else {
+        while ($data = mysqli_fetch_assoc($result)) {
+            //saisir les données du  formulaires
+            $nom = $data['nom'];
+            $prenom = $data['prenom'];
+            $username = $data['username'];
+            $password = $data['password'];
+            $email = $data['email'];
+            $telephone = $data['telephone'];
+        }
+    }
+} else {
+    echo "<p>Database not found.</p>";
+}
+
+//declaration des variables
+$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
+$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
+$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
+$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
+$email = isset($_POST["email"]) ? $_POST["email"] : "";
+$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
+$ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
+$adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
+$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
+$erreur = "";
+$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
 
 ?>
 
@@ -22,13 +59,13 @@ $db_found = mysqli_select_db($db_handle, $database);
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/menu.css " rel="stylesheet" type="text/css" />
+    <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <div id="wrapper">
     <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
-        <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
@@ -39,7 +76,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="menuAdmin.php">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="adminMenu.php">Accueil</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button"
@@ -47,11 +84,11 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 Médecins
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="ajout_medecin.html">Ajouter un médecin</a>
+                                <li><a class="dropdown-item" href="adminAjout_medecin1.php">Ajouter un médecin</a>
                                 </li>
-                                <li><a class="dropdown-item" href="choix_medcin.php">Modifier un médecin</a>
+                                <li><a class="dropdown-item" href="adminChoix_medcin.php">Modifier un médecin</a>
                                 </li>
-                                <li><a class="dropdown-item" href="suppression_medecin.php">Supprimer un médecin</a>
+                                <li><a class="dropdown-item" href="adminSuppression_medecin.php">Supprimer un médecin</a>
                                 </li>
                             </ul>
                         </li>
@@ -61,9 +98,9 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 Clients
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="choix_client.php">Modifier un client</a>
+                                <li><a class="dropdown-item" href="adminChoix_client.php">Modifier un client</a>
                                 </li>
-                                <li><a class="dropdown-item" href="suppression_client.php">Supprimer un client</a>
+                                <li><a class="dropdown-item" href="adminSuppression_client.php">Supprimer un client</a>
                                 </li>
                             </ul>
                         </li>
@@ -73,29 +110,20 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 Examens
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="ajout_examen.html">Ajouter un examen</a>
+                                <li><a class="dropdown-item" href="adminAjout_examen1.php">Ajouter un examen</a>
                                 </li>
-                                <li><a class="dropdown-item" href="suppression_examen.php">Supprimer un examen</a>
+                                <li><a class="dropdown-item" href="adminSuppression_examen.php">Supprimer un examen</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Compte 
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="adminCompte.html">Mon Compte</a>
-                                </li>
-                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link"  aria-current="page" href="menu.html">Déconnexion</a>
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;"/>
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $nom ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Administrateur connecté</p>
                         </li>
                     </ul>
@@ -103,34 +131,41 @@ $db_found = mysqli_select_db($db_handle, $database);
             </div>
         </nav>
     </div>
-    
     <br><br>  
-    <br><br>
-    <br><br>
-    <h1 id="titre"><b>Modifier un client</b> </h1>
-    <br><br>
+    <br><br> 
+    <br><br> 
+    <h1 id="titre"><b>Supression médecin</b> </h1>
+    <br><br> 
         <table class="table table-hover">
             <tr>
                 <th></th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Telephone</th>
+                <th>Spécialité</th>
                 <th>Email</th>
-                <th>Adresse</th>
+                <th>Cabinet</th>
             </tr>
             <?php
             if ($db_found) {
-                $sql1 = "SELECT * FROM Client";
+                $sql1 = "SELECT * FROM medecin";
                 $result1 = mysqli_query($db_handle, $sql1);
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     
                     echo "<tr>";
-                    echo  "<td>" . $data1['id_client'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['prenom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['telephone'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=modification_client.php?id_modif_client=" . $data1['id_client'] . ">" . $data1['adresse'] . "</a></td>";
+                    echo  "<td>" . $data1['id_medecin'] .  "</td>";
+                    echo " <td >" . $data1['nom'] . "</td>";
+                    echo  "<td>" . $data1['prenom'] .  "</td>";
+                    echo " <td>" . $data1['type_medecin'] .  "</td>";
+                    echo  "<td>" . $data1['email'] .  "</td>";
+                    echo  "<td>" . $data1['cabinet'] . "</td>";
+                    
+                    echo '<form action="adminSuppression_medecin_alt.php" method="post">
+                        <input type="text" id="id_medecin" name="id_medecin" value=' . $data1['id_medecin'] . ' hidden>
+                    <div>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_medecin">Valider</button> </td>
+                    </div>
+                    
+                    </form>';
                     echo "</tr>";
                 } //end while
 

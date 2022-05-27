@@ -109,7 +109,7 @@ if ($db_found) {
     $sql = "INSERT INTO Medecin(nom, prenom, username, password, type_medecin, boolean_type, email, date_naissance, genre, telephone, photo, cv, cabinet)";
     $sql=$sql ." VALUES ( '$nom', '$prenom', '$username', '$password', '$type_medecin', '$boolean_type', '$email', '$date_naissance', '$genre', '$telephone', '$photo', '$cv', '$cabinet')";
     $result =mysqli_query($db_handle, $sql);
-    header('Location: menuAdmin.php');
+    header('Location: adminMenu.php');
     die;
     
 

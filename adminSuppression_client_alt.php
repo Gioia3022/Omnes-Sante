@@ -1,4 +1,3 @@
-
 <?php
 //identifier le nom de base de données
 $database = "omnes_sante";
@@ -6,14 +5,14 @@ $database = "omnes_sante";
 //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
+$ID = isset($_POST["id_client"]) ? $_POST["id_client"] : "";
 
 //si le BDD existe, faire le traitement
 if ($db_found) {
-    if (isset($_POST["button_suppression_medecin"])) {
+    if (isset($_POST["button_suppression_client"])) {
         //saisir les données du  formulaires
 
-        $sql1 = "DELETE FROM Medecin  WHERE id_medecin='$ID'";
+        $sql1 = "DELETE FROM Client  WHERE id_client='$ID'";
 
         $resultat = mysqli_query($db_handle, $sql1);
     }
@@ -21,6 +20,6 @@ if ($db_found) {
     echo "<p>Database not found.</p>";
 }
 
-header('Location: menuAdmin.php');
+header('Location: adminMenu.php');
 die;
 ?>

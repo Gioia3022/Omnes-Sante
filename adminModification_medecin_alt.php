@@ -8,9 +8,9 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 if ($db_found) {
-    if (isset($_POST["button_modification_client"])) {
+    if (isset($_POST["button_modification_medecin"])) {
         //saisir les données du  formulaires
-        $id_client=isset($_POST["id_client"]) ? $_POST["id_client"] : "";
+        $id_medecin=isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
         $nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
         $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
         $username = isset($_POST["username"]) ? $_POST["username"] : "";
@@ -19,11 +19,8 @@ if ($db_found) {
         $date_naissance = isset($_POST["date_naissance"]) ? $_POST["date_naissance"] : "";
         $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
         $photo = isset($_POST["photo"]) ? $_POST["photo"] : "";
-        $adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
-        $ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
-        $code_postal = isset($_POST["code_postal"]) ? $_POST["code_postal"] : "";
-        $pays = isset($_POST["pays"]) ? $_POST["pays"] : "";
-        $carte_vitale = isset($_POST["carte_vitale"]) ? $_POST["carte_vitale"] : "";
+        $cv = isset($_POST["cv"]) ? $_POST["cv"] : "";
+        $cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
 
         if ($_FILES['photo']['size'] == 0){
             echo "Aucun fichier n'a été sélectionné";
@@ -79,13 +76,14 @@ if ($db_found) {
           }
           }
 
-        $sql1 = "UPDATE Client SET nom='$nom', prenom='$prenom', username='$username', password='$password', email='$email', date_naissance='$date_naissance', telephone='$telephone', ";
-        $sql1 = $sql1 . " photo='$photo', adresse='$adresse', ville='$ville', code_postal='$code_postal', pays='$pays',  carte_vitale='$carte_vitale' WHERE id_client='$id_client'";
+        $sql1 = "UPDATE Medecin SET nom='$nom', prenom='$prenom', username='$username', password='$password', email='$email', date_naissance='$date_naissance', telephone='$telephone', ";
+        $sql1 = $sql1 . " photo='$photo', cv='$cv', cabinet='$cabinet' WHERE id_medecin='$id_medecin'";
 
         $resultat = mysqli_query($db_handle, $sql1);
     }
 } else {
     echo "<p>Database not found.</p>";
 }
-header('Location: menuAdmin.php');
+header('Location: adminMenu.php');
 die;
+?>
