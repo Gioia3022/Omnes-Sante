@@ -85,8 +85,12 @@ if (($valid_hour == true) && ($valid_date == true)) {
         }
         //Si le rendez vous est disponible
         if ($disponible==true){
-            $sql1 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$date','$heure' )";
-    $resultat = mysqli_query($db_handle, $sql1);
+            $_SESSION['date_rdv_medecin']=$date;
+            $_SESSION['heure_rdv_medecin']=$heure;
+            $_SESSION['id_rdv_medecin']=$id_medecin;
+
+            header('Location: payement.php');
+            die;
 
         }
     } //end if

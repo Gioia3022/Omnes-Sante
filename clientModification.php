@@ -90,6 +90,8 @@ if ($db_found) {
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
                                 </li>
+                                <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
+                                </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
                             </ul>
