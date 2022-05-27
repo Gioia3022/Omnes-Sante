@@ -92,6 +92,8 @@ if ($db_found) {
                                 </li>
                                 <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
                                 </li>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
+                                </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
                             </ul>

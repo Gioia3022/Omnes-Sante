@@ -1,9 +1,16 @@
 <?php
 session_start();
+echo "<meta charset=\"utf-8\">";
 $id_client = $_SESSION['id_client'];
 $database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+
+
+$current_day= date('Y-m-d');
+$current_time= date('H:i');
+$current_time .= ":00";
+
 
 if ($db_found) {
     //commencer le query
@@ -34,21 +41,8 @@ if ($db_found) {
 } else {
     echo "<p>Database not found.</p>";
 }
-
-$id_lab = isset($_POST["id_lab"]) ? $_POST["id_lab"] : "";
-$type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
-
-
-//saisir les données du  formulaires
-$id_lab = isset($_POST["id_lab"]) ? $_POST["id_lab"] : "";
-$type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
-
-$err = $id_lab . $type_examen;
-$char = "";
-
-
-
 ?>
+
 
 <html>
 
@@ -58,26 +52,25 @@ $char = "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Omnes Santé Recherche Examen
+        Omnes Santé
     </title>
 
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/recherche_examen.css " rel="stylesheet" type="text/css" />
+    <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
 </head>
 
+
 <body>
-    <div id="header" style="height: 30px; font-size: 20px; width: 100%;">
-    <nav class="navbar navbar-expand-lg bg-light">
+    <div id="header">
+        <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
                 <br><br>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -88,8 +81,7 @@ $char = "";
                             <a class="nav-link" href="clientParcourir.php">Parcourir</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -100,8 +92,7 @@ $char = "";
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -117,8 +108,7 @@ $char = "";
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
-                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60"
-                                style="position: absolute; top: 18px;" />
+                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
                             <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
                             <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
@@ -130,71 +120,102 @@ $char = "";
         </nav>
     </div>
     <div>
-        <table class="table table-strip">
-            <h1 id="titre"><b>Liste des examens</b></h1>
+        <table class="table table-hover">
+            <h1 id="titre"><b>Liste des consultations (medecins) :</b></h1>
             <tr>
                 <th></th>
-                <th>Type examen</th>
-                <th>Laboratoire</th>
-                <th>Adresse</th>
-                <th>Email</th>
-                <th>Telephone</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Nom du médecin</th>
+                <th>Type de médecin</th>
             </tr>
-
             <?php
-            if (isset($_POST["button_recherche_examen"])) {
-                if ($db_found) {
-                    //commencer le query
-                    $sql = "SELECT * FROM Examen";
-                    if ($err != "") {
-                        $sql .= " WHERE ";
+            if ($db_found) {
+                $sql1 = "SELECT * FROM reservation_client_medecin WHERE fk_client='$id_client'";
+                $result1 = mysqli_query($db_handle, $sql1);
 
-                        //on recherche le labo par son id
-                        if ($id_lab != "") {
-                            $sql .= " fk_laboratoire LIKE '%$id_lab%'";
-                            $char = " AND ";
-                        }
-                        //on recherche le medecin par son prenom
-                        if ($type_examen != "") {
-                            $sql .= $char . " type_examen LIKE '%$type_examen%'";
-                            $char = " AND ";
-                        }
-                    }
-                    $result = mysqli_query($db_handle, $sql);
+                while ($data1 = mysqli_fetch_assoc($result1)) {
+                    if ($current_day <= $data1['date']){
+                    echo "<tr>";
+                    echo  "<td>" . $data1['fk_medecin'] .  "</td>";
+                    echo  "<td>" . $data1['date'] .  "</td>";
+                    echo " <td>" . $data1['heure'] .  "</td>";
 
-                    //regarder s'il y a des resultats
-                    if (mysqli_num_rows($result) == 0) {
-                        echo "<br> <br> ";
-                        echo "<p>Ce type d'examen n'existe pas</p>";
-                        echo "<br> <br> ";
-                        echo "<tr>";
-                        echo "<td>" . " " . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "</tr>";
-                    } else {
-                        while ($data = mysqli_fetch_assoc($result)) {
-                            $sql4 = "SELECT * FROM laboratoire WHERE id_laboratoire =" . $data['fk_laboratoire'];
-                            $result4 = mysqli_query($db_handle, $sql4);
-                            $data4 = mysqli_fetch_assoc($result4);
-                            echo "<tr>";
-                            echo "<td>" . $data['id_examen'] . "</td>";
-                            echo "<td>" . $data['type_examen'] . "</td>";
-                            echo "<td>" . $data4['nom'] . "</td>";
-                            echo "<td>" . $data4['adresse'] . " " . $data4['ville'] . "</td>";
-                            echo "<td>" . $data4['email'] . "</td>";
-                            echo "<td>" . $data4['telephone'] . "</td>";
-                            echo "</tr>";
-                        }
+                    $id_medecin=$data1['fk_medecin'];
+                    $id_client_medecin=$data1['id_client_medecin'];
+
+                    $sql2 = "SELECT * FROM Medecin WHERE id_medecin='$id_medecin'";
+                    $result2 = mysqli_query($db_handle, $sql2);
+                    $data2= mysqli_fetch_assoc($result2);
+                    
+                    echo  "<td>" . $data2['nom'] .  "</td>";
+                    echo  "<td>" . $data2['type_medecin'] . "</td>";
+
+                    echo '<form action="clientSuppression_rdv.php" method="post">
+                        <input type="text" id="id_client_medecin" name="id_client_medecin" value=' . $id_client_medecin. ' hidden>
+                    <div>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_medecin">Valider</button> </td>
+                    </div>
+                    </form>';
+
+                    echo "</tr>";
+
                     }
-                } else {
-                    echo "<p>Database not found.</p>";
-                }
-                mysqli_close($db_handle);
+                } //end while
             }
+            //si le BDD n'existe pas
+            else {
+                echo "Database not found";
+            } //end else
+
+            ?>
+        </table>
+        <h1 id="titre"><b>Liste des consultations (examens):</b></h1>
+        <table class="table table-hover">
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Type d'examen</th>
+            </tr>
+            <?php
+            if ($db_found) {
+                $sql1 = "SELECT * FROM reservation_client_examen WHERE fk_client='$id_client'";
+                $result1 = mysqli_query($db_handle, $sql1);
+
+                while ($data1 = mysqli_fetch_assoc($result1)) {
+                    if ($current_day <= $data1['date']){
+                    echo "<tr>";
+                    echo  "<td>" . $data1['fk_examen'] .  "</td>";
+                    echo  "<td>" . $data1['date'] .  "</td>";
+                    echo " <td>" . $data1['heure'] .  "</td>";
+
+                    $id_examen=$data1['fk_examen'];
+                    $id_client_examen=$data1['id_client_examen'];
+
+                    $sql2 = "SELECT * FROM Examen WHERE id_examen='$id_examen'";
+                    $result2 = mysqli_query($db_handle, $sql2);
+                    $data2= mysqli_fetch_assoc($result2);
+                    
+                    echo  "<td>" . $data2['type_examen'] . "</td>";
+                    
+                    echo '<form action="clientSuppression_rdv.php" method="post">
+                        <input type="text" id="id_client_examen" name="id_client_examen" value=' . $id_client_examen. ' hidden>
+                    <div>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_examen">Valider</button> </td>
+                    </div>
+                    </form>';
+                    
+                    echo "</tr>";
+                    }
+                } //end while
+            }
+            //si le BDD n'existe pas
+            else {
+                echo "Database not found";
+            } //end else
+
+            mysqli_close($db_handle);
             ?>
         </table>
 
