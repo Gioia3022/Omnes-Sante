@@ -157,7 +157,7 @@ if ($db_found) {
 
             <tr>
                 <td>photo :</td>
-                <td><input type="text" id="photo" name="photo" value=' . $photo . ' ></td>
+                <td><input type="file" id="photo" name="photo" value=' . $photo . ' ></td>
              </tr>
 
             <tr>

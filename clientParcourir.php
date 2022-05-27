@@ -23,6 +23,7 @@ $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
 $erreur = "";
 
+
 if ($db_found) {
     //commencer le query
     $sql = "SELECT * FROM Client WHERE id_client= '$id_client' ";
@@ -149,7 +150,7 @@ if ($db_found) {
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=ajout_medecin.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=rdv_medecin.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
                     echo  "<td>" . $data1['email'] .  "</td>";

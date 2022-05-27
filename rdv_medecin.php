@@ -8,8 +8,10 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
 //Cette id devra etre passé en paramètre ici (et il devra aussi etre envoyé dans le fichier rdv_medecin_alt.php)
-$id_medecin=2;
+$id_medecin = $_GET['id_medecin'];
 
+
+echo "L'id dans rdv_medecin: ".$id_medecin;
 
 ?>
 
@@ -93,13 +95,11 @@ $id_medecin=2;
                 $sql1 = "SELECT * FROM reservation_client_medecin WHERE fk_medecin='$id_medecin'";
                 $result1 = mysqli_query($db_handle, $sql1);
                 while ($data1 = mysqli_fetch_assoc($result1)) {
-                    
+
                     echo "<tr>";
                     echo  "<td>" . $data1['id_client_medecin'] .  "</td>";
                     echo " <td >" . $data1['date'] . "</td>";
                     echo  "<td>" . $data1['heure'] .  "</td>";
-
-                    
                 } //end while
 
             }
@@ -111,19 +111,23 @@ $id_medecin=2;
             ?>
         </table>
         <form action="rdv_medecin_alt.php" method="post">
-        <table>
-            <tr>
-                <td>Date: </td>
-                <td> <input type="date" id="date" name="date" required></td>
-            </tr>
-            <tr>
-                <td>Heure: </td>
-                <td> <input type="time" id="heure" name="heure" required></td>
-            </tr>
-        </table>
-        <div>
-            <input type="submit" name="button_rdv_medecin" value="Valider">
-        </div>
+            <table>
+                </tr>
+                <input type="text" id="id_medecin" name="id_medecin" value= <?php echo $id_medecin?> hidden>
+                <tr>
+                <tr>
+                    <td>Date: </td>
+                    <td> <input type="date" id="date" name="date" required></td>
+                </tr>
+                <tr>
+                    <td>Heure: </td>
+                    <td> <input type="time" id="heure" name="heure" step="1800" min="08:00" max="17:00" value="08:00" required></td>
+                </tr>
+
+            </table>
+            <div>
+                <input type="submit" name="button_rdv_medecin" value="Valider">
+            </div>
 
         </form>
     </div>

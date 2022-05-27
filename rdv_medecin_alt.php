@@ -2,6 +2,7 @@
 
 <?php
 
+session_start();
 $heure_debut_matin = "08:00:00";
 $heure_fin_matin = "12:00:00";
 $heure_debut_aprem = "13:00:00";
@@ -11,13 +12,13 @@ $valid_hour = false;
 $disponible=true;
 
 //Il faut attribuer les bonnes valeurs à ces id
-$id_client = 3;
-$id_medecin = 2;
+$id_client = $_SESSION['id_client'];
 
+$id_medecin = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
 $date = isset($_POST["date"]) ? $_POST["date"] : "";
 $heure = isset($_POST["heure"]) ? $_POST["heure"] : "";
 
-
+echo "L(id du médecin dns alt".$id_medecin;
 
 
 
@@ -33,6 +34,14 @@ if ($valid_date) {
 } else {
     echo $date . ' est un weekend';
 }
+
+
+$delai_bas = date("H:i", strtotime('-31 minutes', strtotime($heure)));
+$delai_bas.=":00";
+
+$delai_haut = date("H:i", strtotime('+31 minutes', strtotime($heure)));
+$delai_haut.=":00";
+
 
 
 if (((strtotime($heure) >= strtotime($heure_debut_matin)) && ((strtotime($heure) <= strtotime($heure_fin_matin))))
@@ -63,7 +72,7 @@ if (($valid_hour == true) && ($valid_date == true)) {
         $result = mysqli_query($db_handle, $sql);
         //regarder s'il y a des resultats
         if (mysqli_num_rows($result) == 0) {
-            echo "Ce médecin n'a aucun examen";
+            echo "Ce médecin n'a aucune réservation";
         } else {
             while ($data = mysqli_fetch_assoc($result)) {
                 echo "date" . $data['date'];
@@ -71,14 +80,14 @@ if (($valid_hour == true) && ($valid_date == true)) {
                 if ($date== $data['date'] && $heure==$data['heure']){
                     $disponible=false;
                 }
+                
             }
+        }
+        //Si le rendez vous est disponible
+        if ($disponible==true){
+            $sql1 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$date','$heure' )";
+    $resultat = mysqli_query($db_handle, $sql1);
 
-            //Si le rendez vous est disponible
-            if ($disponible==true){
-                $sql1 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$date','$heure' )";
-        $resultat = mysqli_query($db_handle, $sql1);
-
-            }
         }
     } //end if
     //si le BDD n'existe pas
@@ -90,5 +99,7 @@ if (($valid_hour == true) && ($valid_date == true)) {
 } else {
     echo "Date ou heure non valide";
 }
+header('Location: clientMenu.php');
+die;
 
 ?>
