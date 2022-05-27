@@ -74,6 +74,10 @@ if (isset($_POST["button_connexion"])) {
                         $date_naissance = $data['date_naissance'];
                         $image = $data['photo'];
                         $cabinet = $data['cabinet'];
+
+                        $_SESSION['id']=$data['id_medecin'];
+                        $_SESSION['id_medecin']=$data['id_medecin'];
+                        $_SESSION['type']="Medecin";
     
                         echo '<form action="menuMedecin.php" method="post">
                         <input type="text" id="id_medecin" name="id_medecin" value=' . $id . ' hidden>
@@ -91,9 +95,7 @@ if (isset($_POST["button_connexion"])) {
                         header('Location: menuMedcin.php');
                         die;
 
-                        $_SESSION['id']=$data['id_medecin'];
-                        $_SESSION['id_medecin']=$data['id_medecin'];
-                        $_SESSION['type']="Medecin";
+                        
                          
                     }
                 }

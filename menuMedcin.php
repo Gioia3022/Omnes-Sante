@@ -1,45 +1,31 @@
 <?php
-//Ordre Décroissant
-echo "<meta charset=\"utf-8\">";
-//identifier votre BDD
-$database = "omnes_sante";
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
+    session_start();
+    $id_medecin=$_SESSION['id_medecin'];
+    $database = "omnes_sante";
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
 
-//declaration des variables
-$ID= isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : ""; 
-$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-$email = isset($_POST["email"]) ? $_POST["email"] : "";
-$username = isset($_POST["username"]) ? $_POST["username"] : "";
-$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
-$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
-$genre = isset($_POST["genre"]) ? $_POST["genre"] : "";
-$date_naissance = isset($_POST["date_naissance"]) ? $_POST["date_naissance"] : "";
-$image = isset($_POST["photo"]) ? $_POST["photo"] : "";
-$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
-$erreur = "";
+    $nom="";
+    $prenom="";
 
-if ($db_found) {
-if (isset($_POST["button_menuAdmin"])) {
-echo "<tr>";
-echo  "<td>" . $ID .  "</td>";
-echo " <td>". $nom  . "</td>";
-echo  "<td>" . $prenom .  "</td>";
-echo " <td>" . $email .  "</td>";
-echo  "<td>" . $username .  "</td>";
-echo  "<td>" . $telephone . "</td>";
-echo " <td>". $type_medecin  . "</td>";
-echo  "<td>" . $genre .  "</td>";
-echo " <td>" . $date_naissance .  "</td>";
-echo  "<td>" . $image .  "</td>";
-echo  "<td>" . $cabinet . "</td>";
-echo "</tr>";
-}
-}
-else {
-    echo "<p>Database not found.</p>";
-}
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Medecin WHERE id_medecin= '$id_medecin' ";
+
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultats
+        if (mysqli_num_rows($result) == 0) {
+            echo "<p>Ce client n'existe pas</p>";
+        } else {
+            while ($data = mysqli_fetch_assoc($result)) {
+                //saisir les données du  formulaires
+                $nom = $data['nom'];
+                $prenom = $data['prenom'];
+            }
+        }
+    } else {
+        echo "<p>Database not found.</p>";
+    }
 ?>
 
 <html>
@@ -49,7 +35,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Omnès santé Menu Admin
+        Omnès santé Menu Medecin
     </title>
 
 
@@ -76,18 +62,18 @@ else {
                             <a class="nav-link" aria-current="page" href="menuMedcin.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="menuMedcin.php">Consultations</a>
+                            <a class="nav-link" aria-current="page" href="medecinConsultation.php">Consultations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="menuMedcin.php">Chatroom</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Compte 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="adminCompte.html">Mon Compte</a>
+                                <li><a class="dropdown-item" href="menuMedcin.php">Mon Compte</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
@@ -96,8 +82,8 @@ else {
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;"/>
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $nom ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Médecin connecté</p>
                         </li>
                     </ul>
