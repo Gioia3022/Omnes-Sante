@@ -151,9 +151,9 @@
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientRecherche_medecin.html">Recherche médecin</a>
+                                <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientRecherche_examen.html">Recherche laboratoire</a>
+                                <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
                                 </li>
                             </ul>
                         </li>
@@ -163,7 +163,7 @@
                                 Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientCompte.html">Mon Compte</a>
+                                <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>

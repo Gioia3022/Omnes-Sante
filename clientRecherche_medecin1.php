@@ -1,13 +1,6 @@
 <?php
-//saisir les données du  formulaires
-$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
-$err = $nom . $prenom . $type_medecin;
-$char = "";
-
-session_start();
-$id_client=$_SESSION['id_client'];
+    session_start();
+    $id_client=$_SESSION['id_client'];
     $database = "omnes_sante";
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, $database);
@@ -41,32 +34,30 @@ $id_client=$_SESSION['id_client'];
     } else {
         echo "<p>Database not found.</p>";
     }
-
-
-
 ?>
-
 <html>
+<!--Dependency et Proprietés-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="css/connexion.css" rel="stylesheet" type="text/css" />
+    <!-- Titre de la page-->
     <title>
-        Omnes Santé Recherche Examen
+        Omnes Santé recherche
     </title>
-
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/recherche_medecin.css " rel="stylesheet" type="text/css" />
+    <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
 </head>
+<!--Affichage-->
 
 <body>
-    <div id="header" style="height: 30px; font-size: 20px; width: 100%;">
-    <nav class="navbar navbar-expand-lg bg-light">
+    <form action="Clientrecherche_medecin.php" method="post">
+        <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
+        <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
@@ -120,88 +111,68 @@ $id_client=$_SESSION['id_client'];
                 </div>
             </div>
         </nav>
-    </div>
-    <div>
-        <table class="table table-strip">
-            <h1 id="titre"><b>Recherche des médecins</b> </h1> <br><br>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Spécialité</th>
-                <th>Email</th>
-                <th>Cabinet</th>
-            </tr>
-            <?php
+        </div>
+        <div id="input">
+            <table class="center">
+                <h1 id="titre"><b>Recherche médecin</b> </h1>
+                <tr>
+                    <td>
+                        <label><br></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nom:</td>
+                    <td><input type="text" id="nom" name="nom"></td>
+                </tr>
 
+                <tr>
+                    <td>
+                        <label><br></label>
+                    </td>
+                </tr>
 
-            if (isset($_POST["button_recherche_medecin"])) {
-                if ($db_found) {
-                    //commencer le query
-                    $sql = "SELECT * FROM Medecin";
-                    if ($err != "") {
-                        $sql .= " WHERE ";
+                <tr>
+                    <td>Prenom:</td>
+                    <td><input type="text" id="prenom" name="prenom"></td>
+                </tr>
 
-                        //on recherche le medecin par son nom
-                        if ($nom != "") {
-                            $sql .= " nom LIKE '%$nom%'";
-                            $char = " AND ";
-                        }
-                        //on recherche le medecin par son prenom
-                        if ($prenom != "") {
-                            $sql .= $char . " prenom LIKE '%$prenom%'";
-                            $char = " AND ";
-                        }
-                        //on recherche le medecin par son type
-                        if ($type_medecin != "") {
-                            $sql .= $char . "type_medecin LIKE '%$type_medecin%'";
-                        }
-                    }
-                    $result = mysqli_query($db_handle, $sql);
+                <tr>
+                    <td>
+                        <label><br></label>
+                    </td>
+                </tr>
 
-                    //regarder s'il y a des resultats
-                    if (mysqli_num_rows($result) == 0) {
-                        echo "<br> <br> ";
-                        echo "<p>Ce type d'examen n'existe pas</p>";
-                        echo "<br> <br> ";
-                        echo "<tr>";
-                        echo "<td>" . " " . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "<td>" . "-" . "</td>";
-                        echo "</tr>";
-                    } else {
-                        while ($data = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo  "<td>" . $data['id_medecin'] .  "</td>";
-                            echo  "<td>" . $data['nom'] .  "</td>";
-                            echo  "<td>" . $data['prenom'] .  "</td>";
-                            echo " <td>" . $data['type_medecin'] .  "</td>";
-                            echo  "<td>" . $data['email'] .  "</td>";
-                            echo  "<td>" . $data['cabinet'] . "</td>";
-                            $image = $data['photo'];
-                            echo '<td>  <img src=../Omnes-Sante/images/' . $image . ' height="120" width="100">  </td>';
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                } else {
-                    echo "<p>Database not found.</p>";
-                }
-            }
+                <tr>
+                    <td>type medecin :</td>
+                    <td><select name="type_medecin">
+                            <option></option>
+                            <option value="generaliste" name="generaliste">Generaliste</option>
+                            <option value="addictologie" name="addictologie">Addictologue</option>
+                            <option value="andrologie" name="andrologie">Andrologue</option>
+                            <option value="cardiologie" name="cardiologie">Cardiologue</option>
+                            <option value="dermatologie" name="dermatologie">Dermatologue</option>
+                            <option value="gastro-hepato-enterologie" name="gastro-hepato-enterologie">
+                                Gastro-Hépato-Entérologue</option>
+                            <option value="i.s.t" name="i.s.t">I.S.T</option>
+                            <option value="osteopathie" name="osteopathie">Osthéopathe</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><br><br></label>
+                    </td>
+                </tr>
+                <th colspan="2"><button type="submit" name="button_recherche_medecin"
+                        style="font-size: 25px; margin-left: 33%; border-radius: 5px;">Valider</button></th>
 
-            ?>
-        </table>
+            </table>
 
-    </div>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
+        </div>
+        </div>
+    </form>
 </body>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </html>

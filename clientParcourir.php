@@ -1,9 +1,8 @@
 <?php
-//Ordre Décroissant
+session_start();
 echo "<meta charset=\"utf-8\">";
-//identifier votre BDD
+$id_client = $_SESSION['id_client'];
 $database = "omnes_sante";
-
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
@@ -23,6 +22,36 @@ $salle = isset($_POST["salle"]) ? $_POST["salle"] : "";
 $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
 $erreur = "";
+
+if ($db_found) {
+    //commencer le query
+    $sql = "SELECT * FROM Client WHERE id_client= '$id_client' ";
+
+    $result = mysqli_query($db_handle, $sql);
+    //regarder s'il y a des resultats
+    if (mysqli_num_rows($result) == 0) {
+        echo "<p>Ce client n'existe pas</p>";
+    } else {
+        while ($data = mysqli_fetch_assoc($result)) {
+            //saisir les données du  formulaires
+            $nom = $data['nom'];
+            $prenom = $data['prenom'];
+            $username = $data['username'];
+            $password = $data['password'];
+            $email = $data['email'];
+            $date_naissance = $data['date_naissance'];
+            $telephone = $data['telephone'];
+            $photo = $data['photo'];
+            $adresse = $data['adresse'];
+            $ville = $data['ville'];
+            $code_postal = $data['code_postal'];
+            $pays = $data['pays'];
+            $carte_vitale = $data['carte_vitale'];
+        }
+    }
+} else {
+    echo "<p>Database not found.</p>";
+}
 ?>
 
 
@@ -57,7 +86,7 @@ $erreur = "";
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href=clientMenu.php">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="clientParcourir.php">Parcourir</a>
@@ -67,9 +96,9 @@ $erreur = "";
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientRecherche_medecin.html">Recherche médecin</a>
+                                <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientRecherche_examen.html">Recherche laboratoire</a>
+                                <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
                                 </li>
                             </ul>
                         </li>
@@ -78,7 +107,7 @@ $erreur = "";
                                 Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientCompte.html">Mon Compte</a>
+                                <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
@@ -87,10 +116,10 @@ $erreur = "";
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; de La Villardiere</p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; Diego</p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
-                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Client connecté</p>
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
                         </li>
                     </ul>
                 </div>
