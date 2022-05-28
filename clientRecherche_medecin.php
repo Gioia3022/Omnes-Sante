@@ -96,6 +96,9 @@ $id_client=$_SESSION['id_client'];
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="chatroom.php">Chatroom</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">

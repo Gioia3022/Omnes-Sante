@@ -1,8 +1,11 @@
 <?php
 session_start();
-echo "<meta charset=\"utf-8\">";
 $id_client = $_SESSION['id_client'];
+//Ordre Décroissant
+echo "<meta charset=\"utf-8\">";
+//identifier votre BDD
 $database = "omnes_sante";
+
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
@@ -22,7 +25,6 @@ $salle = isset($_POST["salle"]) ? $_POST["salle"] : "";
 $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
 $erreur = "";
-
 
 if ($db_found) {
     //commencer le query
@@ -55,7 +57,7 @@ if ($db_found) {
 }
 ?>
 
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -70,10 +72,8 @@ if ($db_found) {
 
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="" rel="stylesheet" type="text/css" />
-    <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
+    <link href="css/menuClient.css " rel="stylesheet" type="text/css" />
 </head>
-
 
 <body>
     <div id="header">
@@ -82,7 +82,9 @@ if ($db_found) {
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
                 <br><br>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -93,7 +95,8 @@ if ($db_found) {
                             <a class="nav-link" href="clientParcourir.php">Parcourir</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -104,10 +107,11 @@ if ($db_found) {
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="chatroom.php">Chatroom</a>
+                            <a class="nav-link" aria-current="page" href="chatroom.php">Chatroom</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -115,7 +119,7 @@ if ($db_found) {
                                 </li>
                                 <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientAnnuler.php">Rendez vous</a>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
@@ -123,7 +127,8 @@ if ($db_found) {
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
-                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
+                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60"
+                                style="position: absolute; top: 18px;" />
                             <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
                             <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
@@ -136,17 +141,19 @@ if ($db_found) {
     </div>
     <div>
         <table class="table table-hover">
-            <h1 id="titre"><b>Liste des médecins :</b></h1>
+            <br><br><br><br>
+            <h1 id="titre"><b>Liste des médecins que vous pouvez contacter </b></h1>
+            <br><br>
             <tr>
                 <th></th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Spécialité</th>
                 <th>Email</th>
-                <th>Cabinet</th>
             </tr>
             <?php
             if ($db_found) {
+                
                 $sql1 = "SELECT * FROM medecin";
 
                 $sql3 = "SELECT * FROM examen";
@@ -157,11 +164,11 @@ if ($db_found) {
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=". $id_client.">" . $data1['nom'] . "</a></td>";
-                    echo  "<td>" . $data1['prenom'] .  "</td>";
-                    echo " <td>" . $data1['type_medecin'] .  "</td>";
-                    echo  "<td>" . $data1['email'] .  "</td>";
-                    echo  "<td>" . $data1['cabinet'] . "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] . "&nom=". $nom . "&prenom=". $prenom .">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['type_medecin'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] . "&nom=". $nom . "&prenom=". $prenom.">" . $data1['email'] . "</a></td>";
+                    echo $nom;
                     echo "</tr>";
                 } //end while
             }
@@ -172,44 +179,11 @@ if ($db_found) {
 
             ?>
         </table>
-        <h1 id="titre"><b>Liste des examens :</b></h1>
-        <table class="table table-hover">
-            <tr>
-                <th></th>
-                <th>Type examen</th>
-                <th>Laboratoire</th>
-                <th>Adresse</th>
-                <th>Email</th>
-                <th>Telephone</th>
-            </tr>
-            <?php
-            if ($db_found) {
-                while ($data3 = mysqli_fetch_assoc($result3)) {
-                    $sql4 = "SELECT * FROM laboratoire WHERE id_laboratoire =" . $data3['fk_laboratoire'];
-                    $result4 = mysqli_query($db_handle, $sql4);
-                    $data4 = mysqli_fetch_assoc($result4);
-                    echo "<tr>";
-                    echo "<td>" . $data3['id_examen'] . "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen'] . "&id_client=". $id_client.">" . $data3['type_examen'] . "</a></td>";
-                    echo "<td>" . $data4['nom'] . "</td>";
-                    echo "<td>" . $data4['adresse'] . " " . $data4['ville'] . "</td>";
-                    echo "<td>" . $data4['email'] . "</td>";
-                    echo "<td>" . $data4['telephone'] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "Database not found";
-            }
-            mysqli_close($db_handle);
-            ?>
-        </table>
 
     </div>
+
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
 

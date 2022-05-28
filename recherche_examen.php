@@ -62,6 +62,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 </li>
                             </ul>
                         </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Compte

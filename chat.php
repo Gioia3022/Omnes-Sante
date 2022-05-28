@@ -25,9 +25,9 @@
         // etape 2
         echo
         '<div id="loginform">
-        <p>Veuillez saisir votre nom pour continuer!</p>
+        <p>Veuillez saisir un username pour continuer!</p>
         <form action="chat.php" method="post">
-        <label for="name">Nom: </label>
+        <label for="name">Username: </label>
         <input type="text" name="name" id="name" />
         <input type="submit" name="enter" id="enter" value="Soumettre" />
         </form>
