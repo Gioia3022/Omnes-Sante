@@ -129,7 +129,7 @@ if ($db_found) {
                 $sql1 = "SELECT * FROM reservation_client_medecin WHERE fk_medecin='$id_medecin' ORDER BY date";
                 $result1 = mysqli_query($db_handle, $sql1);
                 while ($data1 = mysqli_fetch_assoc($result1)) {
-                    if ($current_day <= $data1['date']){
+                    if ($current_day > $data1['date']){
 
                     echo "<tr>";
                     echo  "<td>" . $data1['id_client_medecin'] .  "</td>";

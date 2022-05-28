@@ -7,9 +7,7 @@ $type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
 $err = $nom . $prenom . $type_medecin;
 $char = "";
 
-session_start();
 
-$id_medecin = $_SESSION['id'];
 //identifier le nom de base de données
 $database = "omnes_sante";
 //connectez-vous dans votre BDD
