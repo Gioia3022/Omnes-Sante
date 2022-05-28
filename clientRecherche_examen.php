@@ -151,7 +151,7 @@ $char = "";
 
                         //on recherche le labo par son id
                         if ($id_lab != "") {
-                            $sql .= " fk_laboratoire LIKE '%$id_lab%'";
+                            $sql .= " fk_laboratoire = '$id_lab'";
                             $char = " AND ";
                         }
                         //on recherche le medecin par son prenom
@@ -182,7 +182,7 @@ $char = "";
                             $data4 = mysqli_fetch_assoc($result4);
                             echo "<tr>";
                             echo "<td>" . $data['id_examen'] . "</td>";
-                            echo "<td>" . $data['type_examen'] . "</td>";
+                            echo " <td class=nav-item><a class=nav-link href=rdv_examen.php?id_examen=" . $data['id_examen'] . "&id_client=". $id_client.">" . $data['type_examen'] . "</a></td>";
                             echo "<td>" . $data4['nom'] . "</td>";
                             echo "<td>" . $data4['adresse'] . " " . $data4['ville'] . "</td>";
                             echo "<td>" . $data4['email'] . "</td>";

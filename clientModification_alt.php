@@ -89,3 +89,4 @@ if ($db_found) {
 }
 header('Location: clientMenu.php');
 die;
+?>

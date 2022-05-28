@@ -115,6 +115,7 @@ $_SESSION['prenom_client']=$prenom;
 $_SESSION['nom_client']=$nom;
 $_SESSION['id_rdv_medecin']=$id_medecin;
 $_SESSION['type']=$type;
+$_SESSION['bool_examen_medecin']=0;
  header('Location: payement.php');
 die;} //end if
 //si le BDD n'existe pas

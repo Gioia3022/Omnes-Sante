@@ -9,6 +9,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 $id_client_medecin= isset($_POST["id_client_medecin"]) ? $_POST["id_client_medecin"] : "";
 $id_client_examen = isset($_POST["id_client_examen"]) ? $_POST["id_client_examen"] : "";
 
+
 //si le BDD existe, faire le traitement
 if ($db_found) {
     if (isset($_POST["button_suppression_rdv_medecin"])) {
@@ -17,10 +18,6 @@ if ($db_found) {
         $sql1 = "DELETE FROM reservation_client_medecin  WHERE id_client_medecin='$id_client_medecin'";
         $resultat = mysqli_query($db_handle, $sql1);
     }
-
-
-
-
 
     if (isset($_POST["button_suppression_rdv_examen"])) {
         //saisir les données du  formulaires
