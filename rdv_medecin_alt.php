@@ -106,7 +106,7 @@ if (($valid_hour == true) && ($valid_date == true)) {
     echo "Date ou heure non valide";
 }*/
 if ($db_found) {
-$sql3="SELECT prenom FROM Client WHERE id_client= '$id_client'";
+$sql3="SELECT nom, prenom FROM Client WHERE id_client= '$id_client'";
 $result3 = mysqli_query($db_handle, $sql3);
 $data3 = mysqli_fetch_assoc($result3);
 $prenom= $data3['prenom'];

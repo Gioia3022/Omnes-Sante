@@ -11,11 +11,12 @@ $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $code = isset($_POST["code"])? $_POST["code"] : "";
 $date = isset($_POST["date"])? $_POST["date"] : "";
 
-$date_rdv=$_SESSION['date_rdv_medecin'];
-$heure=$_SESSION['heure_rdv_medecin'];
 $id_medecin=$_SESSION['id_rdv_medecin'];
 $type=$_SESSION['type'];
 $separate=explode(' ', $type);
+
+echo "<br><br><br><br> NOM: ".$nom_du_client;
+echo "<br><br><br><br> PRENOM: ".$prenom_du_client;
 
 $database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
