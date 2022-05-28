@@ -6,6 +6,8 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 if ($db_found) {
+
+
     //commencer le query
     $sql = "SELECT * FROM Client WHERE id_client= '$id_client' ";
 
@@ -92,7 +94,7 @@ if ($db_found) {
                                     </li>
                                     <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
+                                    <li><a class="dropdown-item" href="clientAnnuler.php">Rendez vous</a>
                                     </li>
 
                                     <li><a class="dropdown-item" href="menu.html">Déconnexion</a>

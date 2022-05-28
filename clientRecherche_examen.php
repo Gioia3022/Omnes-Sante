@@ -16,8 +16,8 @@ if ($db_found) {
     } else {
         while ($data = mysqli_fetch_assoc($result)) {
             //saisir les données du  formulaires
-            $nom = $data['nom'];
-            $prenom = $data['prenom'];
+            $nom_client = $data['nom'];
+            $prenom_client = $data['prenom'];
             $username = $data['username'];
             $password = $data['password'];
             $email = $data['email'];
@@ -109,7 +109,7 @@ $char = "";
                                 </li>
                                 <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Rendez vous</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
@@ -119,8 +119,8 @@ $char = "";
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60"
                                 style="position: absolute; top: 18px;" />
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom_client ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom_client ?></p>
                             <p style="font-size: 10px; color: blue;">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
                         </li>

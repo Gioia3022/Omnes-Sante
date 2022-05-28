@@ -100,7 +100,7 @@ if ($db_found) {
                                 </li>
                                 <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Rendez vous</a>
                                 </li>
                                 <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
@@ -153,8 +153,9 @@ if ($db_found) {
 
                     echo '<form action="clientSuppression_rdv.php" method="post">
                         <input type="text" id="id_client_medecin" name="id_client_medecin" value=' . $id_client_medecin. ' hidden>
+                        <input type="text" id="id_client" name="id_client" value=' . $id_client. ' hidden>
                     <div>
-                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_medecin">Valider</button> </td>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_medecin">Annuler</button> </td>
                     </div>
                     </form>';
 
@@ -201,8 +202,9 @@ if ($db_found) {
                     
                     echo '<form action="clientSuppression_rdv.php" method="post">
                         <input type="text" id="id_client_examen" name="id_client_examen" value=' . $id_client_examen. ' hidden>
+                        <input type="text" id="id_client" name="id_client" value=' . $id_client. ' hidden>
                     <div>
-                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_examen">Valider</button> </td>
+                    <td> <button type="submit" class="btn btn-primary" name="button_suppression_rdv_examen">Annuler</button> </td>
                     </div>
                     </form>';
                     
