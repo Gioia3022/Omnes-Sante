@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id_client = $_SESSION['id_client'];
+$id_medecin = $_SESSION['id_medecin'];
 //Ordre Décroissant
 echo "<meta charset=\"utf-8\">";
 //identifier votre BDD
@@ -28,7 +28,7 @@ $erreur = "";
 
 if ($db_found) {
     //commencer le query
-    $sql = "SELECT * FROM Client WHERE id_client= '$id_client' ";
+    $sql = "SELECT * FROM Medecin WHERE id_medecin= '$id_medecin' ";
 
     $result = mysqli_query($db_handle, $sql);
     //regarder s'il y a des resultats
@@ -39,17 +39,6 @@ if ($db_found) {
             //saisir les données du  formulaires
             $nom = $data['nom'];
             $prenom = $data['prenom'];
-            $username = $data['username'];
-            $password = $data['password'];
-            $email = $data['email'];
-            $date_naissance = $data['date_naissance'];
-            $telephone = $data['telephone'];
-            $photo = $data['photo'];
-            $adresse = $data['adresse'];
-            $ville = $data['ville'];
-            $code_postal = $data['code_postal'];
-            $pays = $data['pays'];
-            $carte_vitale = $data['carte_vitale'];
         }
     }
 } else {
@@ -142,31 +131,28 @@ if ($db_found) {
     <div>
         <table class="table table-hover">
             <br><br><br><br>
-            <h1 id="titre"><b>Liste des médecins que vous pouvez contacter </b></h1>
+            <h1 id="titre"><b>Liste des clients que vous pouvez contacter </b></h1>
             <br><br>
             <tr>
                 <th></th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Spécialité</th>
                 <th>Email</th>
             </tr>
             <?php
             if ($db_found) {
                 
-                $sql1 = "SELECT * FROM medecin";
+                $sql1 = "SELECT * FROM client";
 
                 $result1 = mysqli_query($db_handle, $sql1);
 
-                
-
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
-                    echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] . "&nom=". $nom . "&prenom=". $prenom .">" . $data1['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['prenom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['type_medecin'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=envoyerEmail.php?id_medecin=" . $data1['id_medecin'] . "&nom=". $nom . "&prenom=". $prenom.">" . $data1['email'] . "</a></td>";
+                    echo  "<td>" . $data1['id_client'] .  "</td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmailMedecin.php?id_client=" . $data1['id_client'] . "&nom=". $nom . "&prenom=". $prenom .">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmailMedecin.php?id_client=" . $data1['id_client'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=envoyerEmailMedecin.php?id_client=" . $data1['id_client'] ."&nom=". $nom . "&prenom=". $prenom. ">" . $data1['email'] . "</a></td>";
+                   
                     echo "</tr>";
                 } //end while
             }
