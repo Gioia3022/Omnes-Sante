@@ -53,3 +53,10 @@ span.tags
     left: 40%;
   }
 
+  .overlay_alt {
+    z-index: 9;
+    position: absolute;
+    top: 20%;
+    left: 60%;
+  }
+

@@ -6,7 +6,6 @@ $database = "omnes_sante";
 
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-
 //declaration des variables
 $id_exam = isset($_POST["id_examen"]) ? $_POST["id_examen"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
@@ -42,6 +41,13 @@ $erreur = "";
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="" rel="stylesheet" type="text/css" />
     <link href="css/parcourir.css " rel="stylesheet" type="text/css" />
+    <link href="css/medecinProfil.css " rel="stylesheet" type="text/css" />
+
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </head>
 
 
@@ -87,7 +93,7 @@ $erreur = "";
             </div>
         </nav>
     </div>
-    <div>
+    <div class="box">
         <table class="table table-hover">
             <h1 id="titre"><b>Liste des médecins </b></h1>
             <tr>
@@ -110,11 +116,11 @@ $erreur = "";
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
                     /*
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
@@ -149,17 +155,16 @@ $erreur = "";
                     $data4 = mysqli_fetch_assoc($result4);
                     echo "<tr>";
                     echo "<td>" . $data3['id_examen'] . "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
                     echo "</tr>";
                 }
             } else {
                 echo "Database not found";
             }
-            mysqli_close($db_handle);
             ?>
         </table>
 
@@ -169,7 +174,74 @@ $erreur = "";
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <?php
+    $ID = $_GET['id_medecin'];
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Medecin WHERE id_medecin= '$ID' ";
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultat
+        while ($data = mysqli_fetch_assoc($result)) {
+            $nom = $data['nom'];
+            $prenom = $data['prenom'];
+            $type_medecin = $data['type_medecin'];
+            $email = $data['email'];
+            $date_naissance = $data['date_naissance'];
+            $genre = $data['genre'];
+            $telephone = $data['telephone'];
+            $image = $data['photo'];
+            $cabinet = $data['cabinet'];
+            $CV = $data['cv'];
+        }
+    } else {
+        echo "<p>Database not found.</p>";
+    } 
+    $id_medecin = $_GET['id_medecin'];
+    $id_client = $_GET['id_client'];
+    mysqli_close($db_handle);
+    ?>
+    <div class="overlay ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-radius: 16px;">
+                            <div class="well profile col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <figure>
+                                        <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle" style="width:75px;" id="user-img">
+                                    </figure>
+                                    <h5 style="text-align:center;"><strong id="user-name"><?php echo  $nom . "<br>"; ?></strong></h5>
+                                    <p style="text-align:center;font-size: smaller;" id="user-frid"><?php echo  $prenom . "<br>"; ?> </p>
+                                    <p style="text-align:center;font-size: smaller;"><strong>Spécialité : </strong><span class="tags" id="user-status"><?php echo  $type_medecin . "<br>"; ?></span></p>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
+                                    <p style="text-align:center;font-size: smaller;overflow-wrap: break-word;" id="user-email"><?php echo  $email . "<br>"; ?> </p>
+                                    <p style="text-align:center;font-size: smaller;"><strong><?php echo  $telephone . "<br>"; ?></strong></p>
+                                    <p style="text-align:center;font-size: smaller;" id="user-role">Cabinet : <?php echo  $cabinet . "<br>"; ?></p>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
+                                    <div class=" col-lg-12 left" style="text-align:center;overflow-wrap: break-word;">
+                                        <h4>
+                                            <p style="text-align: center;"><strong id="user-college-rank">30 $</strong></p>
+                                        </h4>
+                                        <p> <small class="label label-warning">Prix</small></p>
+                                        <!-- <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>-->
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
+                                    <div class="col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
+                                    <a class="btn btn-primary"href="clientParcourir.php" style="background-color:red;">Annuler</a>
+                                    </div>
+                                    <div class=" col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
+                                    <a class="btn btn-primary" href="rdv_medecin.php?id_medecin=<?php echo $id_medecin ;?>&id_client=<?php echo $id_client; ?>">Reserver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

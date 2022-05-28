@@ -228,11 +228,11 @@ $erreur = "";
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
                                     <div class=" col-lg-12 right" style="text-align:center;overflow-wrap: break-word;">
-                                        <a class="btn btn-primary"href="connexion.html">connexion</a>
+                                        <a class="btn btn-primary"href="connexion.html">Connexion</a>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
                                     <div class=" col-lg-12 left" style="text-align:center;overflow-wrap: break-word;">
-                                        <a class="btn btn-primary"href="parcourir.php" style="background-color:red;">retour</a>
+                                        <a class="btn btn-primary"href="parcourir.php" style="background-color:red;">Annuler</a>
                                     </div>
                                 </div>
                             </div>
