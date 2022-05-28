@@ -24,12 +24,14 @@ $result3 = mysqli_query($db_handle, $sql3);
 $data3 = mysqli_fetch_assoc($result3);
 $prenom= $data3['prenom'];
 $nom= $data3['nom'];
+
 $_SESSION['prenom_client']=$prenom;
 $_SESSION['nom_client']=$nom;
 $_SESSION['id_rdv_examen']=$id_examen;
 $_SESSION['type']=$type;
 $_SESSION['bool_examen_medecin']=1;
- header('Location: payement.php');
+
+header('Location: payement.php');
 die;} //end if
 //si le BDD n'existe pas
 else {

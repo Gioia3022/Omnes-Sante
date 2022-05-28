@@ -7,7 +7,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 session_start();
-$id_client=1;//=$_SESSION['id_client'];
+$id_client=$_SESSION['id_client'];
 $type = isset($_POST["type_carte"])? $_POST["type_carte"] : "";
 $numero = isset($_POST["numero"])? $_POST["numero"] : "";
 $code = isset($_POST["code"])? $_POST["code"] : "";

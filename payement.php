@@ -1,19 +1,25 @@
 <?php
 
 session_start();
-$id_client = $_SESSION['id_client'];
-$nom_du_client = $_SESSION['nom_client'];
-$prenom_du_client = $_SESSION['prenom_client'];
+$id_client=$_SESSION['id_client'];
+$nom_du_client=$_SESSION['nom_client'];
+$prenom_du_client=$_SESSION['prenom_client'];
 
-$type_carte = isset($_POST["type_carte"]) ? $_POST["type_carte"] : "";
-$numero = isset($_POST["numero"]) ? $_POST["numero"] : "";
-$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$code = isset($_POST["code"]) ? $_POST["code"] : "";
-$date = isset($_POST["date"]) ? $_POST["date"] : "";
+$type_carte = isset($_POST["type_carte"])? $_POST["type_carte"] : "";
+$numero = isset($_POST["numero"])? $_POST["numero"] : "";
+$nom = isset($_POST["nom"])? $_POST["nom"] : "";
+$code = isset($_POST["code"])? $_POST["code"] : "";
+$date = isset($_POST["date"])? $_POST["date"] : "";
+
+
+$type=$_SESSION['type'];
+$separate=explode(' ', $type);
+
+$date_rdv_med=$separate[0];
+$heure_rdv_med=$separate[1];
+
 $id_medecin=0;
 $id_examen=0;
-
-
 if ($_SESSION['bool_examen_medecin'] == 0) {
     $id_medecin = $_SESSION['id_rdv_medecin'];
 }
@@ -21,15 +27,6 @@ if ($_SESSION['bool_examen_medecin'] == 0) {
 if ($_SESSION['bool_examen_medecin'] == 1) {
     $id_examen = $_SESSION['id_rdv_examen'];
 }
-
-$type = $_SESSION['type'];
-$separate = explode(' ', $type);
-
-
-
-echo "<br><br><br><br> NOM: " . $nom_du_client;
-echo "<br><br><br><br> PRENOM: " . $prenom_du_client;
-echo "id_medecin: " . $id_medecin;
 
 $database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
@@ -46,13 +43,13 @@ if (isset($_POST["button_payement"])) {
             if ($numero != "") {
                 $sql .= " AND numero = '$numero'";
 
-                if ($nom != "") {
+                if($nom!= ""){
                     $sql .= " AND nom = '$nom'";
 
-                    if ($code != "") {
+                    if($code!=""){
                         $sql .= " AND code = '$code'";
 
-                        if ($date != "") {
+                        if($date!=""){
                             $sql .= " AND date = '$date'";
                         }
                     }
@@ -63,13 +60,14 @@ if (isset($_POST["button_payement"])) {
         if (mysqli_num_rows($result) == 0) {
             header('Location: payement.php');
             die;
-        } else {
+        } 
+        else {
             while ($data = mysqli_fetch_assoc($result)) {
-                $ID_carte = $data['id_carte'];
-                $solde = $data['solde'];
-                $nouveau_solde = $solde - 30;
+                $ID_carte=$data['id_carte'];
+                $solde=$data['solde'];
+                $nouveau_solde=$solde-30;
                 $sql1 = "UPDATE carte_banquaire SET solde='$nouveau_solde' WHERE id_carte='$ID_carte'";
-                $resultat = mysqli_query($db_handle, $sql1);
+                $resultat1 = mysqli_query($db_handle, $sql1);
 
                 if ($_SESSION['bool_examen_medecin'] == 0) {
                     $sql2 = "INSERT INTO reservation_client_medecin(fk_client, fk_medecin, date, heure) VALUES ('$id_client','$id_medecin', '$separate[0]','$separate[1]' )";
@@ -80,15 +78,17 @@ if (isset($_POST["button_payement"])) {
                     $sql2 = "INSERT INTO reservation_client_examen(fk_client, fk_examen, date, heure) VALUES ('$id_client','$id_examen', '$separate[0]','$separate[1]' )";
                     $resultat2 = mysqli_query($db_handle, $sql2);
                 }
-
-                unset($_SESSION['id_rdv_medecin']);
-                unset($_SESSION['id_rdv_examen']);
-                unset($_SESSION['type']);
+                
+                $_SESSION['id_rdv_client']=$id_client;  
+                $_SESSION['date_rdv_medecin']=$date_rdv_med;
+                $_SESSION['heure_rdv_medecin']=$heure_rdv_med;
+                $_SESSION['id_rdv_medecin']=$id_medecin;  
 
                 echo ' <script> alert("Payment éffectué");
-                window.location = "http://localhost/PJ_WEB_2022-Abdelkefi_Carissan_Galiazzo_deLaVillardiere/omnes-sante/clientMenu.php" </script>';
+                window.location = "http://localhost/PJ_WEB_2022-Abdelkefi_Carissan_Galiazzo_deLaVillardiere/omnes-sante/email.php" </script>';
             }
         }
+        
     } else {
         echo "<p>Database not found.</p>";
     }
@@ -113,65 +113,64 @@ if (isset($_POST["button_payement"])) {
 </head>
 
 <!--Affichage-->
-
 <body>
     <form action="payement.php" method="post">
-        <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
-                    <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
-                    <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
-                    <br><br>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="clientParcourir.php">Parcourir</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Recherche
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Compte
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            &emsp;
-                            <li class="navbar-expand-lg" style="line-height: 0px;">
-                                <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
-                                <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom_du_client ?></p>
-                                <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom_du_client ?></p>
-                                <p style="font-size: 10px; color: blue;">
-                                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
-                            </li>
-                        </ul>
-                    </div>
+    <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
+                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
+                <br><br>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                </button>
+                <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="clientParcourir.php">Parcourir</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Recherche
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
+                                </li>
+                                <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Compte
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
+                                </li>
+                                <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
+                                </li>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
+                                </li>
+                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
+                                </li>
+                            </ul>
+                        </li>
+                        &emsp;
+                        <li class="navbar-expand-lg" style="line-height: 0px;">
+                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom_du_client ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom_du_client ?></p>
+                            <p style="font-size: 10px; color: blue;">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </div>
-
+            </div>
+        </nav>
+    </div>
+    
         <div id="input">
             <table class="center">
                 <h1 id="titre"><b>Payement</b> </h1>
@@ -183,10 +182,10 @@ if (isset($_POST["button_payement"])) {
                 <tr>
                     <td><label for="type_carte">Type de carte:</label></td>
                     <td><select name="type_carte" id="type_carte" multiple required>
-                            <option value="Visa">Visa</option>
-                            <option value="MasterCard">MasterCard</option>
-                            <option value="AmericanExpress">American Express</option>
-                            <option value="PayPal">PayPal</option>
+                        <option value="Visa">Visa</option>
+                        <option value="MasterCard">MasterCard</option>
+                        <option value="AmericanExpress">American Express</option>
+                        <option value="PayPal">PayPal</option>
                         </select>
                     </td>
                 </tr>
@@ -218,11 +217,11 @@ if (isset($_POST["button_payement"])) {
                         <label><br></label>
                     </td>
                 </tr>
-
+                
                 <th colspan="2"><button type="submit" name="button_payement" style="font-size: 25px; margin-left: 33%; border-radius: 5px;"> Se connecter </button></th>
             </table>
         </div>
-        </div>
+    </div>
     </form>
 
 
