@@ -61,8 +61,17 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="menuMedcin.php">Accueil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="medecinConsultation.php">Consultations</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Calendrier 
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="medecinConsultation.php">Futurs Consultations</a>
+                                </li>
+                                <li><a class="dropdown-item" href="medecinHistorique.php">Historiques</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="menuMedcin.php">Chatroom</a>
