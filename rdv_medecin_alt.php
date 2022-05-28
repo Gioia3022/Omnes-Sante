@@ -10,6 +10,14 @@ $db_found = mysqli_select_db($db_handle, $database);
 //si le BDD existe, faire le traitement
 
 session_start();
+
+$type=$_POST["submit"];
+
+//Il faut attribuer les bonnes valeurs à ces id
+$id_client = $_SESSION['id_client'];
+
+$id_medecin = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
+
 /*
 $heure_debut_matin = "08:00:00";
 $heure_fin_matin = "12:00:00";
@@ -18,12 +26,7 @@ $heure_fin_aprem = "17:00:00";
 $valid_date = true;
 $valid_hour = false;
 $disponible=true;*/
-$type=$_POST["submit"];
 
-//Il faut attribuer les bonnes valeurs à ces id
-$id_client = $_SESSION['id_client'];
-
-$id_medecin = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
 
 
 /*
@@ -103,6 +106,13 @@ if (($valid_hour == true) && ($valid_date == true)) {
     echo "Date ou heure non valide";
 }*/
 if ($db_found) {
+$sql3="SELECT prenom FROM Client WHERE id_client= '$id_client'";
+$result3 = mysqli_query($db_handle, $sql3);
+$data3 = mysqli_fetch_assoc($result3);
+$prenom= $data3['prenom'];
+$nom= $data3['nom'];
+$_SESSION['prenom_client']=$prenom;
+$_SESSION['nom_client']=$nom;
 $_SESSION['id_rdv_medecin']=$id_medecin;
 $_SESSION['type']=$type;
  header('Location: payement.php');

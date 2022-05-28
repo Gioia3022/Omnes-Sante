@@ -180,7 +180,7 @@ $id_client=$_SESSION['id_client'];
                         while ($data = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo  "<td>" . $data['id_medecin'] .  "</td>";
-                            echo " <td class=nav-item><a class=nav-link href=rdv_medecin.php?id_medecin=" . $data['id_medecin'] . ">" . $data['nom'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rdv_medecin.php?id_medecin=" . $data['id_medecin']  . "&id_client=". $id_client. ">" . $data['nom'] . "</a></td>";
                             echo  "<td>" . $data['prenom'] .  "</td>";
                             echo " <td>" . $data['type_medecin'] .  "</td>";
                             echo  "<td>" . $data['email'] .  "</td>";

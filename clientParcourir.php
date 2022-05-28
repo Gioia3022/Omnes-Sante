@@ -154,7 +154,7 @@ if ($db_found) {
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=rdv_medecin.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=rdv_medecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=". $id_client.">" . $data1['nom'] . "</a></td>";
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
                     echo  "<td>" . $data1['email'] .  "</td>";

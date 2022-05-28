@@ -2,6 +2,9 @@
 
 session_start();
 $id_client=$_SESSION['id_client'];
+$nom_du_client=$_SESSION['nom_client'];
+$prenom_du_client=$_SESSION['prenom_client'];
+
 $type_carte = isset($_POST["type_carte"])? $_POST["type_carte"] : "";
 $numero = isset($_POST["numero"])? $_POST["numero"] : "";
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
@@ -135,8 +138,8 @@ if (isset($_POST["button_payement"])) {
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
                             <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom_du_client ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom_du_client ?></p>
                             <p style="font-size: 10px; color: blue;">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
                         </li>
