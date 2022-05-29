@@ -53,7 +53,7 @@
         <div id="wrapper">
             <div id="menu">
                 <p class="welcome">Bienvenue, <b><?php echo $_SESSION['name']; ?></b></p>
-                <p class="logout"><a id="exit" href="#">Quitter la conversation</a></p>
+                <p class="logout"><a id="exit" href="menu.html">Quitter la conversation</a></p>
             </div>
             <div id="chatbox">
             <?php

@@ -47,6 +47,76 @@
 </head>
 
 <body>
+<div id="image_back">
+        <div class="container">
+            <div class="row">
+                <article class="col">
+                    <h2 id="titre">Notre projet </h2>
+                    <p>
+                        Parce que votre santé c'est notre PROJET.
+                        Omnes Santé,première plateforme de reservation de consultation en ligne d'après le choix des
+                        médecins,
+                        permet d'établir un lien patient médecin avant chaque consulation grâce à son système de
+                        messagerie électronique.
+                        électronique ultra performant . Omnes santé vous accompagne depuis maintenant plus de 10 ans
+                        et vous assure une plateforme en ligne fiable et simple d'accès afin que vous ne focalisiez
+                        que sur ce qui est le plus impotant: votre santé!
+
+                    </p>
+                </article>
+            </div>
+            <div class="row">
+
+                <article class="col">
+                    <h2 id="titre">Bulletin santé de la semaine</h2>
+                    <p class="center_article_1">
+                        Cette semaine on observe une forte hausse des gastros!!
+                        Alors arretez de manger de la merde bande de shlags.
+                        Mais surtout n'oubliez pas de vous laver les mains pendant au moins 3 minutes.
+                        Cela éliminera 99% des bactéries présentes sur celles-ci!
+                        A demain pour un autre bulletin météo de guli.
+                        <br>
+                        <img src="../Omnes-Sante/images/photo_maladie1.png">
+                    </p>
+
+                </article>
+
+
+                <article class="col">
+                    <h2 id="titre">Nos spécialistes de la semaine</h2>
+                    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../Omnes-Sante/images/photo_medecin1.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../Omnes-Sante/images/photo_medecin2.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../Omnes-Sante/images/photo_medecin3.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../Omnes-Sante/images/photo_medecin4.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../Omnes-Sante/images/photo_medecin5.png" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 <div id="wrapper">
     <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">

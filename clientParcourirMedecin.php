@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Ordre Décroissant
 echo "<meta charset=\"utf-8\">";
 //identifier votre BDD
@@ -22,6 +23,12 @@ $salle = isset($_POST["salle"]) ? $_POST["salle"] : "";
 $telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
 $type_examen = isset($_POST["type_examen"]) ? $_POST["type_examen"] : "";
 $erreur = "";
+$id_client = $_GET['id_client'];
+    $sql2 = "SELECT * FROM Client WHERE id_client= '$id_client' ";
+    $result2 = mysqli_query($db_handle, $sql2);
+    $data2 = mysqli_fetch_assoc($result2);
+    $nom_client = $data2['nom'];
+    $prenom_client = $data2['prenom'];
 ?>
 
 
@@ -52,29 +59,30 @@ $erreur = "";
 
 
 <body>
-    <div id="header">
+<div id="header">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
-                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
+                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
+                <br><br>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="menu.html">Accueil</a>
+                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="parcourir.php">Parcourir</a>
+                            <a class="nav-link" href="clientParcourir.php">Parcourir</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Recherche
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="recherche_medecin.html">Recherche médecin</a>
+                                <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
                                 </li>
-                                <li><a class="dropdown-item" href="recherche_examen.html">Recherche laboratoire</a>
+                                <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
                                 </li>
                             </ul>
                         </li>
@@ -82,16 +90,30 @@ $erreur = "";
                             <a class="nav-link" href="chatroom.php">Chatroom</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="parcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Compte
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="connexion.html">Connexion</a>
+                                <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
                                 </li>
-                                <li><a class="dropdown-item" href="inscription.html">Inscription</a>
+                                <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
+                                </li>
+                                <li><a class="dropdown-item" href="clientAnnuler.php">Rendez vous</a>
+                                </li>
+                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
                                 </li>
                             </ul>
                         </li>
+                        &emsp;
+                        <li class="navbar-expand-lg" style="line-height: 0px;">
+                        <img src="../Omnes-Sante/images/<?php if (empty($photo)){ echo 'unknown.png';} else { echo $photo;}?>" 
+                                width="60" height="60" style="position: absolute; top: 18px;" />
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom_client ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom_client ?></p>
+                            <p style="font-size: 10px; color: blue;">
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -119,11 +141,11 @@ $erreur = "";
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=".$id_client. ">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=".$id_client.">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=".$id_client.">" . $data1['type_medecin'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] . "&id_client=".$id_client.">" . $data1['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirMedecin.php?id_medecin=" . $data1['id_medecin'] ."&id_client=".$id_client. ">" . $data1['cabinet'] . "</a></td>";
                     /*
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
@@ -158,11 +180,11 @@ $erreur = "";
                     $data4 = mysqli_fetch_assoc($result4);
                     echo "<tr>";
                     echo "<td>" . $data3['id_examen'] . "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen']. "&id_client=".$id_client . ">" . $data3['type_examen'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen']. "&id_client=".$id_client . ">" . $data4['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen']. "&id_client=".$id_client . ">" . $data4['adresse'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen']. "&id_client=".$id_client . ">" . $data4['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=clientParcourirLabo.php?id_examen=" . $data3['id_examen']. "&id_client=".$id_client . ">" . $data4['telephone'] . "</a></td>";
                     echo "</tr>";
                 }
             } else {
@@ -201,7 +223,7 @@ $erreur = "";
         echo "<p>Database not found.</p>";
     } 
     $id_medecin = $_GET['id_medecin'];
-    $id_client = $_GET['id_client'];
+    
     mysqli_close($db_handle);
     ?>
     <div class="overlay ">
