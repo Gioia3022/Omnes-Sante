@@ -123,27 +123,27 @@ if ($db_found) {
             <br><br> 
             <table class = "center" style="background-color: white ;font-family: Arial, Helvetica, sans-serif; font-size:20px;line-height: 1.5; margin: 0;box-sizing: border-box;overflow-x: hidden;top: 0;left: 0;margin-left: auto; margin-right: auto;"> 
                 <tr>
-                    <td>Nom :</td>
+                    <td>Nom *:</td>
                     <td><input type="text" id="nom" name="nom" required></td>
                 </tr>
 
                 <tr>
-                    <td>Prénom :</td>
+                    <td>Prénom *:</td>
                     <td><input type="text" id="prenom" name="prenom" required></td>
                 </tr>
 
                 <tr>
-                    <td>Nom d'utilisateur :</td>
+                    <td>Nom d'utilisateur *:</td>
                     <td><input type="text" id="username" name="username" required></td>
                 </tr>
 
                 <tr>
-                    <td>Mot de Passe :</td>
+                    <td>Mot de Passe *:</td>
                     <td><input type="password" id="password" name="password" required></td>
                 </tr>
 
                 <tr>
-                    <td>Type de médecin :</td>
+                    <td>Type de médecin *:</td>
                     <td><select class="combo" name="type_medecin" required>
                             <option value="" name=""></option>
                             <option value="generaliste" name="generaliste">Generaliste</option>
@@ -159,18 +159,18 @@ if ($db_found) {
                 </tr>
 
                 <tr>
-                    <td>Email :</td>
+                    <td>Email *:</td>
                     <td><input type="email" id="email" name="email" required></td>
                 </tr>
 
                 <tr>
-                    <td>Date de naissance :</td>
+                    <td>Date de naissance *:</td>
                     <td><input type="date" id="date_naissance" name="date_naissance" required></td>
                 </tr>
 
                 <tr>
 
-                    <td>Genre :</td>
+                    <td>Genre *:</td>
                     <td><select class="combo" id="genre" name="genre" required>
                             <option value="" name=""></option>
                             <option value="homme" name="homme">Homme</option>
@@ -180,22 +180,17 @@ if ($db_found) {
                 </tr>
 
                 <tr>
-                    <td>Téléphone :</td>
+                    <td>Téléphone *:</td>
                     <td><input type="tel" id="telephone" name="telephone" required></td>
                 </tr>
 
                 <tr>
                     <td>Photo :</td>
-                    <td><input type="file" id="photo" name="photo" required></td>
+                    <td><input type="file" id="photo" name="photo" ></td>
                 </tr>
 
                 <tr>
-                    <td>CV :</td>
-                    <td><input type="text" id="cv" name="cv"></td>
-                </tr>
-
-                <tr>
-                    <td>Salle de cabinet :</td>
+                    <td>Salle de cabinet *:</td>
                     <td><input type="text" id="cabinet" name="cabinet" required></td>
                 </tr>
                 <tr>

@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 //saisir les données du  formulaires
 $nom = isset($_POST["nom"])? $_POST["nom"] : "";
 $prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
@@ -10,7 +10,7 @@ $email = isset($_POST["email"])? $_POST["email"] : "";
 $date_naissance = isset($_POST["date_naissance"])? $_POST["date_naissance"] : "";
 $genre = isset($_POST["genre"])? $_POST["genre"] : "";
 $telephone = isset($_POST["telephone"])? $_POST["telephone"] : "";
-$cv = isset($_POST["cv"])? $_POST["cv"] : "";
+$cv="";
 $cabinet = isset($_POST["cabinet"])? $_POST["cabinet"] : "";
 
 $boolean_type=0;
@@ -123,5 +123,3 @@ mysqli_close($db_handle);
 }
 
 ?>
-
-       -->
