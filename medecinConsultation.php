@@ -83,17 +83,8 @@ if ($db_found) {
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="chatroomMedecin.php">Chatroom</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Compte 
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="menuMedcin.php">Mon Compte</a>
-                                </li>
-                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menu.html">Déconnexion</a>
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">

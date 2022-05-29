@@ -53,7 +53,7 @@ if ($db_found) {
 </head>
 
 <body>
-    <div id="wrapper">
+<div id="wrapper">
     <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
@@ -83,17 +83,8 @@ if ($db_found) {
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="chatroomMedecin.php">Chatroom</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Compte 
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="menuMedcin.php">Mon Compte</a>
-                                </li>
-                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menu.html">Déconnexion</a>
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
@@ -157,7 +148,7 @@ if ($db_found) {
 
             ?>
         </table>
-    </div>
+</div>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

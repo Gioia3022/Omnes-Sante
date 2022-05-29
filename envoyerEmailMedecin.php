@@ -35,12 +35,12 @@ $erreur = "";
 </head>
 
 <body>
-    <div id="header">
+<div id="wrapper">
+<div id="header" style="height: 0px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
-                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label>
-                <br><br>
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
+                <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -48,50 +48,33 @@ $erreur = "";
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="clientMenu.php">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="clientParcourir.php">Parcourir</a>
+                            <a class="nav-link" aria-current="page" href="menuMedcin.php">Accueil</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.html" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Recherche
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Calendrier 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientRecherche_medecin1.php">Recherche médecin</a>
+                                <li><a class="dropdown-item" href="medecinConsultation.php">Futurs Consultations</a>
                                 </li>
-                                <li><a class="dropdown-item" href="clientRecherche_examen1.php">Recherche laboratoire</a>
+                                <li><a class="dropdown-item" href="medecinHistorique.php">Historiques</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="chatroom.php">Chatroom</a>
+                            <a class="nav-link" aria-current="page" href="chatroomMedecin.php">Chatroom</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="clientParcourir.php" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Compte
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="clientModification.php">Mon Compte</a>
-                                </li>
-                                <li><a class="dropdown-item" href="clientHistorique.php">Mon Historique</a>
-                                </li>
-                                <li><a class="dropdown-item" href="clientAnnuler.php">Annuler un rendez vous</a>
-                                </li>
-                                <li><a class="dropdown-item" href="menu.html">Déconnexion</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="menu.html">Déconnexion</a>
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
-                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60"
-                                style="position: absolute; top: 18px;" />
-                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
-                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
-                            <p style="font-size: 10px; color: blue;">
-                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Client connecté</p>
+                        <img src="../Omnes-Sante/images/<?php if (empty($photo)){ echo 'unknown.png';} else { echo $photo;}?>" 
+                                width="60" height="60" style="position: absolute; top: 18px;" />
+                            <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $nom ?></p>
+                            <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $prenom ?></p>
+                            <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Médecin connecté</p>
                         </li>
                     </ul>
                 </div>
@@ -117,7 +100,7 @@ $erreur = "";
     <button type="submit" name="envoie_mail" style="font-size: 25px; margin-left: 80%; border-radius: 5px;"> Valider </button>
      </form>';
     ?>
-
+</div>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 

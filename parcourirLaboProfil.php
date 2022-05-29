@@ -115,11 +115,11 @@ $erreur = "";
                 while ($data1 = mysqli_fetch_assoc($result1)) {
                     echo "<tr>";
                     echo  "<td>" . $data1['id_medecin'] .  "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=medecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['prenom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['type_medecin'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirMedecinProfil.php?id_medecin=" . $data1['id_medecin'] . ">" . $data1['cabinet'] . "</a></td>";
                     /*
                     echo  "<td>" . $data1['prenom'] .  "</td>";
                     echo " <td>" . $data1['type_medecin'] .  "</td>";
@@ -154,11 +154,11 @@ $erreur = "";
                     $data4 = mysqli_fetch_assoc($result4);
                     echo "<tr>";
                     echo "<td>" . $data3['id_examen'] . "</td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['nom'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['email'] . "</a></td>";
-                    echo " <td class=nav-item><a class=nav-link href=type_labo.php?id_examen=" . $data3['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data3['type_examen'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['nom'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['email'] . "</a></td>";
+                    echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data3['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
                     echo "</tr>";
                 }
             } else {
