@@ -191,7 +191,7 @@ echo "<br>HEREEEE";
                             }
                             if ($cpt != 1) {
                             ?>
-                                <TD> <button class="button2" type="submit" name="submit" value="<?php echo $valeur ?> <?php echo $j . ":00:00" ?> " style="width:100%;height:100%;color: white;background-color: blue"> Réserver </button> </TD>
+                                <TD> <button class="button2" type="submit" name="submit" value="<?php echo $valeur ?> <?php echo $j . ":00:00" ?> " style="width:100%;height:100%;color: black;background-color: bsky lue"> Réserver </button> </TD>
 
                     <?php
                             }
