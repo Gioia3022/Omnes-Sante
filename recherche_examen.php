@@ -131,11 +131,11 @@ $db_found = mysqli_select_db($db_handle, $database);
                             $data4 = mysqli_fetch_assoc($result4);
                             echo "<tr>";
                             echo "<td>" . $data['id_examen'] . "</td>";
-                            echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data['type_examen'] . "</a></td>";
-                            echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['nom'] . "</a></td>";
-                            echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
-                            echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['email'] . "</a></td>";
-                            echo " <td class=nav-item><a class=nav-link href=parcourirLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rechercheLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data['type_examen'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rechercheLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['nom'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rechercheLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['adresse'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rechercheLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['email'] . "</a></td>";
+                            echo " <td class=nav-item><a class=nav-link href=rechercheLaboProfil.php?id_examen=" . $data['id_examen'] . ">" . $data4['telephone'] . "</a></td>";
                             echo "</tr>";
                         }
                     }
