@@ -103,7 +103,8 @@ if ($db_found) {
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
-                            <img src="../Omnes-Sante/images/unknown.png" width="60" height="60" style="position: absolute; top: 18px;" />
+                        <img src="../Omnes-Sante/images/<?php if (empty($photo)){ echo 'unknown.png';} else { echo $photo;}?>" 
+                                width="60" height="60" style="position: absolute; top: 18px;" />
                             <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $nom ?></p>
                             <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">
@@ -119,7 +120,7 @@ if ($db_found) {
 
 
 
-        echo '<form action="clientModification_alt.php" method="post">
+        echo '<form action="clientModification_alt.php" method="post" enctype="multipart/form-data">
                     
         <table class="table table-hover">
             <h1 id="titre"><b>Mon Compte</b></h1>
