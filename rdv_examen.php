@@ -10,11 +10,11 @@ $db_found = mysqli_select_db($db_handle, $database);
 //Cette id devra etre passé en paramètre ici (et il devra aussi etre envoyé dans le fichier rdv_examen_alt.php)
 $id_examen = $_GET['id_examen'];
 $id_du_client = $_GET['id_client'];
-$sql3="SELECT * FROM Client WHERE id_client= '$id_du_client'";
+$sql3 = "SELECT * FROM Client WHERE id_client= '$id_du_client'";
 $result3 = mysqli_query($db_handle, $sql3);
 $data3 = mysqli_fetch_assoc($result3);
-$prenom_du_client= $data3['prenom'];
-$nom_du_client= $data3['nom'];
+$prenom_du_client = $data3['prenom'];
+$nom_du_client = $data3['nom'];
 
 echo "<br>HEREEEE";
 ?>
@@ -35,11 +35,11 @@ echo "<br>HEREEEE";
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="" rel="stylesheet" type="text/css" />
     <link href="css/menu.css " rel="stylesheet" type="text/css" />
+    <link href="css/timetableExamen.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <div id="wrapper">
-    
+
     <div id="header" style="background-color: rgb(250, 250, 250); height: 80px ; top: 0px ; font-size: 20px;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
@@ -98,80 +98,110 @@ echo "<br>HEREEEE";
             </div>
         </nav>
     </div>
-        <br><br>
-        <br><br>
-        <br><br>
-        <h1 id="titre"><b>Horaire disponible pour examen </b></h1>
-        <br><br>
-        
-        <form action="rdv_examen_alt.php" method="post">
-        <input type="text" id="id_examen" name="id_examen" value= <?php echo $id_examen?> hidden>
-            <table>
-                <thead>
-                    <tr>
-                        <th> Horraie </th>
-                        <th> Lundi </th>
-                        <th> Mardi </th>
-                        <th> Mercredi </th>
-                        <th> Jeudi </th>
-                        <th> Vendredi </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for($j=8; $j <= 17; $j++){
-                        $cpt=-1;
-                        ?>
-                        <tr>
-                            <td> <?php echo $j; echo "-"; echo $j+1; echo "h"; ?> </td>
+    <br>
+    <br>
+    <?php
+    $ID = $_GET['id_examen'];
+    if ($db_found) {
+        //commencer le query
+        $sql = "SELECT * FROM Examen WHERE id_examen= '$ID' ";
+        $result = mysqli_query($db_handle, $sql);
+        //regarder s'il y a des resultat
+        while ($data = mysqli_fetch_assoc($result)) {
+            $sql2 = "SELECT * FROM laboratoire WHERE id_laboratoire=" . $data['fk_laboratoire'];
+            $result2 = mysqli_query($db_handle, $sql2);
+            $data2 = mysqli_fetch_assoc($result2);
+            //saisir les données du  formulaires
+            $type_examen = $data['type_examen'];
+            $nom = $data2['nom'];
+            $adresse = $data2['adresse'];
+            $ville = $data2['ville'];
+            $salle = $data2['salle'];
+            $email = $data2['email'];
+            $telephone = $data2['telephone'];
+        }
+    } else {
+        echo "<p>Database not found.</p>";
+    }
+    ?>
+    <h1 id="titre"><b>Calendendrier pour l'examen : <?php echo $nom . " ". $type_examen?> </b></h1>
+    <br>
+    <br>
+    <br>
+    <form action="rdv_examen_alt.php" method="post">
+        <input type="text" id="id_examen" name="id_examen" value=<?php echo $id_examen ?> hidden>
+        <TABLE class="myTimetable">
+            <THEAD>
+                <TR>
+                    <TH></TH>
+                    <TH>Monday</TH>
+                    <TH>Tuesday</TH>
+                    <TH>Wednesday</TH>
+                    <TH>Thursday</TH>
+                    <TH>Friday</TH>
+                </TR>
+            </THEAD>
+            <TBODY>
+                <?php
+                for ($j = 8; $j <= 17; $j++) {
+                    $cpt = -1;
+                ?>
+                    <TR>
+                        <TD>
                             <?php
-                            for ($h = 1 ; $h <= 5 ; $h++){
-                                $cpt=-1;
-                                if($h==1){
-                                    $valeur = "2022-05-30";
-                                }
-                                if($h==2){
-                                    $valeur = "2022-05-31";
-                                }
-                                if($h==3){
-                                    $valeur = "2022-06-01";
-                                }
-                                if($h==4){
-                                    $valeur = "2022-06-02";
-                                }
-                                if($h==5){
-                                    $valeur = "2022-06-03";
-                                }
-                                $query="Select * from reservation_client_examen where fk_examen='$id_examen'"; 
-                                $result=mysqli_query($db_handle,$query);
-                                while ($data = mysqli_fetch_assoc($result)) {
-                                    if($data["date"]==$valeur AND $data["heure"]==$j){
-                                        $cpt =1;
-                                        ?>
-                                        <td> <button class="button2" type="button" id="button"  disabled style="width:100%;height:100%;background-color: gray;"> Réserver  </button></td>
-                                        <?php
-                                    }
-                                    
-                                }
-                                if($j==12){
-                                    $cpt =1;
-                                    ?>
-                                    <td> <button class="button2" type="button" id="button"  disabled style="width:100%;height:100%;background-color: gray;"> Réserver  </button></td>
-                                    <?php
-                                }
-                                if($cpt!=1){
-                                    ?>
-                                    <td> <button class="button2" type="submit" name="submit" value="<?php echo $valeur ?> <?php echo $j.":00:00" ?> "  style="width:100%;height:100%"> Réserver </button> </td>
-                                    <?php
-                                }
-                            }
-                            echo "</tr>";
-                            }
+                            echo $j;
+                            echo "-";
+                            echo $j + 1;
+                            echo "h";
                             ?>
-                </tbody>
-            </table>
-        </form>
-    </div>
+                        </TD>
+                        <?php
+                        for ($h = 1; $h <= 5; $h++) {
+                            $cpt = -1;
+                            if ($h == 1) {
+                                $valeur = "2022-05-30";
+                            }
+                            if ($h == 2) {
+                                $valeur = "2022-05-31";
+                            }
+                            if ($h == 3) {
+                                $valeur = "2022-06-01";
+                            }
+                            if ($h == 4) {
+                                $valeur = "2022-06-02";
+                            }
+                            if ($h == 5) {
+                                $valeur = "2022-06-03";
+                            }
+                            $query = "Select * from reservation_client_examen where fk_examen='$id_examen'";
+                            $result = mysqli_query($db_handle, $query);
+                            while ($data = mysqli_fetch_assoc($result)) {
+                                if ($data["date"] == $valeur and $data["heure"] == $j) {
+                                    $cpt = 1;
+                        ?>
+                                    <TD class="break">Réservé</TD>
+                                <?php
+                                }
+                            }
+                            if ($j == 12) {
+                                $cpt = 1;
+                                ?>
+                                <TD class="break">Pause midi</TD>
+                            <?php
+                            }
+                            if ($cpt != 1) {
+                            ?>
+                                <TD> <button class="button2" type="submit" name="submit" value="<?php echo $valeur ?> <?php echo $j . ":00:00" ?> " style="width:100%;height:100%;color: white;background-color: blue"> Réserver </button> </TD>
+
+                    <?php
+                            }
+                        }
+                        echo "</TR>";
+                    } ?>
+
+            </TBODY>
+        </TABLE>
+    </form>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
