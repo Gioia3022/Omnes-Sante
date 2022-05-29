@@ -1,35 +1,36 @@
 <?php
-    session_start();
-    $id_medecin=$_SESSION['id_medecin'];
-    $database = "omnes_sante";
-    $db_handle = mysqli_connect('localhost', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
+session_start();
+$id_medecin = $_SESSION['id_medecin'];
+$database = "omnes_sante";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
-    $nom="";
-    $prenom="";
+$nom = "";
+$prenom = "";
 
-    if ($db_found) {
-        //commencer le query
-        $sql = "SELECT * FROM Medecin WHERE id_medecin= '$id_medecin' ";
+if ($db_found) {
+    //commencer le query
+    $sql = "SELECT * FROM Medecin WHERE id_medecin= '$id_medecin' ";
 
-        $result = mysqli_query($db_handle, $sql);
-        //regarder s'il y a des resultats
-        if (mysqli_num_rows($result) == 0) {
-            echo "<p>Ce client n'existe pas</p>";
-        } else {
-            while ($data = mysqli_fetch_assoc($result)) {
-                //saisir les données du  formulaires
-                $nom = $data['nom'];
-                $prenom = $data['prenom'];
-                $photo= $data['photo'];
-            }
-        }
+    $result = mysqli_query($db_handle, $sql);
+    //regarder s'il y a des resultats
+    if (mysqli_num_rows($result) == 0) {
+        echo "<p>Ce client n'existe pas</p>";
     } else {
-        echo "<p>Database not found.</p>";
+        while ($data = mysqli_fetch_assoc($result)) {
+            //saisir les données du  formulaires
+            $nom = $data['nom'];
+            $prenom = $data['prenom'];
+            $photo = $data['photo'];
+        }
     }
+} else {
+    echo "<p>Database not found.</p>";
+}
 ?>
 
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -47,7 +48,7 @@
 </head>
 
 <body>
-<div id="image_back">
+    <div id="image_back">
         <div class="container">
             <div class="row">
                 <article class="col">
@@ -71,12 +72,20 @@
                     <h2 id="titre">Bulletin santé de la semaine</h2>
                     <p class="center_article_1">
                         Cette semaine on observe une forte hausse des gastros!!
-                        Alors arretez de manger de la merde bande de shlags.
+                        Alors evitez de manger dans des restaurants à l'igiène douteuse!
                         Mais surtout n'oubliez pas de vous laver les mains pendant au moins 3 minutes.
-                        Cela éliminera 99% des bactéries présentes sur celles-ci!
-                        A demain pour un autre bulletin météo de guli.
+                        Cela éliminera 99% des bactéries présentes sur celles-ci! N'oubliez pas la devise: le chaussettes de l'archiduchesses sont
+                        plus que sèches si elles sont archisèches.
                         <br>
                         <img src="../Omnes-Sante/images/photo_maladie1.png">
+                        <img src="../Omnes-Sante/images/photo_maladie2.png">
+                        <br>
+                        N'oubliez pas de jeter vos plats ferrero/budoni si ils ont été acheté il y a un mois
+                        car des risques de contaminations salmonelliques sont présents.
+                    <p>
+                        A demain pour un autre bulletin santé.</p>
+                    <br>
+                    L'equipe Omnes santé
                     </p>
 
                 </article>
@@ -102,13 +111,11 @@
                                 <img src="../Omnes-Sante/images/photo_medecin5.png" class="d-block w-100" alt="...">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
-                            data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -117,15 +124,13 @@
             </div>
         </div>
     </div>
-<div id="wrapper">
+
     <div id="header" style="height: 0px; font-size: 20px; width: 100%;">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;"/>
+                <img src="../Omnes-Sante/images/logo.png" width="80" height="80" style="position: relative;" />
                 <label id="bigtitre" style="color: blue; font-size: 30px;"><b>Omnes Santé &emsp; </b></label> <br><br>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div class="collapse navbar-collapse justify-content_between" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -133,9 +138,8 @@
                             <a class="nav-link" aria-current="page" href="menuMedcin.php">Accueil</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Calendrier 
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Calendrier
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="medecinConsultation.php">Futurs Consultations</a>
@@ -152,8 +156,11 @@
                         </li>
                         &emsp;
                         <li class="navbar-expand-lg" style="line-height: 0px;">
-                        <img src="../Omnes-Sante/images/<?php if (empty($photo)){ echo 'unknown.png';} else { echo $photo;}?>" 
-                                width="60" height="60" style="position: absolute; top: 18px;" />
+                            <img src="../Omnes-Sante/images/<?php if (empty($photo)) {
+                                                                echo 'unknown.png';
+                                                            } else {
+                                                                echo $photo;
+                                                            } ?>" width="60" height="60" style="position: absolute; top: 18px;" />
                             <p style="font-size: 15px;"> &emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $nom ?></p>
                             <p style="font-size: 15px; ">&emsp;&emsp;&emsp;&emsp;&emsp; <?php echo $prenom ?></p>
                             <p style="font-size: 10px; color: blue;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Médecin connecté</p>
@@ -163,17 +170,20 @@
             </div>
         </nav>
     </div>
-        
-    <br><br>  
-    <br><br>  
-    
+    <div id="footer">
+        <p>Si vous avez un problème ou si vouz souhaitez nous contacter nous somme disponibles 7 jours sur septs aux
+            adresses : omnessanteserviceclient@omnes.com<br>
+            12 avenue des dieux de l'infos, Viroflay 78220
+        </p>
+    </div>
+
 
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-</div>
+
 </body>
 
-</html>                    
+</html>

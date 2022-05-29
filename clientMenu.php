@@ -57,7 +57,7 @@
 
 <body>
 
-    <div id="image_back">
+<div id="image_back">
         <div class="container">
             <div class="row">
                 <article class="col">
@@ -81,12 +81,20 @@
                     <h2 id="titre">Bulletin santé de la semaine</h2>
                     <p class="center_article_1">
                         Cette semaine on observe une forte hausse des gastros!!
-                        Alors arretez de manger de la merde bande de shlags.
+                        Alors evitez de manger dans des restaurants à l'igiène douteuse!
                         Mais surtout n'oubliez pas de vous laver les mains pendant au moins 3 minutes.
-                        Cela éliminera 99% des bactéries présentes sur celles-ci!
-                        A demain pour un autre bulletin météo de guli.
+                        Cela éliminera 99% des bactéries présentes sur celles-ci! N'oubliez pas la devise: le chaussettes de l'archiduchesses sont 
+                        plus que sèches si elles sont archisèches.
                         <br>
                         <img src="../Omnes-Sante/images/photo_maladie1.png">
+                        <img src="../Omnes-Sante/images/photo_maladie2.png">
+                        <br>
+                        N'oubliez pas de jeter vos plats ferrero/budoni si ils ont été acheté il y a un mois 
+                        car des risques de contaminations salmonelliques sont présents.
+                        <p>
+                        A demain pour un autre bulletin santé.</p>
+                        <br>
+                        L'equipe Omnes santé
                     </p>
 
                 </article>
