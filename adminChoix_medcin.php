@@ -3,7 +3,6 @@ session_start();
 echo "<meta charset=\"utf-8\">";
 $id_administrateur = $_SESSION['id_admin'];
 $database = "omnes_sante";
-$database = "omnes_sante";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 

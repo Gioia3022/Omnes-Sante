@@ -1,12 +1,27 @@
 <?php
+session_start();
 //Ordre Décroissant
 echo "<meta charset=\"utf-8\">";
 //identifier votre BDD
 $database = "omnes_sante";
+$id_administrateur = $_SESSION['id_admin'];
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-session_start();
-$id_administrateur = $_SESSION['id_admin'];
+
+//declaration des variables
+$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
+$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
+$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
+$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
+$email = isset($_POST["email"]) ? $_POST["email"] : "";
+$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
+$ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
+$adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
+$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
+$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
+$erreur = "";
+
+
 if ($db_found) {
     //commencer le query
     $sql = "SELECT * FROM admin WHERE id_admin= '$id_administrateur' ";
@@ -30,18 +45,6 @@ if ($db_found) {
     echo "<p>Database not found.</p>";
 }
 
-//declaration des variables
-$ID = isset($_POST["id_medecin"]) ? $_POST["id_medecin"] : "";
-$nom = isset($_POST["nom"]) ? $_POST["nom"] : "";
-$prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : "";
-$type_medecin = isset($_POST["type_medecin"]) ? $_POST["type_medecin"] : "";
-$email = isset($_POST["email"]) ? $_POST["email"] : "";
-$cabinet = isset($_POST["cabinet"]) ? $_POST["cabinet"] : "";
-$ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
-$adresse = isset($_POST["adresse"]) ? $_POST["adresse"] : "";
-$telephone = isset($_POST["telephone"]) ? $_POST["telephone"] : "";
-$erreur = "";
-$id_admin= isset($_POST["id_admin_mod"]) ? $_POST["id_admin_mod"] : "";
 
 ?>
 
